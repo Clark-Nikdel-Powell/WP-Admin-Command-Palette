@@ -16,6 +16,11 @@
 class Admin_Command_Palette_Data {
 
 
+	public $user_content 	= array();
+	public $admin_pages 	= array();
+	public $admin_actions 	= array();
+
+
 	public function __construct() {
 
 	}
