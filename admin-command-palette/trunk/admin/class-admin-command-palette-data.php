@@ -141,14 +141,33 @@ class Admin_Command_Palette_Data {
 		// globals
 		global $wpdb;
 
-		// set template
-		$template = $this->template;
-
-		
-		$results = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_status = 'publish'");
-
 		// get data
+		$results = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_status = 'publish'", ARRAY_A);
+
+		// set blank array for false returns
 		$data = array();
+
+		// loop through our results
+		if ( $results && count($results) > 0 ) {
+
+			foreach ( $results as $result ) {
+
+				// copy the template
+				$template = $this->template;
+
+				// set all the properties
+				$template['title'] 		= $result['post_title'];
+				$template['id'] 			= $result['ID'];
+				$template['object_type'] 	= 'post_type';
+				$template['object_name'] 	= $result['post_type'];
+				$template['url'] 			= get_edit_post_link($result['ID']);
+
+				// set the data in the new array by post ID to avoid duplicates
+				$data[$result['ID']] = $template;
+
+			}
+
+		}
 
 		return $data;
 
