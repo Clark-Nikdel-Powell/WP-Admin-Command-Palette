@@ -141,7 +141,7 @@ class Admin_Command_Palette_Data {
 		// globals
 		global $wpdb;
 
-		// get data
+		// get all published posts
 		$results = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_status = 'publish'", ARRAY_A);
 
 		// set blank array for false returns
@@ -156,7 +156,7 @@ class Admin_Command_Palette_Data {
 				$template = $this->template;
 
 				// set all the properties
-				$template['title'] 		= $result['post_title'];
+				$template['title'] 			= $result['post_title'];
 				$template['id'] 			= $result['ID'];
 				$template['object_type'] 	= 'post_type';
 				$template['object_name'] 	= $result['post_type'];
