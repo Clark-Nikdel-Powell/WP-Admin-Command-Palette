@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Admin_Command_Palette
+ * @subpackage Admin_Command_Palette/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Admin_Command_Palette
+ * @subpackage Admin_Command_Palette/includes
  * @author     Your Name <email@example.com>
  */
-class Plugin_Name_Activator {
+class Admin_Command_Palette_Activator {
 
 	/**
 	 * Short Description. (use period)

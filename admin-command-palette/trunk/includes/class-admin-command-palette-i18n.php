@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Admin_Command_Palette
+ * @subpackage Admin_Command_Palette/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Admin_Command_Palette
+ * @subpackage Admin_Command_Palette/includes
  * @author     Your Name <email@example.com>
  */
-class Plugin_Name_i18n {
+class Admin_Command_Palette_i18n {
 
 	/**
 	 * The domain specified for this plugin.
