@@ -3,16 +3,6 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/admin
- */
-
-/**
- * The admin-specific functionality of the plugin.
- *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
@@ -39,6 +29,15 @@ class Admin_Command_Palette_Admin {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+
+	/**
+	 * The data objects we will be dealing with
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @var      object    $data    The data object retrieved from the WordPress Database
+	 */
+	public $data;
 
 	/**
 	 * Initialize the class and set its properties.

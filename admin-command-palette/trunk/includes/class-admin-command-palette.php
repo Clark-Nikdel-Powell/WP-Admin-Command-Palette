@@ -114,6 +114,11 @@ class Admin_Command_Palette {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-admin.php';
 
 		/**
+		 * The class responsible for getting data into searchable arrays from the database
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-data.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -151,6 +156,7 @@ class Admin_Command_Palette {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Admin_Command_Palette_Admin( $this->get_admin_command_palette(), $this->get_version() );
+		$plugin_admin->data = new Admin_Command_Palette_Data();
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
