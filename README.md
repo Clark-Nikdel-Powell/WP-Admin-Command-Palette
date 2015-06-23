@@ -8,7 +8,7 @@ The Admin Command Palette (ACP) is a modal window in the WordPress Admin that li
 
 * Search for and navigate to user-generated content (Posts, Pages, Users, etc.).
 * Search for and navigate to WordPress Admin Pages (All Posts, Add New Post, etc.).
-* Perform WordPress Admin actions via the ACP or a keyboard shortcut (Publish, Add Media, View Post, etc.)
+* Perform WordPress Admin actions via the ACP or a keyboard shortcut (Publish, Add Media, View Post, etc.).
 
 ## Basic Usage
 
