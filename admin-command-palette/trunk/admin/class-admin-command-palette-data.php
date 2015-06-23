@@ -43,7 +43,9 @@ class Admin_Command_Palette_Data {
 
 	public function __construct() {
 
-		$this->user_content = load_user_content();
+		$this->user_content 	= load_user_content();
+		$this->admin_pages 		= load_admin_pages();
+		$this->admin_actions 	= load_admin_actions();
 
 	}
 
@@ -51,6 +53,17 @@ class Admin_Command_Palette_Data {
 
 		global $wpdb;
 
+	}
+
+	public function load_admin_pages() {
+
+		global $wpdb;
+
+	}
+
+	public function load_admin_actions() {
+
+		global $wpdb;
 
 	}
 }
