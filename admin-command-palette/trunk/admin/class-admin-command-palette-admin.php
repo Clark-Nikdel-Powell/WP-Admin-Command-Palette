@@ -35,7 +35,7 @@ class Admin_Command_Palette_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   public
-	 * @var      object    $data    The data object retrieved from the WordPress Database
+	 * @var      object    $data    The data class containing cached or live data from database
 	 */
 	public $data;
 
