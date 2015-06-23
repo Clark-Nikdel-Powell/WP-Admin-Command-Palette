@@ -47,7 +47,7 @@ class Admin_Command_Palette_Data {
 
 
 	/**
-	 * An template array to use when generating content data
+	 * A template array to use when generating content data
 	 *
 	 * @since    1.0.0
 	 * @access   public
@@ -75,6 +75,16 @@ class Admin_Command_Palette_Data {
 
 
 	/**
+	 * The user logged in
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      object    $user    The user object
+	 */
+	private $user = null;
+
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -85,6 +95,8 @@ class Admin_Command_Palette_Data {
 		$this->admin_pages 		= load_data('acp-admin-pages',	'load_admin_pages');
 		$this->admin_actions 	= load_data('acp-admin-actions','load_admin_actions');
 
+
+		$this->user = wp_get_current_user();
 	}
 
 
@@ -98,18 +110,22 @@ class Admin_Command_Palette_Data {
 	 */
 	public function load_data($transient_name, $method_name, $expires = 0) {
 
-		$data = array();
+		// set the modified transient name to include this user id. This keeps our caching specific for each user
+		$transient_modified_name = $transient_name . '-user-' . $this->user->ID;
 
 		// if the cache exists
-		$cache = get_transient($transient_name);
+		$cache = get_transient($transient_modified_name);
 		if ( $cache ) {
 			return $cache;
 		}
-
 		// otherwise get it live
-		$live = $this->$method_name();
-		set_transient( $transient_name, $live, $expires );
-		return $live;
+		else {
+
+			$live = $this->$method_name();
+			set_transient( $transient_modified_name, $live, $expires );
+			return $live;
+
+		}
 
 	}
 
