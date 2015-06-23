@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Admin Command Palette
  * Plugin URI:        http://example.com/admin-command-palette-uri/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Something something something bla bla bla
  * Version:           1.0.0
  * Author:            Clark Nildek Powell
  * Author URI:        http://clarknikdelpowell.com/

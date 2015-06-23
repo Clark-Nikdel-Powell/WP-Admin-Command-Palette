@@ -20,8 +20,37 @@ class Admin_Command_Palette_Data {
 	public $admin_pages 	= array();
 	public $admin_actions 	= array();
 
+	private $template = array(
+
+		// all arrays
+		'title' 		=> ''
+	,	'object_type' 	=> ''
+	,	'object_name' 	=> ''
+	,	'url' 			=> ''
+
+		// user generated content only
+	,	'id' 			=> 0
+
+		// admin pages only
+	,	'dashicon' 		=> ''
+
+		// admin actions only
+	, 	'target' 		=> ''
+	,	'action' 		=> ''
+	,	'shortcut' 		=> ''		
+	);
+
 
 	public function __construct() {
+
+		$this->user_content = load_user_content();
+
+	}
+
+	public function load_user_content() {
+
+		global $wpdb;
+
 
 	}
 }
