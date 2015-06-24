@@ -3,10 +3,10 @@
  * included in this file.
  */
 
-#admin-command-palette {
+.admin-command-palette {
 
 	&-overlay, &-modal {
-		//display: none;
+		// display: none;
 		z-index: 1001;
 	}
 	&-overlay {
@@ -22,12 +22,16 @@
 	&-modal {
 		width: 40%;
 		margin-left: -20%;
-		position: fixed;
-		top: 25%;
+		position: absolute;
+		top: 5em;
 		left: 50%;
-		background-color: #32373C;
-		border: 2px solid #222;
+		background-color: #23282D;
+		color: #eee;
 
+		.search-container {
+			background-color: #32373C;
+			border: 2px solid #222;
+		}
 		input[type="search"] {
 			width: 100%;
 			margin: 0;
@@ -40,12 +44,61 @@
 			-webkit-appearance: none;
 			outline: 0;
 		}
-		.spinner {
-			position: absolute;
-			top: 50%;
-			right: 0;
-			visibility: visible;
+ 	}
+
+	// Styles for the results section
+ 	&-results {
+
+		.subheading {
+			margin: 0;
+			padding: .5em 1.75rem;
+			color: #bbb;
+			border-bottom: 1px solid #444;
+			line-height: 2em;
 		}
+		ul {
+
+			&, li {
+				margin: 0;
+				padding: 0;
+			}
+
+			li {
+				border-bottom: 1px solid #333;
+			}
+			a {
+				display: block;
+				padding: .625em 1.75rem;
+				font-size: 1.125em;
+				text-decoration: none;
+			}
+			&.actions li {
+				padding: .625em 1.75rem;
+				color: #0073AA;
+				cursor: pointer;
+				font-size: 1.125em;
+				-webkit-transition-property: border,background,color;
+				transition-property: border,background,color;
+				-webkit-transition-duration: .05s;
+				transition-duration: .05s;
+				-webkit-transition-timing-function: ease-in-out;
+				transition-timing-function: ease-in-out;
+
+				&:hover {
+					color: #00A0D2;
+				}
+			}
+		}
+		div[class*="dashicons"] {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		li div[class*="dashicons"] {
+			position: relative;
+			top: -1px;
+		}
+
+
  	}
 
  	// Styles for color themes
@@ -56,5 +109,4 @@
  	}
 
 }
-
 
