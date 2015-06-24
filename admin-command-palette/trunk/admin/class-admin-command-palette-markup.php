@@ -18,17 +18,4 @@ final class Admin_Command_Palette_Markup {
 
 	}
 
-	public function json_data() {
-
-		global $ACP;
-		$all_data = $ACP->get_all_data();
-		
-		?>
-		<script>
-		var acp_search_data = <?php echo json_encode($all_data); ?>
-		</script>
-		<?php
-
-	}
-
 }

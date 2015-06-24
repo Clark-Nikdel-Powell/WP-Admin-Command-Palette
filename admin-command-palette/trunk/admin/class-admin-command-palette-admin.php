@@ -97,8 +97,28 @@ class Admin_Command_Palette_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin.min.js', array( 'jquery' ), $this->version, true );
 
+		wp_localize_script( $this->admin_command_palette, 'acp_search_data', $this->get_all_data() );
+
+	}
+
+
+	/**
+	 * Gets all the data to search through
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	public function get_all_data() {
+
+		$user_content 	= $this->user_content->data;
+		$admin_pages 	= $this->admin_pages->data;
+		$admin_actions 	= $this->admin_actions->data;
+
+		$all_data = array_merge($user_content, $admin_pages, $admin_actions);
+
+		return $all_data;
 	}
 
 }

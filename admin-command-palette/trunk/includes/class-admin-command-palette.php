@@ -177,47 +177,26 @@ class Admin_Command_Palette {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Admin_Command_Palette_Admin( $this->get_admin_command_palette(), $this->get_version() );
+		$this->admin = new Admin_Command_Palette_Admin( $this->get_admin_command_palette(), $this->get_version() );
 
 		// instantiate classes
-		$plugin_admin->user_content 	= new Admin_Command_Palette_User_Content();
-		$plugin_admin->admin_pages 		= new Admin_Command_Palette_Admin_Pages();
-		$plugin_admin->admin_actions 	= new Admin_Command_Palette_Admin_Actions();
+		$this->admin->user_content 	= new Admin_Command_Palette_User_Content();
+		$this->admin->admin_pages 		= new Admin_Command_Palette_Admin_Pages();
+		$this->admin->admin_actions 	= new Admin_Command_Palette_Admin_Actions();
 
-		$markup = new Admin_Command_Palette_Markup();
+		$this->markup = new Admin_Command_Palette_Markup();
 
 		// add hooks to load data on admin init
-		$this->loader->add_action( 'admin_init', $plugin_admin->user_content, 	'load' );
-		$this->loader->add_action( 'admin_init', $plugin_admin->admin_pages, 	'load' );
-		$this->loader->add_action( 'admin_init', $plugin_admin->admin_actions, 	'load' );
+		$this->loader->add_action( 'admin_init', $this->admin->user_content, 	'load' );
+		$this->loader->add_action( 'admin_init', $this->admin->admin_pages, 	'load' );
+		$this->loader->add_action( 'admin_init', $this->admin->admin_actions, 	'load' );
 		
-		$this->loader->add_action( 'admin_footer', $markup, 'search_box' );
-		$this->loader->add_action( 'admin_footer', $markup, 'json_data' );
+		$this->loader->add_action( 'admin_footer', $this->markup, 'search_box' );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
-		$this->admin = $plugin_admin;
-		$this->markup = $markup;
-
-	}
+		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_scripts' );
 
 
-	/**
-	 * Gets all the data to search through
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	public function get_all_data() {
-
-		$user_content 	= $this->admin->user_content->data;
-		$admin_pages 	= $this->admin->admin_pages->data;
-		$admin_actions 	= $this->admin->admin_actions->data;
-
-		$all_data = array_merge($user_content, $admin_pages, $admin_actions);
-
-		return $all_data;
 	}
 
 	/**
