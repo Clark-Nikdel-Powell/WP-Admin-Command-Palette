@@ -23,7 +23,7 @@ abstract class Admin_Command_Palette_Data {
 	 * @access   public
 	 * @var      array    $user_content    The array of data
 	 */
-	public $data 	= array();
+	public $data = array();
 
 
 	/**
@@ -59,10 +59,7 @@ abstract class Admin_Command_Palette_Data {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load() {
-
-
-	}
+	public function load() { }
 
 
 	/**
