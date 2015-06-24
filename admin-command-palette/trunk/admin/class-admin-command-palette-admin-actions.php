@@ -16,6 +16,35 @@
 final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Data {
 
 
+	private $admin_actions = array(
+		{
+			"title": "View Post",
+			"target": "#view-post-btn .button",
+			"action": "click",
+			"shortcut": "shift+v"
+		},
+		{
+			"title": "Preview",
+			"target": ".preview",
+			"action": "click",
+			"shortcut": "shift+p"
+		},
+		{
+			"title": "Publish",
+			"target": "input[type=submit]#publish",
+			"action": "click",
+			"shortcut": "shift+s"
+		},
+		{
+			"title": "Trash",
+			"target": ".submitdelete",
+			"action": "click",
+			"shortcut": "shift+t"
+		}
+		// TODO: Add Screen Options
+	);
+
+
 	public function load() {
 
 		$this->admin_actions = $this->load_data('acp-admin-actions', 'load_admin_actions');
@@ -31,17 +60,30 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 	 */
 	public function load_admin_actions() {
 
-		// globals
-		global $wpdb;
-
-		// set template
-		$template = $this->template;
-
 		// get data
 		$data = array();
+
+		if (isset($admin_actions) && count($admin_actions) > 0) {
+
+			// set template
+			$templte = $this->template;
+
+			foreach ($admin_actions as $action) {
+
+				$template['title'] = $action['title'];
+				$template['target'] = $action['target'];
+				$template['action'] = $action['action'];
+				$template['shortcut'] = $action['shortcut'];
+
+				$data[] = $template;
+
+			}
+
+		}
 
 		return $data;
 
 	}
+	
 	
 }
