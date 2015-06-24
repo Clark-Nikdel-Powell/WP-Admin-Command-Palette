@@ -6,8 +6,12 @@
 .admin-command-palette {
 
 	&-overlay, &-modal {
-		// display: none;
+		display: none;
 		z-index: 1001;
+
+		&.open {
+			display: block;
+		}
 	}
 	&-overlay {
 		position: fixed;
