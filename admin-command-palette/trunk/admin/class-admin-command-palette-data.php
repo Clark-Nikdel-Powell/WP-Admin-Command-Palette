@@ -23,7 +23,7 @@ abstract class Admin_Command_Palette_Data {
 	 * @access   public
 	 * @var      array    $user_content    The array of data
 	 */
-	public $data 	= array();
+	public $data = array();
 
 
 	/**
@@ -37,12 +37,12 @@ abstract class Admin_Command_Palette_Data {
 
 		// all arrays
 		'title' 		=> ''
-	,	'object_type' 	=> ''
-	,	'object_name' 	=> ''
 	,	'url' 			=> ''
 
 		// user generated content only
 	,	'id' 			=> 0
+	,	'object_type' 	=> ''
+	,	'object_name' 	=> ''
 
 		// admin pages only
 	,	'dashicon' 		=> ''
@@ -50,7 +50,7 @@ abstract class Admin_Command_Palette_Data {
 		// admin actions only
 	, 	'target' 		=> ''
 	,	'action' 		=> ''
-	,	'shortcut' 		=> ''		
+	,	'shortcut' 		=> ''
 	);
 
 
@@ -59,10 +59,7 @@ abstract class Admin_Command_Palette_Data {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load() {
-
-
-	}
+	public function load() { }
 
 
 	/**
@@ -83,18 +80,17 @@ abstract class Admin_Command_Palette_Data {
 		$transient_modified_name = $transient_name . '-user-' . $user->ID;
 
 		// if the cache exists
-		$cache = get_transient($transient_modified_name);
-		if ( $cache ) {
-			return $cache;
+		if ( ACP_CACHE ) {
+			$cache = get_transient($transient_modified_name);
+			if ( $cache ) {
+				return $cache;
+			}
 		}
+		
 		// otherwise get it live
-		else {
-
-			$live = $this->$method_name();
-			set_transient( $transient_modified_name, $live, $expires );
-			return $live;
-
-		}
+		$live = $this->$method_name();
+		set_transient( $transient_modified_name, $live, $expires );
+		return $live;
 
 	}
 
