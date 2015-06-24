@@ -30,6 +30,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'ACP_CACHE', FALSE );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-admin-command-palette-activator.php
