@@ -37,12 +37,12 @@ abstract class Admin_Command_Palette_Data {
 
 		// all arrays
 		'title' 		=> ''
-	,	'object_type' 	=> ''
-	,	'object_name' 	=> ''
 	,	'url' 			=> ''
 
 		// user generated content only
 	,	'id' 			=> 0
+	,	'object_type' 	=> ''
+	,	'object_name' 	=> ''
 
 		// admin pages only
 	,	'dashicon' 		=> ''
@@ -50,7 +50,7 @@ abstract class Admin_Command_Palette_Data {
 		// admin actions only
 	, 	'target' 		=> ''
 	,	'action' 		=> ''
-	,	'shortcut' 		=> ''		
+	,	'shortcut' 		=> ''
 	);
 
 
