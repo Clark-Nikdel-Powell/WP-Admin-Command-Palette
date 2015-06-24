@@ -1,6 +1,1 @@
-(function( $ ) {
-	'use strict';
-
-	AcpModal.init();
-
-})( jQuery );
+AcpModal.init();
