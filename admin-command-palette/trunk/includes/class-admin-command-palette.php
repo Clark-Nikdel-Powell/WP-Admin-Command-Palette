@@ -191,6 +191,24 @@ class Admin_Command_Palette {
 
 	}
 
+
+	/**
+	 * Gets all the data to search through
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	public function get_all_data() {
+
+		$user_content 	= $this->admin->user_content->data;
+		$admin_pages 	= $this->admin->admin_pages->data;
+		$admin_actions 	= $this->admin->admin_actions->data;
+
+		$all_data = array_merge($user_content, $admin_pages, $admin_actions);
+
+		return $all_data;
+	}
+
 	/**
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.

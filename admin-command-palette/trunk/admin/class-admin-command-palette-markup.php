@@ -21,16 +21,11 @@ final class Admin_Command_Palette_Markup {
 	public function json_data() {
 
 		global $ACP;
-
-		$user_content 	= $ACP->admin->user_content->data;
-		$admin_pages 	= $ACP->admin->admin_pages->data;
-		$admin_actions 	= $ACP->admin->admin_actions->data;
-
-		$all_data = array_merge($user_content, $admin_pages, $admin_actions);
-
+		$all_data = $ACP->get_all_data();
+		
 		?>
 		<script>
-		var acp_serach_data = <?php echo json_encode($all_data); ?>
+		var acp_search_data = <?php echo json_encode($all_data); ?>
 		</script>
 		<?php
 
