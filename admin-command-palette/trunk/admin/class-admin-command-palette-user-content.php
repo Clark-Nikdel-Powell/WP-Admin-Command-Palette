@@ -34,11 +34,11 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 		// globals
 		global $wpdb;
 
-		// get all published posts
-		$results = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_status = 'publish'", ARRAY_A);
-
 		// set blank array for false returns
 		$data = array();
+
+		// get all published posts
+		$results = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_status = 'publish'", ARRAY_A);
 
 		// loop through our results
 		if ( $results && count($results) > 0 ) {
@@ -54,6 +54,42 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['object_type'] 	= 'post_type';
 				$template['object_name'] 	= $result['post_type'];
 				$template['url'] 			= get_edit_post_link($result['ID']);
+
+				// set the data in the new array by post ID to avoid duplicates
+				$data[] = $template;
+
+			}
+
+		}
+
+		// get all published posts
+		$sql = "
+			SELECT 
+				$wpdb->terms.*,
+				$wpdb->term_taxonomy.taxonomy,
+				$wpdb->posts.post_type
+			FROM $wpdb->terms 
+				JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id
+				JOIN $wpdb->term_relationships ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
+				JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->term_relationships.object_id
+			WHERE post_status = 'publish'
+		";
+		$results = $wpdb->get_results($sql, ARRAY_A);
+
+		// loop through our results
+		if ( $results && count($results) > 0 ) {
+
+			foreach ( $results as $result ) {
+
+				// copy the template
+				$template = $this->template;
+
+				// set all the properties
+				$template['title'] 			= $result['name'];
+				$template['id'] 			= $result['term_id'];
+				$template['object_type'] 	= 'taxonomy';
+				$template['object_name'] 	= $result['taxonomy'];
+				$template['url'] 			= get_edit_term_link($result['term_id'], $result['taxonomy'], $result['post_type']);
 
 				// set the data in the new array by post ID to avoid duplicates
 				$data[] = $template;
