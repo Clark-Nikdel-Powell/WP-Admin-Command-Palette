@@ -17,30 +17,30 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 
 
 	private $admin_actions = array(
-		{
-			"title": "View Post",
-			"target": "#view-post-btn .button",
-			"action": "click",
-			"shortcut": "shift+v"
-		},
-		{
-			"title": "Preview",
-			"target": ".preview",
-			"action": "click",
-			"shortcut": "shift+p"
-		},
-		{
-			"title": "Publish",
-			"target": "input[type=submit]#publish",
-			"action": "click",
-			"shortcut": "shift+s"
-		},
-		{
-			"title": "Trash",
-			"target": ".submitdelete",
-			"action": "click",
-			"shortcut": "shift+t"
-		}
+		array(
+			"title" => "View Post",
+			"target" => "#view-post-btn .button",
+			"action" => "click",
+			"shortcut" => "shift+v"
+		),
+		array(
+			"title" => "Preview",
+			"target" => ".preview",
+			"action" => "click",
+			"shortcut" => "shift+p"
+		),
+		array(
+			"title" => "Publish",
+			"target" => "input[type=submit]#publish",
+			"action" => "click",
+			"shortcut" => "shift+s"
+		),
+		array(
+			"title" => "Trash",
+			"target" => ".submitdelete",
+			"action" => "click",
+			"shortcut" => "shift+t"
+		)
 		// TODO: Add Screen Options
 	);
 
