@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       },
       public: {
         files: {
-          'public/js/admin-command-palette-public.min.js': ['public/js/pre/admin-command-palette-public.js']
+          'public/js/admin.min.js': ['public/js/pre/admin.js']
         }
       }
     },

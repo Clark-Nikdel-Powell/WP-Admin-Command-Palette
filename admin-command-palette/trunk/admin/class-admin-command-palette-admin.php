@@ -97,7 +97,7 @@ class Admin_Command_Palette_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin-command-palette-admin.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin.min.js', array( 'jquery' ), $this->version, false );
 
 	}
 
