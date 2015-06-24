@@ -115,7 +115,11 @@ class Admin_Command_Palette_Admin {
 		$admin_pages 	= $this->admin_pages->data;
 		$admin_actions 	= $this->admin_actions->data;
 
-		$all_data = array_merge($user_content, $admin_pages, $admin_actions);
+		$all_data = array(
+			'user_content' 	=> $user_content
+		,	'admin_pages' 	=> $admin_pages
+		, 	'admin_actions' => $admin_actions
+		);
 
 		return $all_data;
 	}
