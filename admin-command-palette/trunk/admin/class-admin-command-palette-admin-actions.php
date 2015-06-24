@@ -47,7 +47,7 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 
 	public function load() {
 
-		$this->admin_actions = $this->load_data('acp-admin-actions', 'load_admin_actions');
+		$this->data = $this->load_data('acp-admin-actions', 'load_admin_actions');
 
 	}
 
