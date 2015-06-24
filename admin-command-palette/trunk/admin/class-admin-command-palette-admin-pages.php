@@ -24,7 +24,7 @@ final class Admin_Command_Palette_Admin_Pages extends Admin_Command_Palette_Data
 
 
 	/**
-	 * Gets all admin pages
+	 * Gets all admin pages - DO YOUR EDITING HERE
 	 *
 	 * @since    1.0.0
 	 * @return   array      The requested admin pages

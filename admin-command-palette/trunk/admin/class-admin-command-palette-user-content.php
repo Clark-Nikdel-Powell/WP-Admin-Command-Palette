@@ -24,7 +24,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 
 
 	/**
-	 * Gets all user content
+	 * Gets all user content - DO YOUR EDITING HERE
 	 *
 	 * @since    1.0.0
 	 * @return   array      The requested user content
@@ -56,7 +56,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['url'] 			= get_edit_post_link($result['ID']);
 
 				// set the data in the new array by post ID to avoid duplicates
-				$data[$result['ID']] = $template;
+				$data[] = $template;
 
 			}
 

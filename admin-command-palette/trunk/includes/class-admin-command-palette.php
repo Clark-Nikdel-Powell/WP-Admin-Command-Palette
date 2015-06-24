@@ -114,7 +114,7 @@ class Admin_Command_Palette {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-admin.php';
 
 		/**
-		 * The class responsible for getting data into searchable arrays from the database
+		 * The classes responsible for getting data into searchable arrays from the database
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-data.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-user-content.php';
@@ -160,14 +160,15 @@ class Admin_Command_Palette {
 
 		$plugin_admin = new Admin_Command_Palette_Admin( $this->get_admin_command_palette(), $this->get_version() );
 
+		// instantiate classes
 		$plugin_admin->user_content 	= new Admin_Command_Palette_User_Content();
 		$plugin_admin->admin_pages 		= new Admin_Command_Palette_Admin_Pages();
 		$plugin_admin->admin_actions 	= new Admin_Command_Palette_Admin_Actions();
 
+		// add hooks to load data on admin init
 		$this->loader->add_action( 'admin_init', $plugin_admin->user_content, 	'load' );
 		$this->loader->add_action( 'admin_init', $plugin_admin->admin_pages, 	'load' );
 		$this->loader->add_action( 'admin_init', $plugin_admin->admin_actions, 	'load' );
-
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

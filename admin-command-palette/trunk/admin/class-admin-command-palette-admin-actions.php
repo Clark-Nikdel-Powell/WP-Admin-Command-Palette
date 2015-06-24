@@ -24,7 +24,7 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 
 
 	/**
-	 * Gets all admin actions
+	 * Gets all admin actions - DO YOUR EDITING HERE
 	 *
 	 * @since    1.0.0
 	 * @return   array      The requested admin actions
