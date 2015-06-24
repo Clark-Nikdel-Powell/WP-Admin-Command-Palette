@@ -80,18 +80,17 @@ abstract class Admin_Command_Palette_Data {
 		$transient_modified_name = $transient_name . '-user-' . $user->ID;
 
 		// if the cache exists
-		$cache = get_transient($transient_modified_name);
-		if ( $cache ) {
-			return $cache;
+		if ( ACP_CACHE ) {
+			$cache = get_transient($transient_modified_name);
+			if ( $cache ) {
+				return $cache;
+			}
 		}
+		
 		// otherwise get it live
-		else {
-
-			$live = $this->$method_name();
-			set_transient( $transient_modified_name, $live, $expires );
-			return $live;
-
-		}
+		$live = $this->$method_name();
+		set_transient( $transient_modified_name, $live, $expires );
+		return $live;
 
 	}
 
