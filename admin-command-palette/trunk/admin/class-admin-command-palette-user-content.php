@@ -38,7 +38,13 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 		$data = array();
 
 		// get all published posts
-		$results = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_status = 'publish'", ARRAY_A);
+		$sql = "
+			SELECT * 
+			FROM $wpdb->posts 
+			WHERE post_status = 'publish'
+				AND post_type != 'attachment'
+		";
+		$results = $wpdb->get_results($sql, ARRAY_A);
 
 		// loop through our results
 		if ( $results && count($results) > 0 ) {
@@ -62,7 +68,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 
 		}
 
-		// get all published posts
+		// get all taxonomies
 		$sql = "
 			SELECT 
 				$wpdb->terms.*,
