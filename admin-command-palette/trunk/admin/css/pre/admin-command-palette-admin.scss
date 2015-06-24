@@ -65,6 +65,10 @@
 
 			li {
 				border-bottom: 1px solid #333;
+
+				&:hover {
+					background-color: #2b333b;
+				}
 			}
 			a {
 				display: block;
