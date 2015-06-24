@@ -89,14 +89,24 @@ class Admin_Command_Palette_Data {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
-
-		$this->user_content 	= load_data('acp-user-content',	'load_user_content');
-		$this->admin_pages 		= load_data('acp-admin-pages',	'load_admin_pages');
-		$this->admin_actions 	= load_data('acp-admin-actions','load_admin_actions');
+	public function __construct() { }
 
 
+	/**
+	 * Run data retrieval
+	 *
+	 * @since    1.0.0
+	 */
+	public function run() {
+
+		// load current user for quick reference
 		$this->user = wp_get_current_user();
+
+		// load all content properties
+		$this->user_content 	= $this->load_data('acp-user-content',	'load_user_content');
+		$this->admin_pages 		= $this->load_data('acp-admin-pages',	'load_admin_pages');
+		$this->admin_actions 	= $this->load_data('acp-admin-actions','load_admin_actions');
+
 	}
 
 

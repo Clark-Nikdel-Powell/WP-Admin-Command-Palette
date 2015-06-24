@@ -156,8 +156,10 @@ class Admin_Command_Palette {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Admin_Command_Palette_Admin( $this->get_admin_command_palette(), $this->get_version() );
+
 		$plugin_admin->data = new Admin_Command_Palette_Data();
 
+		$this->loader->add_action( 'admin_init', $plugin_admin->data, 'run' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
