@@ -11,12 +11,15 @@ module.exports = function(grunt) {
       },
       admin: {
         files: {
-          'admin/js/admin-command-palette-admin.min.js': ['admin/js/pre/admin-command-palette-admin.js']
+          'admin/js/admin-command-palette-admin.min.js': [
+            'admin/js/pre/vendor/fuse.min.js',
+            'admin/js/pre/admin-command-palette-admin.js'
+          ]
         }
       },
       public: {
         files: {
-          'public/js/admin-command-palette-public.min.js': ['public/js/pre/admin-command-palette-public.js']
+          'public/js/admin.min.js': ['public/js/pre/admin.js']
         }
       }
     },

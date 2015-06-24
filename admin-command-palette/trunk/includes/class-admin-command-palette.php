@@ -58,6 +58,15 @@ class Admin_Command_Palette {
 	protected $version;
 
 	/**
+	 * The admin class
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @var      string    $admin    Used to access data elements within the admin class
+	 */
+	public $admin;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -171,10 +180,14 @@ class Admin_Command_Palette {
 		$this->loader->add_action( 'admin_init', $plugin_admin->user_content, 	'load' );
 		$this->loader->add_action( 'admin_init', $plugin_admin->admin_pages, 	'load' );
 		$this->loader->add_action( 'admin_init', $plugin_admin->admin_actions, 	'load' );
+		
 		$this->loader->add_action( 'admin_footer', $plugin_admin->markup, 'search_box' );
+		$this->loader->add_action( 'admin_footer', $plugin_admin->markup, 'json_data' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		$this->admin = $plugin_admin;
 
 	}
 
