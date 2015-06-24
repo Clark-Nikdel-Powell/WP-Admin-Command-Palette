@@ -18,7 +18,7 @@ final class Admin_Command_Palette_Admin_Pages extends Admin_Command_Palette_Data
 
 	public function load() {
 
-		$this->admin_pages 	= $this->load_data('acp-admin-pages', 'load_admin_pages');
+		$this->data	= $this->load_data('acp-admin-pages', 'load_admin_pages');
 
 	}
 

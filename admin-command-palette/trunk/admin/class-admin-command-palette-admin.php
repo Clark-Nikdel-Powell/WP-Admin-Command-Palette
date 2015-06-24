@@ -98,7 +98,6 @@ class Admin_Command_Palette_Admin {
 		 */
 
 		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin.min.js', array( 'jquery' ), $this->version, true );
-
 		wp_localize_script( $this->admin_command_palette, 'acp_search_data', $this->get_all_data() );
 
 	}

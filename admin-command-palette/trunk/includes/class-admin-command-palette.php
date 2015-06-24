@@ -181,8 +181,8 @@ class Admin_Command_Palette {
 
 		// instantiate classes
 		$this->admin->user_content 	= new Admin_Command_Palette_User_Content();
-		$this->admin->admin_pages 		= new Admin_Command_Palette_Admin_Pages();
-		$this->admin->admin_actions 	= new Admin_Command_Palette_Admin_Actions();
+		$this->admin->admin_pages 	= new Admin_Command_Palette_Admin_Pages();
+		$this->admin->admin_actions = new Admin_Command_Palette_Admin_Actions();
 
 		$this->markup = new Admin_Command_Palette_Markup();
 
