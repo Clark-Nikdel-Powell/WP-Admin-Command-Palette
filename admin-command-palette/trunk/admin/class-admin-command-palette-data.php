@@ -13,37 +13,17 @@
  * @subpackage Admin_Command_Palette/data
  * @author     Your Name <email@example.com>
  */
-class Admin_Command_Palette_Data {
+abstract class Admin_Command_Palette_Data {
 
 
 	/**
-	 * The array of user generated content.
+	 * The data to hold
 	 *
 	 * @since    1.0.0
 	 * @access   public
 	 * @var      array    $user_content    The array of data
 	 */
-	public $user_content 	= array();
-
-
-	/**
-	 * The array of admin page content.
-	 *
-	 * @since    1.0.0
-	 * @access   public
-	 * @var      array    $admin_pages    The array of data
-	 */
-	public $admin_pages 	= array();
-
-
-	/**
-	 * The array of admin actions.
-	 *
-	 * @since    1.0.0
-	 * @access   public
-	 * @var      array    $admin_actions    The array of data
-	 */
-	public $admin_actions 	= array();
+	public $data 	= array();
 
 
 	/**
@@ -53,7 +33,7 @@ class Admin_Command_Palette_Data {
 	 * @access   public
 	 * @var      array    $template    The array of data
 	 */
-	private $template = array(
+	protected $template = array(
 
 		// all arrays
 		'title' 		=> ''
@@ -75,37 +55,12 @@ class Admin_Command_Palette_Data {
 
 
 	/**
-	 * The user logged in
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      object    $user    The user object
-	 */
-	private $user = null;
-
-
-	/**
-	 * Initialize the class and set its properties.
+	 * The method called in our wordpress action
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() { }
+	public function load() {
 
-
-	/**
-	 * Run data retrieval
-	 *
-	 * @since    1.0.0
-	 */
-	public function run() {
-
-		// load current user for quick reference
-		$this->user = wp_get_current_user();
-
-		// load all content properties
-		$this->user_content 	= $this->load_data('acp-user-content',	'load_user_content');
-		$this->admin_pages 		= $this->load_data('acp-admin-pages',	'load_admin_pages');
-		$this->admin_actions 	= $this->load_data('acp-admin-actions',	'load_admin_actions');
 
 	}
 
@@ -120,8 +75,12 @@ class Admin_Command_Palette_Data {
 	 */
 	public function load_data($transient_name, $method_name, $expires = 0) {
 
+
+		// get the current user
+		$user =  wp_get_current_user();
+
 		// set the modified transient name to include this user id. This keeps our caching specific for each user
-		$transient_modified_name = $transient_name . '-user-' . $this->user->ID;
+		$transient_modified_name = $transient_name . '-user-' . $user->ID;
 
 		// if the cache exists
 		$cache = get_transient($transient_modified_name);
@@ -136,94 +95,6 @@ class Admin_Command_Palette_Data {
 			return $live;
 
 		}
-
-	}
-
-
-	/**
-	 * Gets all user content
-	 *
-	 * @since    1.0.0
-	 * @return   array      The requested user content
-	 */
-	public function load_user_content() {
-
-		// globals
-		global $wpdb;
-
-		// get all published posts
-		$results = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_status = 'publish'", ARRAY_A);
-
-		// set blank array for false returns
-		$data = array();
-
-		// loop through our results
-		if ( $results && count($results) > 0 ) {
-
-			foreach ( $results as $result ) {
-
-				// copy the template
-				$template = $this->template;
-
-				// set all the properties
-				$template['title'] 			= $result['post_title'];
-				$template['id'] 			= $result['ID'];
-				$template['object_type'] 	= 'post_type';
-				$template['object_name'] 	= $result['post_type'];
-				$template['url'] 			= get_edit_post_link($result['ID']);
-
-				// set the data in the new array by post ID to avoid duplicates
-				$data[$result['ID']] = $template;
-
-			}
-
-		}
-
-		return $data;
-
-	}
-
-
-	/**
-	 * Gets all admin pages
-	 *
-	 * @since    1.0.0
-	 * @return   array      The requested admin pages
-	 */
-	public function load_admin_pages() {
-
-		// globals
-		global $wpdb;
-
-		// set template
-		$template = $this->template;
-
-		// get data
-		$data = array();
-
-		return $data;
-
-	}
-
-
-	/**
-	 * Gets all admin actions
-	 *
-	 * @since    1.0.0
-	 * @return   array      The requested admin actions
-	 */
-	public function load_admin_actions() {
-
-		// globals
-		global $wpdb;
-
-		// set template
-		$template = $this->template;
-
-		// get data
-		$data = array();
-
-		return $data;
 
 	}
 

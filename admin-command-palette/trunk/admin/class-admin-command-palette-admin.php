@@ -37,7 +37,9 @@ class Admin_Command_Palette_Admin {
 	 * @access   public
 	 * @var      object    $data    The data class containing cached or live data from database
 	 */
-	public $data;
+	public $user_content;
+	public $admin_pages;
+	public $admin_actions;
 
 	/**
 	 * Initialize the class and set its properties.
