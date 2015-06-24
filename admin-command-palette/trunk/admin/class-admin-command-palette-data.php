@@ -105,7 +105,7 @@ class Admin_Command_Palette_Data {
 		// load all content properties
 		$this->user_content 	= $this->load_data('acp-user-content',	'load_user_content');
 		$this->admin_pages 		= $this->load_data('acp-admin-pages',	'load_admin_pages');
-		$this->admin_actions 	= $this->load_data('acp-admin-actions','load_admin_actions');
+		$this->admin_actions 	= $this->load_data('acp-admin-actions',	'load_admin_actions');
 
 	}
 
