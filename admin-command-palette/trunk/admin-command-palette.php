@@ -68,10 +68,12 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-admin-command-palette.php'
  *
  * @since    1.0.0
  */
+$ACP;
 function run_admin_command_palette() {
 
-	$plugin = new Admin_Command_Palette();
-	$plugin->run();
+	global $ACP;
+	$ACP = new Admin_Command_Palette();
+	$ACP->run();
 
 }
 run_admin_command_palette();
