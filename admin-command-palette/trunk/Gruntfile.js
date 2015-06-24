@@ -11,9 +11,11 @@ module.exports = function(grunt) {
       },
       admin: {
         files: {
-          'admin/js/admin-command-palette-admin.min.js': [
+          'admin/js/admin.min.js': [
             'admin/js/pre/vendor/fuse.min.js',
-            'admin/js/pre/admin-command-palette-admin.js'
+            'admin/js/pre/vendor/mousetrap.min.js',
+            'admin/js/pre/acp-modal.js',
+            'admin/js/pre/admin.js',
           ]
         }
       },
@@ -77,11 +79,11 @@ module.exports = function(grunt) {
       },
       js_admin: {
         files: 'admin/js/pre/**/*.js',
-        tasks: ['jshint:admin', 'uglify:admin']
+        tasks: ['uglify:admin']
       },
       js_public: {
         files: 'public/js/pre/**/*.js',
-        tasks: ['jshint:public', 'uglify:public']
+        tasks: ['uglify:public']
       }
     }
   });
