@@ -1509,25 +1509,46 @@
 (function( $ ) {
 var AcpModal;
 window.AcpModal = AcpModal || {};
+
 AcpModal = {
+
+	modal: $('.admin-command-palette'),
+
+	inputField: $('.admin-command-palette input[type=search]'),
+
+	isOpen: function() {
+		return AcpModal.modal.hasClass('open');
+	},
+
 	init: function() {
 		var Mousetrap = window.Mousetrap || {};
 		Mousetrap.bind('shift shift', function() {
+			if (AcpModal.isOpen()) {
+				AcpModal.close();
+				return;
+			}
 			AcpModal.open();
-			$('.admin-command-palette input[type=search]').focus();
 		});
-		console.log('init');
+		Mousetrap.bind('esc', function() {
+			if (AcpModal.isOpen()) {
+				AcpModal.close();
+			}
+		});
 	},
+	
 	open: function() {
-		var acp = $('.admin-command-palette');
-		acp.addClass('open');
-		console.log('open');
+		AcpModal.modal.addClass('open');
+		AcpModal.inputField.focus();
 	},
+	
 	close: function() {
-		var acp = $('.admin-command-palette');
-		acp.removeClass('open');
-		console.log('close');
+		AcpModal.inputField.blur();
+		AcpModal.inputField.val('');
+		AcpModal.modal.removeClass('open');
 	}
+
 };
+
 AcpModal.init();
+
 })( jQuery );
