@@ -1,24 +1,43 @@
-(function( $ ) {
-	'use strict';
+var AcpModal;
+window.AcpModal = AcpModal || {};
 
-	window.AcpModal = {
-		init: function() {
-			Mousetrap.bind('shift shift', function(e) {
-				AcpModal.open();
-				$('.admin-command-palette input[type=search]').focus();
-			});
-			console.log('init');
-		},
-		open: function() {
-			var acp = $('.admin-command-palette');
-			acp.addClass('open');
-			console.log('open');
-		},
-		close: function() {
-			var acp = $('.admin-command-palette');
-			acp.removeClass('open');
-			console.log('close');
-		}
-	};
+AcpModal = {
 
-})( jQuery );
+	modal: $('.admin-command-palette'),
+
+	inputField: $('.admin-command-palette input[type=search]'),
+
+	isOpen: function() {
+		return AcpModal.modal.hasClass('open');
+	},
+
+	init: function() {
+		var Mousetrap = window.Mousetrap || {};
+		Mousetrap.bind('shift shift', function() {
+			if (AcpModal.isOpen()) {
+				AcpModal.close();
+				return;
+			}
+			AcpModal.open();
+		});
+		Mousetrap.bind('esc', function() {
+			if (AcpModal.isOpen()) {
+				AcpModal.close();
+			}
+		});
+	},
+	
+	open: function() {
+		AcpModal.modal.addClass('open');
+		AcpModal.inputField.focus();
+	},
+	
+	close: function() {
+		AcpModal.inputField.blur();
+		AcpModal.inputField.val('');
+		AcpModal.modal.removeClass('open');
+	}
+
+};
+
+AcpModal.init();

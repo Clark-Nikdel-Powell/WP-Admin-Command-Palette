@@ -5,19 +5,26 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
+    concat: {
+      admin: {
+        dest: 'admin/js/admin.js',
+        src: [
+          'admin/js/pre/vendor/fuse.js',
+          'admin/js/pre/vendor/mousetrap.js',
+          'admin/js/pre/intro.js',
+          'admin/js/pre/acp-modal.js',
+          'admin/js/pre/admin.js',
+          'admin/js/pre/outro.js',
+        ]
+      }
+    },
     uglify: {
       options: {
-        banner: '<%= banner %>'
+        mangle: false,
       },
       admin: {
         files: {
-          'admin/js/admin.min.js': [
-            'admin/js/pre/vendor/fuse.min.js',
-            'admin/js/pre/vendor/mousetrap.min.js',
-            'admin/js/pre/acp-modal.js',
-            'admin/js/pre/acp-search.js',
-            'admin/js/pre/admin.js',
-          ]
+          'admin/js/admin.min.js': ['admin/js/admin.js']
         }
       },
       public: {
@@ -28,6 +35,7 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
+        devel: true,
         curly: true,
         eqeqeq: true,
         immed: true,
@@ -40,13 +48,16 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         browser: true,
-        globals: {}
+        globals: {
+          $: false,
+          'jQuery': false
+        }
       },
       admin: {
-        src: ['admin/js/pre/**/*.js']
+        src: ['admin/js/admin.js']
       },
       public: {
-        src: ['public/js/pre/**/*.js']
+        src: ['public/js/public.js']
       },
     },
     sass: {
@@ -80,16 +91,17 @@ module.exports = function(grunt) {
       },
       js_admin: {
         files: 'admin/js/pre/**/*.js',
-        tasks: ['uglify:admin']
+        tasks: ['concat:admin', 'jshint:admin', 'uglify:admin']
       },
       js_public: {
         files: 'public/js/pre/**/*.js',
-        tasks: ['uglify:public']
+        tasks: ['concat:public', 'jshint:public', 'uglify:public']
       }
     }
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
