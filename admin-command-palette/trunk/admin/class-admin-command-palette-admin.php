@@ -62,18 +62,6 @@ class Admin_Command_Palette_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Admin_Command_Palette_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Admin_Command_Palette_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'css/admin-command-palette-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -85,20 +73,34 @@ class Admin_Command_Palette_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Admin_Command_Palette_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Admin_Command_Palette_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin.min.js', array( 'jquery' ), $this->version, true );
 		wp_localize_script( $this->admin_command_palette, 'acp_search_data', $this->get_all_data() );
+
+	}
+
+	/**
+	 * Register admin settings.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_settings() {
+
+		register_setting( 'acp_options', 'acp_post_types' );
+
+	}
+
+	/**
+	 * Register and display the admin settings page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function settings_page() {
+
+		add_options_page('Admin Command Palette', 'Admin Command Palette', 'manage_options', 'admin-command-palette', 'acp_options_page');
+
+		function acp_options_page() {
+			include_once('partials/plugin-admin-command-palette-display.php');
+		}
 
 	}
 
