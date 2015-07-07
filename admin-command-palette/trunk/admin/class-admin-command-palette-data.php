@@ -36,21 +36,22 @@ abstract class Admin_Command_Palette_Data {
 	protected $template = array(
 
 		// all arrays
-		'title' 		=> ''
-	,	'url' 			=> ''
+		'title' 		=> '',
+		'url' 			=> '',
+		'type'          => '',
 
 		// user generated content only
-	,	'id' 			=> 0
-	,	'object_type' 	=> ''
-	,	'object_name' 	=> ''
+		'id' 			=> 0,
+		'object_type' 	=> '',
+		'object_name' 	=> '',
 
 		// admin pages only
-	,	'dashicon' 		=> ''
+		'dashicon' 		=> '',
 
 		// admin actions only
-	, 	'target' 		=> ''
-	,	'action' 		=> ''
-	,	'shortcut' 		=> ''
+	 	'target' 		=> '',
+		'action' 		=> '',
+		'shortcut' 		=> ''
 	);
 
 
@@ -86,7 +87,7 @@ abstract class Admin_Command_Palette_Data {
 				return $cache;
 			}
 		}
-		
+
 		// otherwise get it live
 		$live = $this->$method_name();
 		set_transient( $transient_modified_name, $live, $expires );
