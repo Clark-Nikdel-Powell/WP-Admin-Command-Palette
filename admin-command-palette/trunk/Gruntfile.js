@@ -15,6 +15,7 @@ module.exports = function(grunt) {
             'admin/js/pre/vendor/fuse.min.js',
             'admin/js/pre/vendor/mousetrap.min.js',
             'admin/js/pre/acp-modal.js',
+            'admin/js/pre/acp-search.js',
             'admin/js/pre/admin.js',
           ]
         }
