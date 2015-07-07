@@ -190,12 +190,13 @@ class Admin_Command_Palette {
 		$this->loader->add_action( 'admin_init', $this->admin->user_content, 	'load' );
 		$this->loader->add_action( 'admin_init', $this->admin->admin_pages, 	'load' );
 		$this->loader->add_action( 'admin_init', $this->admin->admin_actions, 	'load' );
-		
+		$this->loader->add_action( 'admin_init', $this->admin, 'register_settings' );
+		$this->loader->add_action( 'admin_menu', $this->admin, 'settings_page' );
+
 		$this->loader->add_action( 'admin_footer', $this->markup, 'search_box' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_scripts' );
-
 
 	}
 
