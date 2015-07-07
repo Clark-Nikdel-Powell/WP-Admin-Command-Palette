@@ -37,13 +37,26 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 		// set blank array for false returns
 		$data = array();
 
+		// get post types to exclude
+		$excluded_post_types = get_option('acp_excluded_post_types');
+
 		// get all published posts
 		$sql = "
-			SELECT * 
-			FROM $wpdb->posts 
+			SELECT *
+			FROM $wpdb->posts
 			WHERE post_status = 'publish'
-				AND post_type != 'attachment'
 		";
+
+		if ( !empty( $excluded_post_types ) ) {
+
+			foreach ( $excluded_post_types as $post_type_slug => $checked ) {
+
+				$sql .= " AND post_type != '$post_type_slug'";
+
+			}
+
+		}
+
 		$results = $wpdb->get_results($sql, ARRAY_A);
 
 		// loop through our results
@@ -68,18 +81,32 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 
 		}
 
+		// get taxonomies to exclude
+		$excluded_taxonomies = get_option('acp_excluded_taxonomies');
+
 		// get all taxonomies
 		$sql = "
-			SELECT 
+			SELECT
 				$wpdb->terms.*,
 				$wpdb->term_taxonomy.taxonomy,
 				$wpdb->posts.post_type
-			FROM $wpdb->terms 
+			FROM $wpdb->terms
 				JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id
 				JOIN $wpdb->term_relationships ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
 				JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->term_relationships.object_id
 			WHERE post_status = 'publish'
 		";
+
+		if ( !empty( $excluded_taxonomies ) ) {
+
+			foreach ( $excluded_taxonomies as $taxonomy_slug => $checked ) {
+
+				$sql .= " AND taxonomy != '$taxonomy_slug'";
+
+			}
+
+		}
+
 		$results = $wpdb->get_results($sql, ARRAY_A);
 
 		// loop through our results
