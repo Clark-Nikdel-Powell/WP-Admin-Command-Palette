@@ -13,6 +13,7 @@ module.exports = function(grunt) {
           'admin/js/pre/vendor/mousetrap.js',
           'admin/js/pre/intro.js',
           'admin/js/pre/acp-modal.js',
+          'admin/js/pre/acp-search.js',
           'admin/js/pre/admin.js',
           'admin/js/pre/outro.js',
         ]
@@ -44,13 +45,15 @@ module.exports = function(grunt) {
         noarg: true,
         sub: true,
         undef: true,
-        unused: true,
+        unused: false,
         boss: true,
         eqnull: true,
         browser: true,
         globals: {
           $: false,
-          'jQuery': false
+          'jQuery': false,
+          'acp_search_data': false,
+          'Fuse': false
         }
       },
       admin: {
