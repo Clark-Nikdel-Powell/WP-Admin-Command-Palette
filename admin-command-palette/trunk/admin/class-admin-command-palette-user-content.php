@@ -72,7 +72,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['title'] 			= $result['post_title'];
 				$template['id'] 			= $result['ID'];
 				$template['object_type'] 	= 'post_type';
-				$template['url'] 			= get_edit_post_link($result['ID']);
+				$template['url'] 			= get_edit_post_link($result['ID'], 'noencode');
 				$template['name']           = $result['post_type'];
 
 				// set the data in the new array by post ID to avoid duplicates

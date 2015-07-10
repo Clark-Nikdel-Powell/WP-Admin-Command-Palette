@@ -18199,17 +18199,15 @@ $('.admin-command-palette input[type=search]').keyup( function() {
 		return;
 	}
 
-	var el = '.admin-command-palette-results ul';
-	var template = '<li>{{ title }}</li>';
+	console.log(acp_result);
 
-	var data = acp_result;
-
-	console.log(data);
+	var el = '.results[data-type=admin-pages] .list';
+	var template = '{{#results}}<li><a href="{{url}}">{{title}}</a></li>{{/results}}';
 
 	var ractive = new Ractive({
 		el: el,
 		template: template,
-		data: data
+		data: { results: acp_result } 
 	});
 
 });
