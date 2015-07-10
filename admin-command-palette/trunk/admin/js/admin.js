@@ -18199,16 +18199,39 @@ $('.admin-command-palette input[type=search]').keyup( function() {
 		return;
 	}
 
-	console.log(acp_result);
+	var i;
+	var results = [];
+	results['acp-data-keys'] = [];
+	for ( i = 0; i < acp_result.length; i++ ) {
+		var o = acp_result[i];
+		var index = o.name;
+		if ( !(index in results) ) {
+			results[index] = [];
+			results['acp-data-keys'].push(index);
+		}
+		results[index].push(o);
+	}
 
-	var el = '.results[data-type=admin-pages] .list';
 	var template = '{{#results}}<li><a href="{{url}}">{{title}}</a></li>{{/results}}';
 
-	var ractive = new Ractive({
-		el: el,
-		template: template,
-		data: { results: acp_result } 
-	});
+	console.log(results);
+
+	for ( i = 0; i < results['acp-data-keys'].length; i++ ) {
+		var key = results['acp-data-keys'][i];
+		var data = results[key];
+
+		console.log(data);
+
+		var section = '.results[data-name=' + key + ']';
+		$(section).removeClass('hide');
+
+		var list = section + ' .list';
+		var ractive = new Ractive({
+			el: list,
+			template: template,
+			data: { results: data } 
+		});
+	}
 
 });
 
