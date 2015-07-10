@@ -85,6 +85,7 @@ class Admin_Command_Palette_Admin {
 	 */
 	public function register_settings() {
 
+		register_setting( 'acp_options', 'acp_search_threshold' );
 		register_setting( 'acp_options', 'acp_excluded_post_types' );
 		register_setting( 'acp_options', 'acp_excluded_taxonomies' );
 
@@ -118,7 +119,7 @@ class Admin_Command_Palette_Admin {
 		$admin_pages 	= $this->admin_pages->data;
 		$admin_actions 	= $this->admin_actions->data;
 
-		$all_data = array_merge($user_content, $admin_pages, $admin_actions);		
+		$all_data = array_merge($user_content, $admin_pages, $admin_actions);
 
 		return $all_data;
 	}

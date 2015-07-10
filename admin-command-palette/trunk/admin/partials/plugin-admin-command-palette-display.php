@@ -16,8 +16,14 @@
 $post_types = get_post_types( array(), 'objects' );
 $taxonomies = get_taxonomies( array(), 'objects' );
 
+
+$threshold = get_option('acp_search_threshold');
 $excluded_post_types = get_option('acp_excluded_post_types');
 $excluded_taxonomies = get_option('acp_excluded_taxonomies');
+
+if ( '' == $threshold ) {
+	$threshold = '0.3';
+}
 
 ?>
 
@@ -30,7 +36,33 @@ $excluded_taxonomies = get_option('acp_excluded_taxonomies');
 		<?php settings_fields('acp_options'); ?>
 		<?php do_settings_sections('acp_options'); ?>
 
-		<?php ?>
+		<?php
+		/*//////////////////////////////////////////////////////////////////////////////
+		//  General Settings  /////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////*/
+		?>
+
+		<h3>General Settings</h3>
+
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th scope="row">
+						<label for="threshold">Search threshold</label>
+					</th>
+					<td>
+						<input type="number" name="acp_search_threshold" min="0.0" max="1.0" step="0.1" value="<?php echo $threshold; ?>">
+						<p class="description">1.0 will match anything, 0.0 must be a perfect match.</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<?php
+		/*//////////////////////////////////////////////////////////////////////////////
+		//  Excluded Post Types  //////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////*/
+		?>
 
 		<h3>Excluded Post Types</h3>
 
@@ -57,6 +89,12 @@ $excluded_taxonomies = get_option('acp_excluded_taxonomies');
 		?>
 			<p><label><input type="checkbox" name="acp_excluded_post_types[<?php echo $post_type_slug; ?>]" value="1" <?php echo $checked; ?> /> <?php echo $post_type->labels->name; ?></label></p>
 		<?php } ?>
+
+		<?php
+		/*//////////////////////////////////////////////////////////////////////////////
+		//  Excluded Taxonomies  //////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////*/
+		?>
 
 		<h3>Excluded Taxonomies</h3>
 
