@@ -15,10 +15,10 @@
 	}
 	&-overlay {
 		position: fixed;
-		width: 100%;
+		width: calc(100% - 160px);
 		height: 100%;
 		top: 0;
-		left: 0;
+		left: 160px;
 		background-color: rgba(#000, .3);
 		opacity: 1;
 		transition: opacity .2s ease-in-out;
@@ -29,13 +29,7 @@
 		position: absolute;
 		top: 5em;
 		left: 50%;
-		background-color: #23282D;
-		color: #eee;
 
-		.search-container {
-			background-color: #32373C;
-			border: 2px solid #222;
-		}
 		input[type="search"] {
 			width: 100%;
 			margin: 0;
@@ -47,18 +41,34 @@
 			font-size: 2em;
 			-webkit-appearance: none;
 			outline: 0;
+
+			&::-webkit-input-placeholder {
+				color: rgba(#fff,.7);
+			}
 		}
- 	}
+	}
 
 	// Styles for the results section
- 	&-results {
+	&-results {
 
 		.subheading {
 			margin: 0;
 			padding: .5em 1.75rem;
-			color: #bbb;
-			border-bottom: 1px solid #444;
+			border-bottom: 1px solid;
 			line-height: 2em;
+			font-size: 13px;
+			text-transform: uppercase;
+		}
+		.wp-menu-image {
+			margin-right: .125em;
+
+			&:before {
+				padding: 4px 0 0 0;
+				font-size: 16px;
+			}
+		}
+		.hide {
+			display: none;
 		}
 		ul {
 
@@ -66,35 +76,30 @@
 				margin: 0;
 				padding: 0;
 			}
-
 			li {
-				border-bottom: 1px solid #333;
-
-				&:hover {
-					background-color: #2b333b;
-				}
+				border-bottom: 1px solid;
 			}
 			a {
 				display: block;
-				padding: .625em 1.75rem;
+				padding: .875em 1.75rem;
 				font-size: 1.125em;
 				text-decoration: none;
+				transition: none;
 			}
-			&.actions li {
-				padding: .625em 1.75rem;
-				color: #0073AA;
-				cursor: pointer;
-				font-size: 1.125em;
-				-webkit-transition-property: border,background,color;
-				transition-property: border,background,color;
-				-webkit-transition-duration: .05s;
-				transition-duration: .05s;
-				-webkit-transition-timing-function: ease-in-out;
-				transition-timing-function: ease-in-out;
+		}
+		[data-name="admin-action"] ul li {
+			padding: .625em 1.75rem;
+			cursor: pointer;
+			font-size: 1.125em;
+			-webkit-transition-property: border,background,color;
+			transition-property: border,background,color;
+			-webkit-transition-duration: .05s;
+			transition-duration: .05s;
+			-webkit-transition-timing-function: ease-in-out;
+			transition-timing-function: ease-in-out;
 
-				&:hover {
-					color: #00A0D2;
-				}
+			&:hover {
+				color: #00A0D2;
 			}
 		}
 		div[class*="dashicons"] {
@@ -106,15 +111,382 @@
 			top: -1px;
 		}
 
-
- 	}
-
- 	// Styles for color themes
- 	.admin-color-fresh & {
-
-
-
- 	}
+	}
 
 }
 
+/*//////////////////////////////////////////////////////////////////////////////
+// Styles for color themes  ///////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////*/
+
+.admin-color {
+
+	// Default Theme
+	&-fresh {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #23282D;
+				color: #eee;
+
+				.search-container {
+					background-color: #32373C;
+					border: 2px solid #222;
+				}
+			}
+			&-results {
+
+				.subheading {
+					color: #bbb;
+					border-bottom-color: #444;
+				}
+				ul li {
+					border-bottom-color: #333;
+
+					&:hover {
+						background-color: #2b333b;
+					}
+				}
+				[data-name="admin-action"] ul li {
+					color: #0073AA;
+				}
+			}
+		}
+
+	}
+
+	// Light Theme
+	&-light {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #F5F5F5;
+
+				.search-container {
+					background-color: #fff;
+				}
+				input[type="search"] {
+					color: #000;
+
+					&::-webkit-input-placeholder {
+						color: rgba(#000,.5);
+					}
+				}
+			}
+			&-results {
+
+				.subheading {
+					border-bottom-color: rgba(#000, .1);
+					color: #333;
+
+					.wp-menu-image:before {
+						color: #bbb;
+					}
+				}
+				ul li {
+					border-bottom-color: rgba(#000, .12);
+
+					&:hover {
+						background-color: #E5E5E5;
+					}
+				}
+				a, [data-name="admin-action"] ul li {
+					color: #D64E07;
+
+					&:hover {
+						color: #04A4CC;
+					}
+				}
+			}
+		}
+
+
+	}
+
+	// Blue Theme
+	&-blue {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #4796B3;
+
+				.search-container {
+					background-color: #52ACCC;
+				}
+
+			}
+			&-results {
+
+				.subheading {
+					border-bottom-color: rgba(#fff, .25);
+					color: darken(#096484, 5%);
+				}
+				ul li {
+					border-bottom-color: rgba(#fff, .3);
+
+					&:hover {
+						background-color: #317D93;
+					}
+				}
+				a, [data-name="admin-action"] ul li {
+					color: saturate(#E1A948, 30);
+
+					&:hover {
+						color: #fff;
+					}
+				}
+			}
+		}
+
+
+	}
+
+	// Coffee Theme
+	&-coffee {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #46403C;
+
+				.search-container {
+					background-color: #59524C;
+				}
+				input[type="search"] {
+					color: #fff;
+
+					&::-webkit-input-placeholder {
+						color: rgba(#fff,.5);
+					}
+				}
+			}
+			&-results {
+
+				.subheading {
+					border-bottom-color: rgba(#000, .1);
+					color: #91867C;
+
+					.wp-menu-image:before {
+						color: #bbb;
+					}
+				}
+				ul li {
+					border-bottom-color: rgba(#000, .12);
+
+					&:hover {
+						background-color: #59524C;
+					}
+				}
+				a, [data-name="admin-action"] ul li {
+					color: #C7A589;
+
+					&:hover {
+						color: saturate(#9EA476, 20);
+					}
+				}
+			}
+
+		}
+
+	}
+
+	// Ectoplasm Theme
+	&-ectoplasm {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #413256;
+
+				.search-container {
+					background-color: #523F6D;
+				}
+				input[type="search"] {
+					color: #fff;
+
+					&::-webkit-input-placeholder {
+						color: rgba(#fff,.5);
+					}
+				}
+			}
+			&-results {
+
+				.subheading {
+					border-bottom-color: rgba(#000, .1);
+					color: rgba(#fff, .5);
+
+					.wp-menu-image:before {
+						//color: #bbb;
+					}
+				}
+				ul li {
+					border-bottom-color: rgba(#000, .12);
+
+					&:hover {
+						background-color: darken(#413256, 5);
+					}
+				}
+				a, [data-name="admin-action"] ul li {
+					color: #D46F15;
+
+					&:hover {
+						color: #A3B745;
+					}
+				}
+			}
+
+		}
+
+	}
+
+	// Midnight Theme
+	&-midnight {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #26292C;
+
+				.search-container {
+					background-color: #363B3F;
+				}
+				input[type="search"] {
+					color: #fff;
+
+					&::-webkit-input-placeholder {
+						color: rgba(#fff,.5);
+					}
+				}
+			}
+			&-results {
+
+				.subheading {
+					border-bottom-color: rgba(#000, .1);
+					color: rgba(#fff, .5);
+
+					.wp-menu-image:before {
+						//color: #bbb;
+					}
+				}
+				ul li {
+					border-bottom-color: rgba(#000, .12);
+
+					&:hover {
+						background-color: darken(#26292C, 5);
+					}
+				}
+				a, [data-name="admin-action"] ul li {
+					color: #E14D43;
+
+					&:hover {
+						color: #69A8BB;
+					}
+				}
+			}
+
+		}
+
+	}
+
+	// Ocean Theme
+	&-ocean {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #627C83;
+
+				.search-container {
+					background-color: #738E96;
+				}
+				input[type="search"] {
+					color: #23282D;
+
+					&::-webkit-input-placeholder {
+						color: rgba(#fff,.5);
+					}
+				}
+			}
+			&-results {
+
+				.subheading {
+					border-bottom-color: rgba(#000, .1);
+					color: rgba(#fff, .5);
+
+					.wp-menu-image:before {
+						//color: #bbb;
+					}
+				}
+				ul li {
+					border-bottom-color: rgba(#000, .12);
+
+					&:hover {
+						background-color: darken(#627C83, 5);
+					}
+				}
+				a, [data-name="admin-action"] ul li {
+					color: #AA9D88;
+
+					&:hover {
+						color: saturate(#9EBAA0, 20);
+					}
+				}
+			}
+
+		}
+
+	}
+
+	// Sunrise Theme
+	&-sunrise {
+
+		.admin-command-palette {
+
+			&-modal {
+				background-color: #BE3631;
+
+				.search-container {
+					background-color: #CF4944;
+				}
+				input[type="search"] {
+					color: #fff;
+
+					&::-webkit-input-placeholder {
+						color: rgba(#fff,.5);
+					}
+				}
+			}
+			&-results {
+
+				.subheading {
+					border-bottom-color: rgba(#000, .1);
+					color: rgba(#fff, .5);
+
+					.wp-menu-image:before {
+						//color: #bbb;
+					}
+				}
+				ul li {
+					border-bottom-color: rgba(#000, .12);
+
+					&:hover {
+						background-color: darken(#BE3631, 5);
+					}
+				}
+				a, [data-name="admin-action"] ul li {
+					color: #DD823B;
+
+					&:hover {
+						color: #CCAF0B;
+					}
+				}
+			}
+
+		}
+
+	}
+
+}
