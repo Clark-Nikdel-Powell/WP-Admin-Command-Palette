@@ -58,7 +58,7 @@ $user_result_lists = array_merge($post_types, $taxonomies);
 		$title = $result_list_obj->labels->name;
 
 
-		if ( '' != $result_list_obj->menu_icon ) {
+		if ( isset($result_list_obj->menu_icon) && '' != $result_list_obj->menu_icon ) {
 			$icon = '<div class="wp-menu-image dashicons-before '. $result_list_obj->menu_icon  .'"></div>';
 		}
 

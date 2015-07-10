@@ -16,7 +16,7 @@
 final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Data {
 
 
-	private $actions = array(
+	protected $actions = array(
 		array(
 			"title" => "View Post",
 			"target" => "#view-post-btn .button",
@@ -63,10 +63,12 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 		// get data
 		$data = array();
 
-		if (isset($admin_actions) && count($admin_actions) > 0) {
+		$actions = $this->actions;
+
+		if (isset($actions) && count($actions) > 0) {
 
 			// set template
-			$templte = $this->template;
+			$template = $this->template;
 
 			foreach ($actions as $action) {
 
@@ -74,6 +76,7 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 				$template['target'] = $action['target'];
 				$template['action'] = $action['action'];
 				$template['shortcut'] = $action['shortcut'];
+				$template['type'] = 'action';
 
 				$data[] = $template;
 

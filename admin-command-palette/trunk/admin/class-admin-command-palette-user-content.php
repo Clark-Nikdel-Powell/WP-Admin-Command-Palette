@@ -73,6 +73,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['object_type'] 	= 'post_type';
 				$template['object_name'] 	= $result['post_type'];
 				$template['url'] 			= get_edit_post_link($result['ID']);
+				$template['type']           = 'content';
 
 				// set the data in the new array by post ID to avoid duplicates
 				$data[] = $template;
@@ -123,6 +124,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['object_type'] 	= 'taxonomy';
 				$template['object_name'] 	= $result['taxonomy'];
 				$template['url'] 			= get_edit_term_link($result['term_id'], $result['taxonomy'], $result['post_type']);
+				$template['type']           = 'content';
 
 				// set the data in the new array by post ID to avoid duplicates
 				$data[] = $template;

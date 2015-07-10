@@ -48,7 +48,7 @@ $excluded_taxonomies = get_option('acp_excluded_taxonomies');
 			}
 			else {
 
-				if ( '1' === $excluded_post_types[$post_type_slug] ) {
+				if ( isset($excluded_post_types[$post_type_slug]) && '1' === $excluded_post_types[$post_type_slug] ) {
 					$checked = 'checked';
 				}
 
@@ -74,7 +74,7 @@ $excluded_taxonomies = get_option('acp_excluded_taxonomies');
 			}
 			else {
 
-				if ( '1' === $excluded_taxonomies[$taxonomy_slug] ) {
+				if ( isset($excluded_taxonomies[$taxonomy_slug]) && '1' === $excluded_taxonomies[$taxonomy_slug] ) {
 					$checked = 'checked';
 				}
 

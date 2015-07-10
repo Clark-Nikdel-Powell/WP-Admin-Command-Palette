@@ -82,6 +82,7 @@ abstract class Admin_Command_Palette_Data {
 
 		// if the cache exists
 		if ( ACP_CACHE ) {
+			delete_transient( $transient_modified_name );
 			$cache = get_transient($transient_modified_name);
 			if ( $cache ) {
 				return $cache;

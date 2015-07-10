@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         src: [
           'admin/js/pre/vendor/fuse.js',
           'admin/js/pre/vendor/mousetrap.js',
+          'admin/js/pre/vendor/ractive.js',
           'admin/js/pre/intro.js',
           'admin/js/pre/acp-modal.js',
           'admin/js/pre/acp-search.js',
@@ -53,7 +54,8 @@ module.exports = function(grunt) {
           $: false,
           'jQuery': false,
           'acp_search_data': false,
-          'Fuse': false
+          'Fuse': false,
+          'Ractive': false
         }
       },
       admin: {

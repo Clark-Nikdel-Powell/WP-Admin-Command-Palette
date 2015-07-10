@@ -14,25 +14,33 @@ AcpModal = {
 	init: function() {
 		var Mousetrap = window.Mousetrap || {};
 		Mousetrap.bind('shift shift', function() {
-			if (AcpModal.isOpen()) {
-				AcpModal.close();
-				return;
-			}
-			AcpModal.open();
+			AcpModal.toggle();
 		});
 		Mousetrap.bind('esc', function() {
-			if (AcpModal.isOpen()) {
-				AcpModal.close();
-			}
+			AcpModal.close();
 		});
+	},
+
+	toggle: function() {
+		if (AcpModal.isOpen()) {
+			AcpModal.close();
+		} else {
+			AcpModal.open();
+		}
 	},
 	
 	open: function() {
+		if (AcpModal.isOpen()) {
+			return;
+		}
 		AcpModal.modal.addClass('open');
 		AcpModal.inputField.focus();
 	},
 	
 	close: function() {
+		if (!AcpModal.isOpen()) {
+			return;
+		}
 		AcpModal.inputField.blur();
 		AcpModal.inputField.val('');
 		AcpModal.modal.removeClass('open');
