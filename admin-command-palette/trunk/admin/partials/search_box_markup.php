@@ -65,18 +65,18 @@ $user_result_lists = array_merge($post_types, $taxonomies);
 		$heading = $icon . $title;
 
 		?>
-		<div class="results hide" data-type="<?php echo $item_slug; ?>">
+		<div class="results hide" data-name="<?php echo $item_slug; ?>">
 			<h3 class="subheading"><?php echo $heading; ?></h3>
 			<ul class="list">
 			</ul>
 		</div>
 		<?php } ?>
-		<div class="results hide" data-type="admin-pages">
+		<div class="results hide" data-name="admin-page">
 			<h3 class="subheading">Admin Pages</h3>
 			<ul class="list">
 			</ul>
 		</div>
-		<div class="results hide" data-type="admin-actions">
+		<div class="results hide" data-name="admin-action">
 			<h3 class="subheading">Admin Actions</h3>
 			<ul class="list">
 			</ul>

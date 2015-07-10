@@ -47,6 +47,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 			WHERE post_status = 'publish'
 		";
 
+		// exclude any excluded post types from the query
 		if ( !empty( $excluded_post_types ) ) {
 
 			foreach ( $excluded_post_types as $post_type_slug => $checked ) {
@@ -71,9 +72,8 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['title'] 			= $result['post_title'];
 				$template['id'] 			= $result['ID'];
 				$template['object_type'] 	= 'post_type';
-				$template['object_name'] 	= $result['post_type'];
 				$template['url'] 			= get_edit_post_link($result['ID']);
-				$template['type']           = 'content';
+				$template['name']           = $result['post_type'];
 
 				// set the data in the new array by post ID to avoid duplicates
 				$data[] = $template;
@@ -98,6 +98,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 			WHERE post_status = 'publish'
 		";
 
+		// exclude any excluded taxonomies from the query
 		if ( !empty( $excluded_taxonomies ) ) {
 
 			foreach ( $excluded_taxonomies as $taxonomy_slug => $checked ) {
@@ -122,9 +123,8 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['title'] 			= $result['name'];
 				$template['id'] 			= $result['term_id'];
 				$template['object_type'] 	= 'taxonomy';
-				$template['object_name'] 	= $result['taxonomy'];
 				$template['url'] 			= get_edit_term_link($result['term_id'], $result['taxonomy'], $result['post_type']);
-				$template['type']           = 'content';
+				$template['name']           = $result['taxonomy'];
 
 				// set the data in the new array by post ID to avoid duplicates
 				$data[] = $template;

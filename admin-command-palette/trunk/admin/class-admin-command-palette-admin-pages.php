@@ -72,7 +72,7 @@ final class Admin_Command_Palette_Admin_Pages extends Admin_Command_Palette_Data
 			// Add the admin page to the array
 			$template['title'] = $menu_title;
 			$template['url'] = $menu_url;
-			$template['type'] = 'page';
+			$template['name'] = 'admin-page';
 
 			if ( '' != $admin_menu_item[6] ) {
 
@@ -145,7 +145,7 @@ final class Admin_Command_Palette_Admin_Pages extends Admin_Command_Palette_Data
 
 				$template['title'] = $submenu_title;
 				$template['url'] = $submenu_url;
-				$template['type'] = 'page';
+				$template['name'] = 'admin-page';
 
 				$data[] = $template;
 

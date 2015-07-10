@@ -38,12 +38,11 @@ abstract class Admin_Command_Palette_Data {
 		// all arrays
 		'title' 		=> '',
 		'url' 			=> '',
-		'type'          => '',
+		'name'          => '',
 
 		// user generated content only
 		'id' 			=> 0,
 		'object_type' 	=> '',
-		'object_name' 	=> '',
 
 		// admin pages only
 		'dashicon' 		=> '',

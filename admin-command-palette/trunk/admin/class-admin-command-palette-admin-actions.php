@@ -76,7 +76,7 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 				$template['target'] = $action['target'];
 				$template['action'] = $action['action'];
 				$template['shortcut'] = $action['shortcut'];
-				$template['type'] = 'action';
+				$template['name'] = 'admin-action';
 
 				$data[] = $template;
 
@@ -87,6 +87,6 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 		return $data;
 
 	}
-	
-	
+
+
 }
