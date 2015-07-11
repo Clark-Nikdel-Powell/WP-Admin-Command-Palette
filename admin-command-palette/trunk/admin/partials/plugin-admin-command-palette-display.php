@@ -30,7 +30,7 @@ if ( '' == $threshold ) {
 
 <div>
 
-	<h2>Admin Command Palette</h2>
+	<h2>Admin Command Palette Settings</h2>
 
 	<form action="options.php" method="post">
 
@@ -42,8 +42,6 @@ if ( '' == $threshold ) {
 		//  General Settings  /////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////*/
 		?>
-
-		<h3>General Settings</h3>
 
 		<table class="form-table">
 			<tbody>
@@ -65,72 +63,74 @@ if ( '' == $threshold ) {
 						<p class="description">Number of results to display per post type, taxonomy, etc.</p>
 					</td>
 				</tr>
+
+				<?php // Excluded Post Types ?>
+				<tr>
+					<th scope="row">
+						<label>Excluded Post Types</label>
+					</th>
+					<td>
+
+						<?php
+						foreach ( $post_types as $post_type_slug => $post_type ) {
+
+							$checked = '';
+
+							if ( '' == $excluded_post_types || empty( $excluded_post_types ) ) {
+
+								if ( 'attachment' == $post_type_slug || 'revision' == $post_type_slug || 'nav_menu_item' == $post_type_slug ) {
+									$checked = 'checked';
+								}
+
+							}
+							else {
+
+								if ( isset($excluded_post_types[$post_type_slug]) && '1' === $excluded_post_types[$post_type_slug] ) {
+									$checked = 'checked';
+								}
+
+							}
+
+						?>
+							<p><label><input type="checkbox" name="acp_excluded_post_types[<?php echo $post_type_slug; ?>]" value="1" <?php echo $checked; ?> /> <?php echo $post_type->labels->name; ?></label></p>
+						<?php } ?>
+					</td>
+				</tr>
+
+				<?php // Excluded Taxonomies ?>
+				<tr>
+					<th scope="row">
+						<label>Excluded Taxonomies</label>
+					</th>
+					<td>
+						<?php
+						foreach ( $taxonomies as $taxonomy_slug => $taxonomy ) {
+
+							$checked = '';
+
+							if ( '' == $excluded_taxonomies || empty( $excluded_taxonomies ) ) {
+
+								if ( 'nav_menu' == $taxonomy_slug || 'link_category' == $taxonomy_slug || 'post_format' == $taxonomy_slug ) {
+									$checked = 'checked';
+								}
+
+							}
+							else {
+
+								if ( isset($excluded_taxonomies[$taxonomy_slug]) && '1' === $excluded_taxonomies[$taxonomy_slug] ) {
+									$checked = 'checked';
+								}
+
+							}
+
+						?>
+							<p><label><input type="checkbox" name="acp_excluded_taxonomies[<?php echo $taxonomy_slug; ?>]" value="1" <?php echo $checked; ?> /> <?php echo $taxonomy->labels->name; ?></label></p>
+						<?php } ?>
+					</td>
+				</tr>
+
 			</tbody>
 		</table>
-
-		<?php
-		/*//////////////////////////////////////////////////////////////////////////////
-		//  Excluded Post Types  //////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////*/
-		?>
-
-		<h3>Excluded Post Types</h3>
-
-		<?php
-		foreach ( $post_types as $post_type_slug => $post_type ) {
-
-			$checked = '';
-
-			if ( '' == $excluded_post_types || empty( $excluded_post_types ) ) {
-
-				if ( 'attachment' == $post_type_slug || 'revision' == $post_type_slug || 'nav_menu_item' == $post_type_slug ) {
-					$checked = 'checked';
-				}
-
-			}
-			else {
-
-				if ( isset($excluded_post_types[$post_type_slug]) && '1' === $excluded_post_types[$post_type_slug] ) {
-					$checked = 'checked';
-				}
-
-			}
-
-		?>
-			<p><label><input type="checkbox" name="acp_excluded_post_types[<?php echo $post_type_slug; ?>]" value="1" <?php echo $checked; ?> /> <?php echo $post_type->labels->name; ?></label></p>
-		<?php } ?>
-
-		<?php
-		/*//////////////////////////////////////////////////////////////////////////////
-		//  Excluded Taxonomies  //////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////*/
-		?>
-
-		<h3>Excluded Taxonomies</h3>
-
-		<?php
-		foreach ( $taxonomies as $taxonomy_slug => $taxonomy ) {
-
-			$checked = '';
-
-			if ( '' == $excluded_taxonomies || empty( $excluded_taxonomies ) ) {
-
-				if ( 'nav_menu' == $taxonomy_slug || 'link_category' == $taxonomy_slug || 'post_format' == $taxonomy_slug ) {
-					$checked = 'checked';
-				}
-
-			}
-			else {
-
-				if ( isset($excluded_taxonomies[$taxonomy_slug]) && '1' === $excluded_taxonomies[$taxonomy_slug] ) {
-					$checked = 'checked';
-				}
-
-			}
-
-		?>
-			<p><label><input type="checkbox" name="acp_excluded_taxonomies[<?php echo $taxonomy_slug; ?>]" value="1" <?php echo $checked; ?> /> <?php echo $taxonomy->labels->name; ?></label></p>
-		<?php } ?>
 
 		<p>
 			<input class="button button-primary" name="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" />
