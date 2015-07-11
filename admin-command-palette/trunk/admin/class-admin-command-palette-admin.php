@@ -86,6 +86,7 @@ class Admin_Command_Palette_Admin {
 	public function register_settings() {
 
 		register_setting( 'acp_options', 'acp_search_threshold' );
+		register_setting( 'acp_options', 'acp_max_results_per_section' );
 		register_setting( 'acp_options', 'acp_excluded_post_types' );
 		register_setting( 'acp_options', 'acp_excluded_taxonomies' );
 

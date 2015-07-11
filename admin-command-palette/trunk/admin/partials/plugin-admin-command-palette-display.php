@@ -18,6 +18,7 @@ $taxonomies = get_taxonomies( array(), 'objects' );
 
 
 $threshold = get_option('acp_search_threshold');
+$max_results_per_section = get_option('acp_max_results_per_section');
 $excluded_post_types = get_option('acp_excluded_post_types');
 $excluded_taxonomies = get_option('acp_excluded_taxonomies');
 
@@ -48,11 +49,20 @@ if ( '' == $threshold ) {
 			<tbody>
 				<tr>
 					<th scope="row">
-						<label for="threshold">Search threshold</label>
+						<label for="threshold">Search Threshold</label>
 					</th>
 					<td>
 						<input type="number" name="acp_search_threshold" min="0.0" max="1.0" step="0.1" value="<?php echo $threshold; ?>">
 						<p class="description">1.0 will match anything, 0.0 must be a perfect match.</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="threshold">Max Results Per Section</label>
+					</th>
+					<td>
+						<input type="number" name="acp_search_threshold" min="1" step="1" value="<?php echo $max_results_per_section; ?>">
+						<p class="description">Number of results to display per post type, taxonomy, etc.</p>
 					</td>
 				</tr>
 			</tbody>
