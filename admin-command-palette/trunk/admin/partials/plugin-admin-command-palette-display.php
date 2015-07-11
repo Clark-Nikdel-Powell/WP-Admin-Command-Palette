@@ -132,6 +132,12 @@ if ( '' == $threshold ) {
 			</tbody>
 		</table>
 
+		<h4>Caching Options</h4>
+		<p class="description">User-generated content data is automatically generated and saved in a WordPress transient,<br />and is cleared and regenerated every time new content is created.<br />You can also generate and clear this cache manually here.</p>
+		<p>
+			<input class="button button-secondary" type="submit" name="Generate" value="<?php esc_attr_e('Generate Content Cache'); ?>" />
+			<input class="button button-secondary" type="submit" name="Clear" value="<?php esc_attr_e('Clear Content Cache'); ?>" />
+		</p>
 		<p>
 			<input class="button button-primary" name="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" />
 		</p>
