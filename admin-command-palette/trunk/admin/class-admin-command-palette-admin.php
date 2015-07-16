@@ -73,7 +73,15 @@ class Admin_Command_Palette_Admin {
 	 */
 	public function enqueue_scripts() {
 
+		$search_settings = array(
+			'threshold' => get_option('acp_search_threshold'),
+			'max_results_per_section' => get_option('acp_max_results_per_section')
+		);
+
 		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin.min.js', array( 'jquery' ), $this->version, true );
+
+		// Add search settings to footer for use in admin.min.js.
+		wp_localize_script( $this->admin_command_palette, 'acp_user_options', $search_settings );
 		wp_localize_script( $this->admin_command_palette, 'acp_search_data', $this->get_all_data() );
 
 	}

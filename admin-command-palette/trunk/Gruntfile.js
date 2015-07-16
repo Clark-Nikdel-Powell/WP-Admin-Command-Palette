@@ -53,6 +53,7 @@ module.exports = function(grunt) {
         globals: {
           $: false,
           'jQuery': false,
+          'acp_user_options': false,
           'acp_search_data': false,
           'Fuse': false,
           'Ractive': false

@@ -59,7 +59,7 @@ if ( '' == $threshold ) {
 						<label for="threshold">Max Results Per Section</label>
 					</th>
 					<td>
-						<input type="number" name="acp_search_threshold" min="1" step="1" value="<?php echo $max_results_per_section; ?>">
+						<input type="number" name="acp_max_results_per_section" min="1" step="1" value="<?php echo $max_results_per_section; ?>">
 						<p class="description">Number of results to display per post type, taxonomy, etc.</p>
 					</td>
 				</tr>

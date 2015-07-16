@@ -44,110 +44,118 @@ final class Admin_Command_Palette_Admin_Pages extends Admin_Command_Palette_Data
 		$admin_menu_arr = $menu;
 		$admin_submenu_arr = $submenu;
 
-		// Loop through the admin pages and add the data to an array.
-		foreach ( $admin_menu_arr as $menu_order => $admin_menu_item ) {
+		if ( !empty( $admin_menu_arr ) ) {
 
-			// Copy template
-			$template = $this->template;
-
-			// If this is a separator, then we don't need it.
-			if ( 'wp-menu-separator' == $admin_menu_item[4] ) {
-
-				continue;
-
-			}
-
-			$menu_title = $admin_menu_item[0];
-			$menu_url = $admin_menu_item[2];
-
-			// Clean the title
-			$span_position = strpos( $menu_title, ' <span' );
-
-			if ( 0 != $span_position ) {
-
-				$menu_title = substr( $menu_title, 0, $span_position );
-
-			}
-
-			// Add the admin page to the array
-			$template['title'] = $menu_title;
-			$template['url'] = $menu_url;
-			$template['name'] = 'admin-page';
-
-			if ( '' != $admin_menu_item[6] ) {
-
-				$template['dashicon'] = $admin_menu_item[6];
-
-			}
-
-			$data[] = $template;
-
-		}
-
-		// Loop through the admin submenu pages and add the data to an array.
-		foreach ( $admin_submenu_arr as $parent_slug => $admin_submenu_items ) {
-
-			// The submenu pages are grouped in sub-arrays under the parent slug, hence the extra loop.
-			foreach ( $admin_submenu_items as $menu_order => $admin_submenu_item ) {
+			// Loop through the admin pages and add the data to an array.
+			foreach ( $admin_menu_arr as $menu_order => $admin_menu_item ) {
 
 				// Copy template
 				$template = $this->template;
 
-				$submenu_title = $admin_submenu_item[0];
-				$submenu_url = $admin_submenu_item[2];
-
-				// If "Add" is present, we need to append the post type name to the title for context.
-				if ( False !== strpos( $submenu_title, 'Add') && 0 != strpos( $submenu_url, 'post_type=' ) ) {
-
-					$equal_position = strpos( $submenu_url, '=' );
-
-					$submenu_post_type_slug = substr( $submenu_url, $equal_position + 1 );
-
-					$submenu_title .= ' ' . ucfirst( $submenu_post_type_slug );
-
-				}
-
-				// A couple of special cases for title
-				if ( 'post-new.php' == $submenu_url ) {
-
-					$submenu_title .= ' Post';
-
-				}
-				if ( 'upload.php' == $submenu_url ) {
+				// If this is a separator, then we don't need it.
+				if ( 'wp-menu-separator' == $admin_menu_item[4] ) {
 
 					continue;
 
 				}
-				if ( 'media-new.php' == $submenu_url ) {
 
-					$submenu_title .= ' Attachment';
-
-				}
-				if ( 'plugin-install.php' == $submenu_url ) {
-
-					$submenu_title .= ' Plugin';
-
-				}
-				if ( 'user-new.php' == $submenu_url ) {
-
-					$submenu_title .= ' User';
-
-				}
+				$menu_title = $admin_menu_item[0];
+				$menu_url = $admin_menu_item[2];
 
 				// Clean the title
-				$span_position = strpos( $submenu_title , ' <span' );
+				$span_position = strpos( $menu_title, ' <span' );
 
 				if ( 0 != $span_position ) {
 
-					$submenu_title = substr( $submenu_title, 0, $span_position );
+					$menu_title = substr( $menu_title, 0, $span_position );
 
 				}
 
-				$template['title'] = $submenu_title;
-				$template['url'] = $submenu_url;
+				// Add the admin page to the array
+				$template['title'] = $menu_title;
+				$template['url'] = $menu_url;
 				$template['name'] = 'admin-page';
 
+				if ( '' != $admin_menu_item[6] ) {
+
+					$template['dashicon'] = $admin_menu_item[6];
+
+				}
+
 				$data[] = $template;
+
+			}
+
+		}
+
+		if ( !empty( $admin_submenu_arr ) ) {
+
+			// Loop through the admin submenu pages and add the data to an array.
+			foreach ( $admin_submenu_arr as $parent_slug => $admin_submenu_items ) {
+
+				// The submenu pages are grouped in sub-arrays under the parent slug, hence the extra loop.
+				foreach ( $admin_submenu_items as $menu_order => $admin_submenu_item ) {
+
+					// Copy template
+					$template = $this->template;
+
+					$submenu_title = $admin_submenu_item[0];
+					$submenu_url = $admin_submenu_item[2];
+
+					// If "Add" is present, we need to append the post type name to the title for context.
+					if ( False !== strpos( $submenu_title, 'Add') && 0 != strpos( $submenu_url, 'post_type=' ) ) {
+
+						$equal_position = strpos( $submenu_url, '=' );
+
+						$submenu_post_type_slug = substr( $submenu_url, $equal_position + 1 );
+
+						$submenu_title .= ' ' . ucfirst( $submenu_post_type_slug );
+
+					}
+
+					// A couple of special cases for title
+					if ( 'post-new.php' == $submenu_url ) {
+
+						$submenu_title .= ' Post';
+
+					}
+					if ( 'upload.php' == $submenu_url ) {
+
+						continue;
+
+					}
+					if ( 'media-new.php' == $submenu_url ) {
+
+						$submenu_title .= ' Attachment';
+
+					}
+					if ( 'plugin-install.php' == $submenu_url ) {
+
+						$submenu_title .= ' Plugin';
+
+					}
+					if ( 'user-new.php' == $submenu_url ) {
+
+						$submenu_title .= ' User';
+
+					}
+
+					// Clean the title
+					$span_position = strpos( $submenu_title , ' <span' );
+
+					if ( 0 != $span_position ) {
+
+						$submenu_title = substr( $submenu_title, 0, $span_position );
+
+					}
+
+					$template['title'] = $submenu_title;
+					$template['url'] = $submenu_url;
+					$template['name'] = 'admin-page';
+
+					$data[] = $template;
+
+				}
 
 			}
 
