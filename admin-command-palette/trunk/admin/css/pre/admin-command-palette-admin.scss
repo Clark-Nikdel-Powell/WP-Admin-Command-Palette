@@ -120,368 +120,103 @@
 // Styles for color themes  ///////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////*/
 
-.admin-color {
 
-	// Default Theme
-	&-fresh {
 
-		.admin-command-palette {
+$themes: (
+	'fresh':     ( #23282D, #eee, #32373C, #fff,    rgba(#fff,.5), #bbb,                #444,            #333,            #0073AA,               #2b333b,               #00A0D2            ),
+	'light':     ( #F5F5F5, #444, #fff,    #000,    rgba(#000,.5), #333,                rgba(#000, .1),  rgba(#000, .12), #D64E07,               #E5E5E5,               #04A4CC            ),
+	'blue':      ( #4796B3, #444, #52ACCC, #fff,    rgba(#fff,.5), darken(#096484, 5%), rgba(#fff, .25), rgba(#fff, .3),  saturate(#E1A948, 30), #317D93,               #fff               ),
+	'coffee':    ( #46403C, #444, #59524C, #fff,    rgba(#fff,.5), #91867C,             rgba(#000, .1),  rgba(#000, .12), #C7A589,               saturate(#9EA476, 20), #59524C            ),
+	'ectoplasm': ( #413256, #444, #523F6D, #fff,    rgba(#fff,.5), rgba(#fff, .5),      rgba(#000, .1),  rgba(#000, .12), #D46F15,               #A3B745,               darken(#413256, 5) ),
+	'midnight':  ( #26292C, #444, #363B3F, #fff,    rgba(#fff,.5), rgba(#fff, .5),      rgba(#000, .1),  rgba(#000, .12), #E14D43,               #69A8BB,               darken(#26292C, 5) ),
+	'ocean':     ( #627C83, #444, #738E96, #23282D, rgba(#fff,.5), rgba(#fff, .5),      rgba(#000, .1),  rgba(#000, .12), #AA9D88,               saturate(#9EBAA0, 20), darken(#627C83, 5) ),
+	'sunrise':   ( #BE3631, #444, #CF4944, #fff,    rgba(#fff,.5), rgba(#fff, .5),      rgba(#000, .1),  rgba(#000, .12), #DD823B,               #CCAF0B,               darken(#BE3631, 5) )
+);
 
-			&-modal {
-				background-color: #23282D;
-				color: #eee;
+@mixin modal_theme_colors( $theme_name, $colors ) {
 
-				.search-container {
-					background-color: #32373C;
-					border: 2px solid #222;
-				}
-			}
-			&-results {
+	$modal_bg: nth($colors, 1);
+	$modal_color: nth($colors, 2);
 
-				.subheading {
-					color: #bbb;
-					border-bottom-color: #444;
-				}
-				ul li {
-					border-bottom-color: #333;
+	$search_bg: nth($colors, 3);
+	$search_color: nth($colors, 4);
+	$search_placeholder: nth($colors, 5);
 
-					&:hover {
-						background-color: #2b333b;
-					}
-				}
-				[data-name="admin-action"] ul li {
-					color: #0073AA;
-				}
-			}
-		}
+	$subheading_color: nth($colors, 6);
+	$subheading_border: nth($colors, 7);
 
-	}
+	$li_border: nth($colors, 8);
 
-	// Light Theme
-	&-light {
+	$link_color: nth($colors, 9);
+	$hover_bg: nth($colors, 10);
+	$hover_color: nth($colors, 11);
+
+	.admin-color-#{$theme_name} {
 
 		.admin-command-palette {
 
 			&-modal {
-				background-color: #F5F5F5;
+				background-color: $modal_bg;
+				color: $modal_color;
 
 				.search-container {
-					background-color: #fff;
+					background-color: $search_bg;
 				}
 				input[type="search"] {
-					color: #000;
+					color: $search_color;
 
 					&::-webkit-input-placeholder {
-						color: rgba(#000,.5);
+						color: $search_placeholder;
 					}
 				}
 			}
 			&-results {
 
 				.subheading {
-					border-bottom-color: rgba(#000, .1);
-					color: #333;
-
-					.wp-menu-image:before {
-						color: #bbb;
-					}
+					color: $subheading_color;
+					border-bottom-color: $subheading_border;
 				}
 				ul li {
-					border-bottom-color: rgba(#000, .12);
+					border-bottom-color: $li_border;
 
-					&:hover {
-						background-color: #E5E5E5;
+					&:hover, &.selected {
+						background-color: $hover_bg;
+						color: $hover_color;
 					}
 				}
 				a, [data-name="admin-action"] ul li {
-					color: #D64E07;
+					color: $link_color;
 
 					&:hover {
-						color: #04A4CC;
+						color: $hover_color;
 					}
 				}
 			}
 		}
 
-
 	}
 
-	// Blue Theme
-	&-blue {
+}
 
-		.admin-command-palette {
+@each $theme_name, $colors in $themes {
 
-			&-modal {
-				background-color: #4796B3;
+	@include modal_theme_colors($theme_name, $colors);
 
-				.search-container {
-					background-color: #52ACCC;
-				}
+}
 
-			}
-			&-results {
-
-				.subheading {
-					border-bottom-color: rgba(#fff, .25);
-					color: darken(#096484, 5%);
-				}
-				ul li {
-					border-bottom-color: rgba(#fff, .3);
-
-					&:hover {
-						background-color: #317D93;
-					}
-				}
-				a, [data-name="admin-action"] ul li {
-					color: saturate(#E1A948, 30);
-
-					&:hover {
-						color: #fff;
-					}
-				}
-			}
-		}
-
-
-	}
+.admin-color {
 
 	// Coffee Theme
 	&-coffee {
 
 		.admin-command-palette {
 
-			&-modal {
-				background-color: #46403C;
-
-				.search-container {
-					background-color: #59524C;
-				}
-				input[type="search"] {
-					color: #fff;
-
-					&::-webkit-input-placeholder {
-						color: rgba(#fff,.5);
-					}
-				}
-			}
 			&-results {
 
 				.subheading {
-					border-bottom-color: rgba(#000, .1);
-					color: #91867C;
 
 					.wp-menu-image:before {
 						color: #bbb;
-					}
-				}
-				ul li {
-					border-bottom-color: rgba(#000, .12);
-
-					&:hover {
-						background-color: #59524C;
-					}
-				}
-				a, [data-name="admin-action"] ul li {
-					color: #C7A589;
-
-					&:hover {
-						color: saturate(#9EA476, 20);
-					}
-				}
-			}
-
-		}
-
-	}
-
-	// Ectoplasm Theme
-	&-ectoplasm {
-
-		.admin-command-palette {
-
-			&-modal {
-				background-color: #413256;
-
-				.search-container {
-					background-color: #523F6D;
-				}
-				input[type="search"] {
-					color: #fff;
-
-					&::-webkit-input-placeholder {
-						color: rgba(#fff,.5);
-					}
-				}
-			}
-			&-results {
-
-				.subheading {
-					border-bottom-color: rgba(#000, .1);
-					color: rgba(#fff, .5);
-
-					.wp-menu-image:before {
-						//color: #bbb;
-					}
-				}
-				ul li {
-					border-bottom-color: rgba(#000, .12);
-
-					&:hover {
-						background-color: darken(#413256, 5);
-					}
-				}
-				a, [data-name="admin-action"] ul li {
-					color: #D46F15;
-
-					&:hover {
-						color: #A3B745;
-					}
-				}
-			}
-
-		}
-
-	}
-
-	// Midnight Theme
-	&-midnight {
-
-		.admin-command-palette {
-
-			&-modal {
-				background-color: #26292C;
-
-				.search-container {
-					background-color: #363B3F;
-				}
-				input[type="search"] {
-					color: #fff;
-
-					&::-webkit-input-placeholder {
-						color: rgba(#fff,.5);
-					}
-				}
-			}
-			&-results {
-
-				.subheading {
-					border-bottom-color: rgba(#000, .1);
-					color: rgba(#fff, .5);
-
-					.wp-menu-image:before {
-						//color: #bbb;
-					}
-				}
-				ul li {
-					border-bottom-color: rgba(#000, .12);
-
-					&:hover {
-						background-color: darken(#26292C, 5);
-					}
-				}
-				a, [data-name="admin-action"] ul li {
-					color: #E14D43;
-
-					&:hover {
-						color: #69A8BB;
-					}
-				}
-			}
-
-		}
-
-	}
-
-	// Ocean Theme
-	&-ocean {
-
-		.admin-command-palette {
-
-			&-modal {
-				background-color: #627C83;
-
-				.search-container {
-					background-color: #738E96;
-				}
-				input[type="search"] {
-					color: #23282D;
-
-					&::-webkit-input-placeholder {
-						color: rgba(#fff,.5);
-					}
-				}
-			}
-			&-results {
-
-				.subheading {
-					border-bottom-color: rgba(#000, .1);
-					color: rgba(#fff, .5);
-
-					.wp-menu-image:before {
-						//color: #bbb;
-					}
-				}
-				ul li {
-					border-bottom-color: rgba(#000, .12);
-
-					&:hover {
-						background-color: darken(#627C83, 5);
-					}
-				}
-				a, [data-name="admin-action"] ul li {
-					color: #AA9D88;
-
-					&:hover {
-						color: saturate(#9EBAA0, 20);
-					}
-				}
-			}
-
-		}
-
-	}
-
-	// Sunrise Theme
-	&-sunrise {
-
-		.admin-command-palette {
-
-			&-modal {
-				background-color: #BE3631;
-
-				.search-container {
-					background-color: #CF4944;
-				}
-				input[type="search"] {
-					color: #fff;
-
-					&::-webkit-input-placeholder {
-						color: rgba(#fff,.5);
-					}
-				}
-			}
-			&-results {
-
-				.subheading {
-					border-bottom-color: rgba(#000, .1);
-					color: rgba(#fff, .5);
-
-					.wp-menu-image:before {
-						//color: #bbb;
-					}
-				}
-				ul li {
-					border-bottom-color: rgba(#000, .12);
-
-					&:hover {
-						background-color: darken(#BE3631, 5);
-					}
-				}
-				a, [data-name="admin-action"] ul li {
-					color: #DD823B;
-
-					&:hover {
-						color: #CCAF0B;
 					}
 				}
 			}
