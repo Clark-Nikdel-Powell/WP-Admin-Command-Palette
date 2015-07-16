@@ -87,15 +87,12 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 
 		// get all taxonomies
 		$sql = "
-			SELECT
+			SELECT DISTINCT
 				$wpdb->terms.*,
-				$wpdb->term_taxonomy.taxonomy,
-				$wpdb->posts.post_type
+				$wpdb->term_taxonomy.taxonomy
 			FROM $wpdb->terms
 				JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id
 				JOIN $wpdb->term_relationships ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
-				JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->term_relationships.object_id
-			WHERE post_status = 'publish'
 		";
 
 		// exclude any excluded taxonomies from the query
@@ -103,7 +100,14 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 
 			foreach ( $excluded_taxonomies as $taxonomy_slug => $checked ) {
 
-				$sql .= " AND taxonomy != '$taxonomy_slug'";
+				if ( FALSE === strpos($sql, 'WHERE') ) {
+					$prefix = 'WHERE';
+				}
+				else {
+					$prefix = 'AND';
+				}
+
+				$sql .= " $prefix taxonomy != '$taxonomy_slug'";
 
 			}
 
@@ -123,7 +127,7 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$template['title'] 			= $result['name'];
 				$template['id'] 			= $result['term_id'];
 				$template['object_type'] 	= 'taxonomy';
-				$template['url'] 			= get_edit_term_link($result['term_id'], $result['taxonomy'], $result['post_type']);
+				$template['url'] 			= 'edit-tags.php?action=edit&taxonomy='. $result['taxonomy'] .'&tag_ID='. $result['term_id'];
 				$template['name']           = $result['taxonomy'];
 
 				// set the data in the new array by post ID to avoid duplicates
