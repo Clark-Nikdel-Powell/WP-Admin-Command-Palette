@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Admin Command Palette
  * Plugin URI:        http://example.com/admin-command-palette-uri/
- * Description:       Something something something bla bla bla
+ * Description:       Navigate through the WordPress Admin at warp speed.
  * Version:           1.0.0
  * Author:            Clark Nildek Powell
  * Author URI:        http://clarknikdelpowell.com/
