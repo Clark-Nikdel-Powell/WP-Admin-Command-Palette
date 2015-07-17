@@ -65,6 +65,7 @@ final class Admin_Command_Palette_Markup {
 			<div class="search-container">
 				<input type="search" placeholder="Start typing..." class="mousetrap" />
 			</div>
+			<header class="admin-command-palette-results-count"><span class="acp-count-info"><span class="amount">0</span> Results <a class="clear" href="#" title="&#8984; + &#9003;">Clear</a></span> <span class="loader"><span></span><span></span></span></header>
 			<div class="admin-command-palette-results">
 				<?php foreach ($user_result_lists as $item_slug => $result_list_obj ) { ?>
 				<?php
