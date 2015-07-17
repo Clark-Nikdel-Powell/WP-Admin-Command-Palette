@@ -18158,7 +18158,7 @@ AcpModal = {
 			AcpModal.open();
 		}
 	},
-	
+
 	open: function() {
 		if (AcpModal.isOpen()) {
 			return;
@@ -18166,7 +18166,7 @@ AcpModal = {
 		AcpModal.modal.addClass('open');
 		AcpModal.inputField.focus();
 	},
-	
+
 	close: function() {
 		if (!AcpModal.isOpen()) {
 			return;
@@ -18174,6 +18174,10 @@ AcpModal = {
 		AcpModal.inputField.blur();
 		AcpModal.inputField.val('');
 		AcpModal.modal.removeClass('open');
+		$('.acp-results').addClass('hide');
+		$('.acp-list').html('');
+		$('.acp-count-info .amount').attr('data-amount', 0).html('');
+		$('.admin-command-palette-results-count').addClass('hide');
 	}
 
 };
@@ -18193,11 +18197,22 @@ if ( 'undefined' !== typeof acp_user_options && '' !== acp_user_options.threshol
 // Trigger search on keyup
 $('.admin-command-palette input[type=search]').keyup( function() {
 
+	// Reset counter
+	$('.acp-count-info .amount').attr('data-amount', 0).html('');
+
+	// Reset items
+	$('.acp-results').addClass('hide');
+	$('.acp-list').html('');
+
 	// Get the search query
 	var query = $(this).val();
-	if ( query.length < 3 ) {
+	if ( query.length === 0 ) {
 		return;
 	}
+
+	// Reveal the header and loader
+	$('.admin-command-palette-results-count').removeClass('hide');
+	$('.admin-command-palette-results-count .loader').removeClass('invisible');
 
 	// Search using Fuse
 	var acp_search = new Fuse(acp_search_data, acp_fuse_options);
@@ -18246,8 +18261,6 @@ $('.admin-command-palette input[type=search]').keyup( function() {
 	// The template for each item
 	var template = '{{#results}}<li><a href="{{url}}">{{title}}</a></li>{{/results}}';
 
-	$('.acp-count-info .amount').attr('data-amount', 0);
-
 	// Loop for each of the different types of results (posts, pages, tags, categories, etc)
 	for ( i = 0; i < results['acp-data-keys'].length; i++ ) {
 
@@ -18278,7 +18291,12 @@ $('.admin-command-palette input[type=search]').keyup( function() {
 			template: template,
 			data: { results: data }
 		});
+
 	}
+
+	setTimeout(function() {
+		$('.admin-command-palette-results-count .loader').addClass('invisible');
+	}, 10);
 
 });
 

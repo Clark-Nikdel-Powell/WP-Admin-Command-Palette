@@ -28,7 +28,7 @@ AcpModal = {
 			AcpModal.open();
 		}
 	},
-	
+
 	open: function() {
 		if (AcpModal.isOpen()) {
 			return;
@@ -36,7 +36,7 @@ AcpModal = {
 		AcpModal.modal.addClass('open');
 		AcpModal.inputField.focus();
 	},
-	
+
 	close: function() {
 		if (!AcpModal.isOpen()) {
 			return;
@@ -44,6 +44,10 @@ AcpModal = {
 		AcpModal.inputField.blur();
 		AcpModal.inputField.val('');
 		AcpModal.modal.removeClass('open');
+		$('.acp-results').addClass('hide');
+		$('.acp-list').html('');
+		$('.acp-count-info .amount').attr('data-amount', 0).html('');
+		$('.admin-command-palette-results-count').addClass('hide');
 	}
 
 };
