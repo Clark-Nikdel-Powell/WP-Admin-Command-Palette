@@ -18246,6 +18246,8 @@ $('.admin-command-palette input[type=search]').keyup( function() {
 	// The template for each item
 	var template = '{{#results}}<li><a href="{{url}}">{{title}}</a></li>{{/results}}';
 
+	$('.acp-count-info .amount').attr('data-amount', 0);
+
 	// Loop for each of the different types of results (posts, pages, tags, categories, etc)
 	for ( i = 0; i < results['acp-data-keys'].length; i++ ) {
 
@@ -18254,6 +18256,16 @@ $('.admin-command-palette input[type=search]').keyup( function() {
 
 		// Set up the data for this specific key
 		var data = results[key];
+
+		// Add number of items to results count
+		var current_count = parseInt( $('.acp-count-info .amount').attr('data-amount') );
+		if ( 'undefined' === typeof current_count ) {
+			current_count = 0;
+		}
+		var updated_count = current_count + data.length;
+
+		$('.acp-count-info .amount').attr('data-amount', updated_count);
+		$('.acp-count-info .amount').html( updated_count );
 
 		// Find the section and unhide it
 		var section = '.acp-results[data-name=' + key + ']';
