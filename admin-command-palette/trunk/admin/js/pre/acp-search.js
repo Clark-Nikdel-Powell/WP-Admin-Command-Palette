@@ -10,7 +10,7 @@ if ( 'undefined' !== typeof acp_user_options && '' !== acp_user_options.threshol
 }
 
 // Trigger search on keyup
-$('.admin-command-palette input[type=search]').keyup( function() {
+$('.admin-command-palette input[type=search]').keyup( function(e) {
 
 	// Reset counter
 	$('.acp-count-info .amount').attr('data-amount', 0).html('');
@@ -27,7 +27,11 @@ $('.admin-command-palette input[type=search]').keyup( function() {
 
 	// Reveal the header and loader
 	$('.admin-command-palette-results-count').removeClass('hide');
-	$('.admin-command-palette-results-count .loader').removeClass('invisible');
+
+	// Only show the loader if a search is being made.
+	if ( e.keyCode !== 40 && e.keyCode !== 38 ) {
+		$('.admin-command-palette-results-count .loader').removeClass('invisible');
+	}
 
 	// Search using Fuse
 	var acp_search = new Fuse(acp_search_data, acp_fuse_options);
