@@ -18197,7 +18197,7 @@ if ( 'undefined' !== typeof acp_user_options && '' !== acp_user_options.threshol
 var queryLength = 0;
 
 // Trigger search on keyup
-$('.admin-command-palette-modal input[type=search]').keyup( function() {
+$('.admin-command-palette input[type=search]').keyup( function(e) {
 
 	// If the length of the query hasn't changed, then a character hasn't
 	// been added or removed so stop processing
@@ -18223,7 +18223,11 @@ $('.admin-command-palette-modal input[type=search]').keyup( function() {
 
 	// Reveal the header and loader
 	$('.admin-command-palette-results-count').removeClass('hide');
-	$('.admin-command-palette-results-count .loader').removeClass('invisible');
+
+	// Only show the loader if a search is being made.
+	if ( e.keyCode !== 40 && e.keyCode !== 38 ) {
+		$('.admin-command-palette-results-count .loader').removeClass('invisible');
+	}
 
 	// Search using Fuse
 	var acp_search = new Fuse(acp_search_data, acp_fuse_options);
@@ -18319,7 +18323,7 @@ $(document).keydown( function(e) {
 	if ( ! $('.admin-command-palette-modal').hasClass('open') ) {
 		return;
 	}
-	
+
 	// Get the pressed key
 	var key = e.keyCode;
 	// If pressed key was not Enter, Up, or Down, stop processing
@@ -18341,7 +18345,7 @@ $(document).keydown( function(e) {
 	if ( key === 13 ) { // ENTER
 
 		// If no item is selected, stop processing
-		if ( $selectedIndex === -1 ) { 
+		if ( $selectedIndex === -1 ) {
 			return;
 		}
 
@@ -18368,7 +18372,7 @@ $(document).keydown( function(e) {
 	} else if ( key === 40 ) { // DOWN
 
 		e.preventDefault(); // Stop scrolling
-		
+
 		// If no item is selected, or the last item is
 		// selected, select the first item
 		// otherwise, increment the index to traverse down the items
@@ -18385,7 +18389,7 @@ $(document).keydown( function(e) {
 
 	// Add the selected class to the newly selected item
 	$current.addClass('selected');
-});	
+});
 
 
 })( jQuery );

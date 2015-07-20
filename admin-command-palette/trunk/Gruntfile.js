@@ -15,6 +15,7 @@ module.exports = function(grunt) {
           'admin/js/pre/intro.js',
           'admin/js/pre/acp-modal.js',
           'admin/js/pre/acp-search.js',
+          'admin/js/pre/acp-results-traversal.js',
           'admin/js/pre/admin.js',
           'admin/js/pre/outro.js',
         ]
