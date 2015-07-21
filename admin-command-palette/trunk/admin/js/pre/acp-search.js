@@ -88,14 +88,20 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		}
 	}
 
-	// The template for each item
-	var template = '{{#results}}<li><a href="{{url}}">{{title}}</a></li>{{/results}}';
-
 	// Loop for each of the different types of results (posts, pages, tags, categories, etc)
 	for ( i = 0; i < results['acp-data-keys'].length; i++ ) {
 
+		// The template for each item
+		var template = '{{#results}}<li><a href="{{url}}">{{title}}</a></li>{{/results}}';
+
 		// Retrieve the key that we're working with.
 		var key = results['acp-data-keys'][i];
+
+		if ( key === 'admin-action' ) {
+
+			template = '{{#results}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/results}}';
+
+		}
 
 		// Set up the data for this specific key
 		var data = results[key];
