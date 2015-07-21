@@ -40,7 +40,13 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 			"target" => ".submitdelete",
 			"action" => "click",
 			"shortcut" => "shift+t"
-		)
+		),
+		array(
+			"title" => "Set Featured Image",
+			"target" => "#set-post-thumbnail",
+			"action" => "click",
+			"shortcut" => "shift+f"
+		),
 		// TODO: Add Screen Options
 	);
 
