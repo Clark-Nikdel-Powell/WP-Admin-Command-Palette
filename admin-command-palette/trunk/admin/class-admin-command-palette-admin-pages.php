@@ -102,8 +102,14 @@ final class Admin_Command_Palette_Admin_Pages extends Admin_Command_Palette_Data
 					$submenu_title = $admin_submenu_item[0];
 					$submenu_url = $admin_submenu_item[2];
 
+					// When dealing with a submenu URL, if there isn't a .php suffix,
+					// then the full URL is built based on the parent slug.
+					if ( FALSE === strpos($submenu_url, '.php') ) {
+						$submenu_url = $parent_slug . '?page=' . $admin_submenu_item[2];
+					}
+
 					// If "Add" is present, we need to append the post type name to the title for context.
-					if ( False !== strpos( $submenu_title, 'Add') && 0 != strpos( $submenu_url, 'post_type=' ) ) {
+					if ( FALSE !== strpos( $submenu_title, 'Add') && 0 != strpos( $submenu_url, 'post_type=' ) ) {
 
 						$equal_position = strpos( $submenu_url, '=' );
 
