@@ -73,9 +73,16 @@ class Admin_Command_Palette_Admin {
 	 */
 	public function enqueue_scripts() {
 
+		$format = '';
+		$format = get_option('acp_display_results_by_type');
+		if ( is_array( $format ) && '1' == $format['group-by-type'] ) {
+			$format = 'grouped';
+		}
+
 		$search_settings = array(
 			'threshold' => get_option('acp_search_threshold'),
-			'max_results_per_section' => get_option('acp_max_results_per_section')
+			'max_results_per_section' => get_option('acp_max_results_per_section'),
+			'results_format' => $format
 		);
 
 		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin.js', array( 'jquery' ), $this->version, true );
@@ -95,6 +102,7 @@ class Admin_Command_Palette_Admin {
 
 		register_setting( 'acp_options', 'acp_search_threshold' );
 		register_setting( 'acp_options', 'acp_max_results_per_section' );
+		register_setting( 'acp_options', 'acp_display_results_by_type' );
 		register_setting( 'acp_options', 'acp_excluded_post_types' );
 		register_setting( 'acp_options', 'acp_excluded_taxonomies' );
 

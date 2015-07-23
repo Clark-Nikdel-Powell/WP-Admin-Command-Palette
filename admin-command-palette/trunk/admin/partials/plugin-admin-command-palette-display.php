@@ -19,11 +19,19 @@ $taxonomies = get_taxonomies( array(), 'objects' );
 
 $threshold = get_option('acp_search_threshold');
 $max_results_per_section = get_option('acp_max_results_per_section');
+$group_results_by_type = get_option('acp_display_results_by_type');
 $excluded_post_types = get_option('acp_excluded_post_types');
 $excluded_taxonomies = get_option('acp_excluded_taxonomies');
 
+// Threshold Check
 if ( '' == $threshold ) {
 	$threshold = '0.3';
+}
+
+// Results by Type Check
+$group_results_by_type_checked = '';
+if ( is_array( $group_results_by_type ) && '1' == $group_results_by_type['group-by-type'] ) {
+	$group_results_by_type_checked = 'checked';
 }
 
 ?>
@@ -61,6 +69,15 @@ if ( '' == $threshold ) {
 					<td>
 						<input type="number" name="acp_max_results_per_section" min="1" step="1" value="<?php echo $max_results_per_section; ?>">
 						<p class="description">Number of results to display per post type, taxonomy, etc.</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="threshold">Display Results Grouped by Type</label>
+					</th>
+					<td>
+						<input type="checkbox" name="acp_display_results_by_type[group-by-type]" value="1" <?php echo $group_results_by_type_checked; ?> />
+						<p class="description">The default format is a flat list of results, not split out by type.</p>
 					</td>
 				</tr>
 
