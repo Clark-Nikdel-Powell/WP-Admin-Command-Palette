@@ -149,10 +149,8 @@ class Admin_Command_Palette_Admin {
 	 * @access   private
 	 */
 	public function acp_gad() {
-
-		$all_data = $this->get_all_data();
-		return json_encode($all_data);
-		die();
+		echo json_encode($this->get_all_data());
+		wp_die();
 	}
 
 }
