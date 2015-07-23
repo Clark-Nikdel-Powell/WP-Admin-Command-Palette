@@ -20,34 +20,28 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 		array(
 			"title" => "View Post",
 			"target" => "#view-post-btn .button",
-			"action" => "click",
 			"shortcut" => "shift+v"
 		),
 		array(
 			"title" => "Preview",
 			"target" => ".preview",
-			"action" => "click",
 			"shortcut" => "shift+p"
 		),
 		array(
 			"title" => "Publish",
 			"target" => "input[type=submit]#publish",
-			"action" => "click",
 			"shortcut" => "shift+s"
 		),
 		array(
 			"title" => "Trash",
 			"target" => ".submitdelete",
-			"action" => "click",
 			"shortcut" => "shift+t"
 		),
 		array(
 			"title" => "Set Featured Image",
 			"target" => "#set-post-thumbnail",
-			"action" => "click",
 			"shortcut" => "shift+f"
-		),
-		// TODO: Add Screen Options
+		)
 	);
 
 
@@ -59,7 +53,7 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 
 
 	/**
-	 * Gets all admin actions - DO YOUR EDITING HERE
+	 * Gets all admin actions
 	 *
 	 * @since    1.0.0
 	 * @return   array      The requested admin actions
@@ -80,7 +74,6 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 
 				$template['title'] = $action['title'];
 				$template['target'] = $action['target'];
-				$template['action'] = $action['action'];
 				$template['shortcut'] = $action['shortcut'];
 				$template['name'] = 'admin-action';
 
