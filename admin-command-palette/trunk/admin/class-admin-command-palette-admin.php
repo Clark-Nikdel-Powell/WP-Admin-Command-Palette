@@ -142,4 +142,17 @@ class Admin_Command_Palette_Admin {
 		die();
 	}
 
+	/**
+	 * Wordpress wrapper for getting all data
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	public function acp_gad() {
+
+		$all_data = $this->get_all_data();
+		return json_encode($all_data);
+		die();
+	}
+
 }

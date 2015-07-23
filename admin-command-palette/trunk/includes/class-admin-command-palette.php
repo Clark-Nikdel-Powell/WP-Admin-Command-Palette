@@ -193,7 +193,7 @@ class Admin_Command_Palette {
 		$this->loader->add_action( 'admin_init', $this->admin, 'register_settings' );
 		$this->loader->add_action( 'admin_menu', $this->admin, 'settings_page' );
 
-		$this->loader->add_action( 'wp_ajax_get_all_data', $this->admin, 'get_all_data' );
+		$this->loader->add_action( 'wp_ajax_acp_gad', $this->admin, 'acp_gad' );
 
 		$this->loader->add_action( 'admin_footer', $this->markup, 'search_box' );
 
