@@ -27,6 +27,16 @@ abstract class Admin_Command_Palette_Data {
 
 
 	/**
+	 * The name of this classes' transient
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @var      string    $transient_name    The string name
+	 */
+	public $transient_name = "";
+
+
+	/**
 	 * A template array to use when generating content data
 	 *
 	 * @since    1.0.0
@@ -51,6 +61,43 @@ abstract class Admin_Command_Palette_Data {
 
 
 	/**
+	 * The method to create a transient name uniquely for each user
+	 *
+	 * @since 	1.0.0
+	 * @param 	string 	The transient name
+	 * @return 	string 	The modified transient name
+	 */
+	public function create_unique_transient_name() {
+
+		// get the current user
+		$user =  wp_get_current_user();
+
+		// set the modified transient name to include this user id. This keeps our caching specific for each user
+		return $this->transient_name . '-user-' . $user->ID;
+
+	}
+
+
+	/**
+	 * The method to remove a transient
+	 *
+	 * @since 	1.0.0
+	 * @param 	string 	The transient name
+	 * @return 	null
+	 */
+	public function clear_transient() {
+
+		// get modified name (unique for each user)
+		$transient_modified_name = $this->create_transient_name();
+
+		// removes the transient
+		delete_transient( $transient_modified_name );
+
+		return;
+	}
+
+
+	/**
 	 * Load properties with data from either the transient name or live-pull function
 	 *
 	 * @since    1.0.0
@@ -58,18 +105,13 @@ abstract class Admin_Command_Palette_Data {
 	 * @param      string   $method_name    	The string version of the method name in this class
 	 * @param      int    	$expires    		The expire time of this transient
 	 */
-	public function load_data($transient_name, $method_name, $expires = 0) {
+	public function load_data($method_name, $expires = 0) {
 
-
-		// get the current user
-		$user =  wp_get_current_user();
-
-		// set the modified transient name to include this user id. This keeps our caching specific for each user
-		$transient_modified_name = $transient_name . '-user-' . $user->ID;
+		// get modified name (unique for each user)
+		$transient_modified_name = $this->create_unique_transient_name();
 
 		// if the cache exists
 		if ( ACP_CACHE ) {
-			delete_transient( $transient_modified_name );
 			$cache = get_transient($transient_modified_name);
 			if ( $cache ) {
 				return $cache;

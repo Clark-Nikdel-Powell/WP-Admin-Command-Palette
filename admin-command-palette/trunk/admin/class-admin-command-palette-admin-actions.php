@@ -16,6 +16,9 @@
 final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Data {
 
 
+	public $transient_name = 'acp-admin-actions';
+
+
 	protected $actions = array(
 		array(
 			"title" => "View Post",
@@ -53,7 +56,7 @@ final class Admin_Command_Palette_Admin_Actions extends Admin_Command_Palette_Da
 
 	public function load() {
 
-		$this->data = $this->load_data('acp-admin-actions', 'load_admin_actions');
+		$this->data = $this->load_data('load_admin_actions');
 
 	}
 
