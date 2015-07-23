@@ -89,7 +89,7 @@ class Admin_Command_Palette_Admin {
 
 		// Add search settings to footer for use in admin.min.js.
 		wp_localize_script( $this->admin_command_palette, 'acp_user_options', $search_settings );
-		wp_localize_script( $this->admin_command_palette, 'acp_search_data', $this->get_all_data() );
+		//wp_localize_script( $this->admin_command_palette, 'acp_search_data', $this->get_all_data() );
 
 	}
 
