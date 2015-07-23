@@ -31,8 +31,24 @@ $(document).keydown( function(e) {
 		}
 
 		// Process the selected item
-		var $action = $selected.find('a').attr('href');
-		window.location = $action;
+		var action = $selected.find('a').attr('href');
+		var target;
+
+		if ( 'undefined' !== typeof action ) {
+			window.location = action;
+		}
+
+		else {
+			target = $selected.attr('data-target');
+			action = $selected.attr('data-action');
+		}
+
+		if ( 'undefined' !== target && 'undefined' !== action ) {
+
+			$(target)[0].click();
+
+		}
+
 
 		// Exit the function to stop processing
 		return;

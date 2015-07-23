@@ -18284,7 +18284,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 
 		if ( key === 'admin-action' ) {
 
-			template = '{{#results}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/results}}';
+			template = '{{#results}}<li data-target="{{target}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/results}}';
 
 		}
 
@@ -18356,8 +18356,24 @@ $(document).keydown( function(e) {
 		}
 
 		// Process the selected item
-		var $action = $selected.find('a').attr('href');
-		window.location = $action;
+		var action = $selected.find('a').attr('href');
+		var target;
+
+		if ( 'undefined' !== typeof action ) {
+			window.location = action;
+		}
+
+		else {
+			target = $selected.attr('data-target');
+			action = $selected.attr('data-action');
+		}
+
+		if ( 'undefined' !== target && 'undefined' !== action ) {
+
+			$(target)[0].click();
+
+		}
+
 
 		// Exit the function to stop processing
 		return;
