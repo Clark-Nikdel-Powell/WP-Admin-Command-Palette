@@ -18186,12 +18186,21 @@ AcpModal.init();
 // Set the search options
 var acp_fuse_options = {
 	'keys' : ['title'],
-	'threshold' : '.3'
+	'threshold' : '.3',
+	'includeScore' : true,
+	'shouldSort' : true
 };
 
+var results_format = 'flat';
+
 // Update the settings if the data is there.
-if ( 'undefined' !== typeof acp_user_options && '' !== acp_user_options.threshold ) {
-	acp_fuse_options.threshold = acp_user_options.threshold;
+if ( 'undefined' !== typeof acp_user_options ) {
+	if ( '' !== acp_user_options.threshold ) {
+		acp_fuse_options.threshold = acp_user_options.threshold;		
+	}
+	// if ( '' !== acp_user_options.results_format ) {
+	// 	results_format = 'grouped';
+	// }
 }
 
 var queryLength = 0;
@@ -18240,6 +18249,72 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		return;
 	}
 
+	switch ( results_format ) {
+		case 'flat':
+			console.log('FLAT!');
+			resultsFlat( acp_result );
+			break;
+		case 'grouped':
+			console.log('GROUPED!');
+			resultsGrouped( acp_result );
+			break;
+	}
+
+	setTimeout(function() {
+		$('.admin-command-palette-results-count .loader').addClass('invisible');
+		// Auto select the first result
+		$('.acp-list li').eq(0).addClass('selected');
+	}, 10);
+
+});
+
+function resultsFlat(acp_result) {
+	var i; // Counter var
+ 
+	// Loop through all the results, splitting them up by their name.
+	for ( i = 0; i < acp_result.length; i++ ) {
+
+		// Set up result object.
+		var data = acp_result[i];
+
+		// The template for each item
+		var template = '{{#results}}<li><a href="{{url}}">{{title}}</a><span><small>{{name}}</small></span></li>{{/results}}';
+
+		if ( acp_result[i].name === 'admin-action' ) {
+
+			template = '{{#results}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/results}}';
+
+		}
+
+		// Skip further results if a max number of results has been set and reached.
+		if ( 'undefined' !== typeof acp_user_options && '' !== acp_user_options.max_results_per_section ) {
+
+			if ( acp_user_options.max_results_per_section <= i ) {
+
+				break;
+			}
+
+		}
+
+		// Add the results to the list.
+		var list = '.acp-results .acp-list';
+		var ractive = new Ractive({
+			el: list,
+			template: template,
+			data: { results: data }
+		});
+
+	}
+
+	$('.acp-count-info .amount').attr('data-amount', i);
+	$('.acp-count-info .amount').html( i );
+
+	// Find the section and unhide it
+	var section = '.acp-results';
+	$(section).removeClass('hide');	
+}
+
+function resultsGrouped(acp_result) {
 	var i; // Counter var
 	var results = []; // Results array for output
 	results['acp-data-keys'] = []; // Result keys for data template.
@@ -18248,7 +18323,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 	for ( i = 0; i < acp_result.length; i++ ) {
 
 		// Set up result object.
-		var o = acp_result[i];
+		var o = acp_result[i].item;
 
 		// Set up index for the name of the object (post, page, tag, category, etc)
 		var index = o.name;
@@ -18314,14 +18389,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		});
 
 	}
-
-	setTimeout(function() {
-		$('.admin-command-palette-results-count .loader').addClass('invisible');
-		// Auto select the first result
-		$('.acp-list li').eq(0).addClass('selected');
-	}, 10);
-
-});
+}
 
 $(document).keydown( function(e) {
 

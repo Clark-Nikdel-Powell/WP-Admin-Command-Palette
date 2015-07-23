@@ -75,6 +75,10 @@ final class Admin_Command_Palette_Markup {
 				</span>
 			</header>
 			<div class="admin-command-palette-results">
+				<div class="acp-results hide">
+					<ul class="acp-list">
+					</ul>
+				</div>
 				<?php foreach ($user_result_lists as $item_slug => $result_list_obj ) { ?>
 				<?php
 				// Set up icon and title, which form the heading
