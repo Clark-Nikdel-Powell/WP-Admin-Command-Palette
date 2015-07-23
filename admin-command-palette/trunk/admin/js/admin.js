@@ -18284,7 +18284,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 
 		if ( key === 'admin-action' ) {
 
-			template = '{{#results}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/results}}';
+			template = '{{#results}}<li data-target="{{target}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/results}}';
 
 		}
 
