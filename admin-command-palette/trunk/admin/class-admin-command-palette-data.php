@@ -35,22 +35,10 @@ abstract class Admin_Command_Palette_Data {
 	 */
 	protected $template = array(
 
-		// all arrays
 		'title' 		=> '',
 		'url' 			=> '',
 		'name'          => '',
 
-		// user generated content only
-		'id' 			=> 0,
-		'object_type' 	=> '',
-
-		// admin pages only
-		'dashicon' 		=> '',
-
-		// admin actions only
-	 	'target' 		=> '',
-		'action' 		=> '',
-		'shortcut' 		=> ''
 	);
 
 
