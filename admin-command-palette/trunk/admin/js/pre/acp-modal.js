@@ -16,7 +16,10 @@ AcpModal = {
 		Mousetrap.bindGlobal('shift shift', function() {
 			AcpModal.toggle();
 		});
-		Mousetrap.bind('esc', function() {
+		Mousetrap.bindGlobal('esc', function() {
+			AcpModal.close();
+		});
+		$('body').on('click', '.admin-command-palette-overlay.open', function() {
 			AcpModal.close();
 		});
 	},

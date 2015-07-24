@@ -7,6 +7,11 @@ $(document).keydown( function(e) {
 
 	// Get the pressed key
 	var key = e.keyCode;
+
+	if ( key === 27 ) {
+		AcpModal.close();
+	}
+
 	// If pressed key was not Enter, Up, or Down, stop processing
 	if ( key !== 13 && key !== 38 && key !== 40 ) {
 		return;

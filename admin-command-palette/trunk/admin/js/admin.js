@@ -18189,7 +18189,10 @@ AcpModal = {
 		Mousetrap.bindGlobal('shift shift', function() {
 			AcpModal.toggle();
 		});
-		Mousetrap.bind('esc', function() {
+		Mousetrap.bindGlobal('esc', function() {
+			AcpModal.close();
+		});
+		$('body').on('click', '.admin-command-palette-overlay.open', function() {
 			AcpModal.close();
 		});
 	},
@@ -18438,6 +18441,11 @@ $(document).keydown( function(e) {
 
 	// Get the pressed key
 	var key = e.keyCode;
+
+	if ( key === 27 ) {
+		AcpModal.close();
+	}
+
 	// If pressed key was not Enter, Up, or Down, stop processing
 	if ( key !== 13 && key !== 38 && key !== 40 ) {
 		return;
