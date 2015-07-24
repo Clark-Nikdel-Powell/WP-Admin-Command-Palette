@@ -72,7 +72,7 @@ if ( is_array( $group_results_by_type ) && '1' == $group_results_by_type['group-
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="threshold">Display Results Grouped by Type</label>
+						<label for="threshold">Group Results by Type</label>
 					</th>
 					<td>
 						<input type="checkbox" name="acp_display_results_by_type[group-by-type]" value="1" <?php echo $group_results_by_type_checked; ?> />
