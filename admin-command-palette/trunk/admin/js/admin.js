@@ -18239,33 +18239,36 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		$('.admin-command-palette-results-count .loader').removeClass('invisible');
 	}
 
-	// Search using Fuse
-	var acp_search = new Fuse(acp_search_data, acp_fuse_options);
+	$.ajax({
+		url : acpAjax.ajaxurl,
+		data : { action: 'acp_gad'},
+		success : function(response) {
+			var acp_search_data = JSON.parse( response );
 
-	// Capture the result
-	var acp_result = acp_search.search(query);
+			console.log(acp_search_data);
 
-	// If no results found, return.
-	if ( acp_result.length === 0 ) {
-		return;
-	}
+			// Search using Fuse
+			var acp_search = new Fuse(acp_search_data, acp_fuse_options);
 
-	switch ( results_format ) {
-		case 'flat':
-			console.log('FLAT!');
-			resultsFlat( acp_result );
-			break;
-		case 'grouped':
-			console.log('GROUPED!');
-			resultsGrouped( acp_result );
-			break;
-	}
+			// Capture the result
+			var acp_result = acp_search.search(query);
 
-	setTimeout(function() {
-		$('.admin-command-palette-results-count .loader').addClass('invisible');
-		// Auto select the first result
-		$('.acp-list li').eq(0).addClass('selected');
-	}, 10);
+			switch ( results_format ) {
+				case 'flat':
+					resultsFlat( acp_result );
+					break;
+				case 'grouped':
+					resultsGrouped( acp_result );
+					break;
+			}
+
+			setTimeout(function() {
+				$('.admin-command-palette-results-count .loader').addClass('invisible');
+				// Auto select the first result
+				$('.acp-list li').eq(0).addClass('selected');
+			}, 10);
+		}
+	});
 
 });
 

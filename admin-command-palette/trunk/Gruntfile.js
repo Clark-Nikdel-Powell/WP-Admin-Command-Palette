@@ -59,7 +59,8 @@ module.exports = function(grunt) {
           'acp_search_data': false,
           'Fuse': false,
           'Ractive': false,
-          'Mousetrap': false
+          'Mousetrap': false,
+          'acpAjax': false
         }
       },
       admin: {
