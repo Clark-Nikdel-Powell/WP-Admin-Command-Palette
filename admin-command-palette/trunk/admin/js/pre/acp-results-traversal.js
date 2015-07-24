@@ -87,3 +87,16 @@ $(document).keydown( function(e) {
 	// Add the selected class to the newly selected item
 	$current.addClass('selected');
 });
+
+// Handles a click event on an admin action. Should probably refactor into another file once the dust settles.
+$('body').on( 'click', '.acp-list [data-target]', function() {
+
+	var target = $(this).attr('data-target');
+
+	if ( 'undefined' !== target ) {
+
+		$(target)[0].click();
+
+	}
+
+});
