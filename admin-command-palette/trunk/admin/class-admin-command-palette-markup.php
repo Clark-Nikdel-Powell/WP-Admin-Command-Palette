@@ -21,6 +21,8 @@ final class Admin_Command_Palette_Markup {
 		$excluded_post_types = get_option('acp_excluded_post_types');
 		$excluded_taxonomies = get_option('acp_excluded_taxonomies');
 
+		$results_format = get_option( 'acp_result_format', 'flat' );
+
 		// Unset any excluded post types
 		if ( !empty($excluded_post_types) ) {
 
@@ -75,10 +77,12 @@ final class Admin_Command_Palette_Markup {
 				</span>
 			</header>
 			<div class="admin-command-palette-results">
+				<?php if ( $results_format == 'flat' ) { ?>
 				<div class="acp-results hide">
 					<ul class="acp-list">
 					</ul>
 				</div>
+				<?php } else { ?>
 				<?php foreach ($user_result_lists as $item_slug => $result_list_obj ) { ?>
 				<?php
 				// Set up icon and title, which form the heading
@@ -109,6 +113,7 @@ final class Admin_Command_Palette_Markup {
 					<ul class="acp-list">
 					</ul>
 				</div>
+				<?php } ?>
 			</div>
 		</div>
 	<?php

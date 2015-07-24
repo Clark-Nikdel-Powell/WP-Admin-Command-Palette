@@ -18198,9 +18198,10 @@ if ( 'undefined' !== typeof acp_user_options ) {
 	if ( '' !== acp_user_options.threshold ) {
 		acp_fuse_options.threshold = acp_user_options.threshold;		
 	}
-	// if ( '' !== acp_user_options.results_format ) {
-	// 	results_format = 'grouped';
-	// }
+	if ( 'grouped' === acp_user_options.results_format ) {
+		console.log('YES');
+		results_format = 'grouped';
+	}
 }
 
 var queryLength = 0;
@@ -18269,45 +18270,31 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 });
 
 function resultsFlat(acp_result) {
-	var i; // Counter var
- 
-	// Loop through all the results, splitting them up by their name.
-	for ( i = 0; i < acp_result.length; i++ ) {
+	var i;
+	var array = acp_result.splice(0, acp_user_options.max_results_per_section);
+	var data = [];
 
-		// Set up result object.
-		var data = acp_result[i];
-
-		// The template for each item
-		var template = '{{#results}}<li><a href="{{url}}">{{title}}</a><span><small>{{name}}</small></span></li>{{/results}}';
-
-		if ( acp_result[i].name === 'admin-action' ) {
-
-			template = '{{#results}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/results}}';
-
+	for ( i = 0; i < array.length; i++ ) {
+		var item = array[i].item;
+		if ( item.name === 'admin-action' ) {
+			item['isAction'] = true;
 		}
-
-		// Skip further results if a max number of results has been set and reached.
-		if ( 'undefined' !== typeof acp_user_options && '' !== acp_user_options.max_results_per_section ) {
-
-			if ( acp_user_options.max_results_per_section <= i ) {
-
-				break;
-			}
-
-		}
-
-		// Add the results to the list.
-		var list = '.acp-results .acp-list';
-		var ractive = new Ractive({
-			el: list,
-			template: template,
-			data: { results: data }
-		});
-
+		data.push( item );
 	}
 
-	$('.acp-count-info .amount').attr('data-amount', i);
-	$('.acp-count-info .amount').html( i );
+	// The template for each item
+	var template = '{{#results}}{{#if isAction}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/if}}{{#if !isAction}}<li><a href="{{url}}">{{title}}</a><span><small>{{name}}</small></span></li>{{/if}}{{/results}}';
+	
+	// Add the results to the list.
+	var list = '.acp-results .acp-list';
+	var ractive = new Ractive({
+		el: list,
+		template: template,
+		data: { results: data }
+	});
+
+	$('.acp-count-info .amount').attr('data-amount', data.length );
+	$('.acp-count-info .amount').html( data.length );
 
 	// Find the section and unhide it
 	var section = '.acp-results';
