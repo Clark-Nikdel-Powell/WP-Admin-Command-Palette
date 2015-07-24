@@ -18191,6 +18191,15 @@ var acp_fuse_options = {
 	'shouldSort' : true
 };
 
+var acp_search_data;
+$.ajax({
+	url : acpAjax.ajaxurl,
+	data : { action: 'acp_gad'},
+	success : function(response) {
+		acp_search_data = response;
+	}
+});
+
 var results_format = 'flat';
 
 // Update the settings if the data is there.
@@ -18204,68 +18213,66 @@ if ( 'undefined' !== typeof acp_user_options ) {
 }
 
 var queryLength = 0;
+var ajaxTimer;
 
 // Trigger search on keyup
 $('.admin-command-palette input[type=search]').keyup( function(e) {
 
-	// If the length of the query hasn't changed, then a character hasn't
-	// been added or removed so stop processing
-	if (queryLength === $(this).val().length) {
-		return;
-	}
+	var $input = $(this);
 
-	// Set length of query for use on next keyup
-	queryLength = $(this).val().length;
-
-	// Reset counter
-	$('.acp-count-info .amount').attr('data-amount', 0).html('');
-
-	// Reset items
-	$('.acp-results').addClass('hide');
-	$('.acp-list').html('');
-
-	// Get the search query
-	var query = $(this).val();
-	if ( query.length === 0 ) {
-		return;
-	}
-
-	// Reveal the header and loader
-	$('.admin-command-palette-results-count').removeClass('hide');
-
-	// Only show the loader if a search is being made.
-	if ( e.keyCode !== 40 && e.keyCode !== 38 ) {
-		$('.admin-command-palette-results-count .loader').removeClass('invisible');
-	}
-
-	$.ajax({
-		url : acpAjax.ajaxurl,
-		data : { action: 'acp_gad'},
-		success : function(response) {
-			var acp_search_data = response;
-
-			// Search using Fuse
-			var acp_search = new Fuse(acp_search_data, acp_fuse_options);
-
-			// Capture the result
-			var acp_result = acp_search.search(query);
-
-			switch ( results_format ) {
-				case 'flat':
-					resultsFlat( acp_result );
-					break;
-				case 'grouped':
-					resultsGrouped( acp_result );
-					break;
-			}
-
-			setTimeout(function() {
-				$('.admin-command-palette-results-count .loader').addClass('invisible');
-				// Auto select the first result
-				$('.acp-list li').eq(0).addClass('selected');
-			}, 10);
+	clearTimeout(ajaxTimer);
+	ajaxTimer = setTimeout(function() {
+		// If the length of the query hasn't changed, then a character hasn't
+		// been added or removed so stop processing
+		if (queryLength === $input.val().length) {
+			return;
 		}
-	});
+
+		// Set length of query for use on next keyup
+		queryLength = $input.val().length;
+
+		// Reset counter
+		$('.acp-count-info .amount').attr('data-amount', 0).html('');
+
+		// Reset items
+		$('.acp-results').addClass('hide');
+		$('.acp-list').html('');
+
+		// Get the search query
+		var query = $input.val();
+		if ( query.length === 0 ) {
+			return;
+		}
+
+		// Reveal the header and loader
+		$('.admin-command-palette-results-count').removeClass('hide');
+
+		// Only show the loader if a search is being made.
+		if ( e.keyCode !== 40 && e.keyCode !== 38 ) {
+			$('.admin-command-palette-results-count .loader').removeClass('invisible');
+		}
+
+		// Search using Fuse
+		var acp_search = new Fuse(acp_search_data, acp_fuse_options);
+
+		// Capture the result
+		var acp_result = acp_search.search(query);
+
+		switch ( results_format ) {
+			case 'flat':
+				resultsFlat( acp_result );
+				break;
+			case 'grouped':
+				resultsGrouped( acp_result );
+				break;
+		}
+
+		setTimeout(function() {
+			$('.admin-command-palette-results-count .loader').addClass('invisible');
+			// Auto select the first result
+			$('.acp-list li').eq(0).addClass('selected');
+		}, 10);
+	},500);
 
 });
 
