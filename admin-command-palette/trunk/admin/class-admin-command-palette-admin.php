@@ -142,6 +142,7 @@ class Admin_Command_Palette_Admin {
 		die();
 	}
 
+
 	/**
 	 * Wordpress wrapper for getting all data
 	 *
@@ -151,6 +152,22 @@ class Admin_Command_Palette_Admin {
 	public function acp_gad() {
 		echo json_encode($this->get_all_data());
 		wp_die();
+	}
+
+
+	/**
+	 * Clears the transient cache for all cached items
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	public function clear_cache() {
+
+		$this->user_content->clear_transient();
+		$this->admin_pages->clear_transient();
+		$this->admin_actions->clear_transient();
+
+		return true;
 	}
 
 }

@@ -16,9 +16,12 @@
 final class Admin_Command_Palette_Admin_Pages extends Admin_Command_Palette_Data {
 
 
+	public $transient_name = 'acp-admin-pages';
+
+
 	public function load() {
 
-		$this->data	= $this->load_data('acp-admin-pages', 'load_admin_pages');
+		$this->data	= $this->load_data('load_admin_pages');
 
 	}
 
