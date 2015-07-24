@@ -13,7 +13,7 @@ AcpModal = {
 
 	init: function() {
 		var Mousetrap = window.Mousetrap || {};
-		Mousetrap.bind('shift shift', function() {
+		Mousetrap.bindGlobal('shift shift', function() {
 			AcpModal.toggle();
 		});
 		Mousetrap.bind('esc', function() {

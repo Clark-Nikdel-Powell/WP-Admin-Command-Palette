@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         src: [
           'admin/js/pre/vendor/fuse.js',
           'admin/js/pre/vendor/mousetrap.js',
+          'admin/js/pre/vendor/mousetrap-bind-global.js',
           'admin/js/pre/vendor/ractive.js',
           'admin/js/pre/intro.js',
           'admin/js/pre/acp-modal.js',
