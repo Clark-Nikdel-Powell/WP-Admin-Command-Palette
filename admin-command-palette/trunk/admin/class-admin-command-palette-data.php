@@ -88,7 +88,7 @@ abstract class Admin_Command_Palette_Data {
 	public function clear_transient() {
 
 		// get modified name (unique for each user)
-		$transient_modified_name = $this->create_transient_name();
+		$transient_modified_name = $this->create_unique_transient_name();
 
 		// removes the transient
 		delete_transient( $transient_modified_name );
