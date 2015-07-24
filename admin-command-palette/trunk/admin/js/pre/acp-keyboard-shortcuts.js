@@ -2,18 +2,6 @@
 // Copied from class-admin-command-palette-admin-actions.php for sake of time.
 // Will refactor in a DRY way later.
 
-function focus_check() {
-
-	jQuery(document).ready(function($) {
-
-		if ( 1 === $( "input:focus" ).length ) {
-			return;
-		}
-
-	});
-
-}
-
 // ESC triggers a blur of inputs, but closes the ACP Modal
 Mousetrap.bind('esc', function() {
 
@@ -28,9 +16,12 @@ Mousetrap.bind('esc', function() {
 // Add New Whatever
 if (1 === $('a.add-new-h2').length) {
 
-	Mousetrap.bind('n', function() {
+	Mousetrap.bind('shift+n', function() {
 
-		focus_check();
+		if ( 1 === $( "input:focus" ).length ) {
+			return;
+		}
+
 		window.location.replace($('a.add-new-h2').attr('href'));
 
 	});
@@ -40,7 +31,9 @@ if (1 === $('a.add-new-h2').length) {
 // Open Post/Page in New Tab
 Mousetrap.bind('shift+v', function() {
 
-	focus_check();
+	if ( 1 === $( "input:focus" ).length ) {
+		return;
+	}
 
 	var url = $("#view-post-btn a").attr('href');
 	window.open(url,'_blank');
@@ -50,7 +43,10 @@ Mousetrap.bind('shift+v', function() {
 // Preview
 Mousetrap.bind('shift+p', function() {
 
-	focus_check();
+	if ( 1 === $( "input:focus" ).length ) {
+		return;
+	}
+
 	if (1 === $('.preview').length) {
 		$('.preview')[0].click();
 	}
@@ -60,7 +56,9 @@ Mousetrap.bind('shift+p', function() {
 // Submit Form
 Mousetrap.bind('shift+s', function() {
 
-	focus_check();
+	if ( 1 === $( "input:focus" ).length ) {
+		return;
+	}
 
 	if (1 === $('#publish').length) {
 		$('#publish')[0].click();
@@ -79,13 +77,21 @@ Mousetrap.bind('shift+s', function() {
 
 // Trash
 Mousetrap.bind('shift+t', function() {
-	focus_check();
+
+	if ( 1 === $( "input:focus" ).length ) {
+		return;
+	}
+
 	$(".submitdelete")[0].click();
 });
 
 // Set Featured Image
 Mousetrap.bind('shift+f', function() {
-	focus_check();
+
+	if ( 1 === $( "input:focus" ).length ) {
+		return;
+	}
+
 	$(".set-post-thumbnail")[0].click();
 } );
 
@@ -93,22 +99,38 @@ Mousetrap.bind('shift+f', function() {
 if ( $('.pagination-links').length !== 0 ) {
 
 	Mousetrap.bind('shift+right', function() {
-		focus_check();
+
+		if ( 1 === $( "input:focus" ).length ) {
+			return;
+		}
+
 		$("a.last-page")[0].click();
 	});
 
 	Mousetrap.bind('right', function() {
-		focus_check();
+
+		if ( 1 === $( "input:focus" ).length ) {
+			return;
+		}
+
 		$("a.next-page")[0].click();
 	});
 
 	Mousetrap.bind('shift+left', function() {
-		focus_check();
+
+		if ( 1 === $( "input:focus" ).length ) {
+			return;
+		}
+
 		$("a.first-page")[0].click();
 	});
 
 	Mousetrap.bind('left', function() {
-		focus_check();
+
+		if ( 1 === $( "input:focus" ).length ) {
+			return;
+		}
+
 		$("a.prev-page")[0].click();
 	});
 

@@ -46,14 +46,14 @@ $(document).keydown( function(e) {
 		else {
 			target = $selected.attr('data-target');
 			action = $selected.attr('data-action');
+
+			if ( 'undefined' !== target && 'undefined' !== action ) {
+
+				$(target)[0].click();
+
+			}
+
 		}
-
-		if ( 'undefined' !== target && 'undefined' !== action ) {
-
-			$(target)[0].click();
-
-		}
-
 
 		// Exit the function to stop processing
 		return;

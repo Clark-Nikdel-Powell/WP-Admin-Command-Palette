@@ -106,7 +106,7 @@ function resultsFlat(acp_result) {
 	}
 
 	// The template for each item
-	var template = '{{#results}}{{#if isAction}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/if}}{{#if !isAction}}<li><a href="{{url}}">{{title}}</a><small>{{properName}}</small></li>{{/if}}{{/results}}';
+	var template = '{{#results}}{{#if isAction}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/if}}{{#if !isAction}}<li><a href="{{url}}">{{title}}<small class="proper-name">{{properName}}</small></a></li>{{/if}}{{/results}}';
 
 	// Add the results to the list.
 	var list = '.acp-results .acp-list';
