@@ -18243,7 +18243,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		url : acpAjax.ajaxurl,
 		data : { action: 'acp_gad'},
 		success : function(response) {
-			var acp_search_data = JSON.parse( response );
+			var acp_search_data = response;
 
 			console.log(acp_search_data);
 
