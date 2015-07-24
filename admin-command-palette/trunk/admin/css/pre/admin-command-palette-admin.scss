@@ -153,8 +153,19 @@
 				text-decoration: none;
 				transition: none;
 			}
+			.proper-name {
+				display: block;
+				margin-top: .375em;
+				color: rgba(#fff, .3);
+				font-size: .75em;
+				text-transform: uppercase;
+				-webkit-font-smoothing: antialiased;
+			}
+			li.selected .proper-name {
+				color: rgba(#fff, .8);
+			}
 		}
-		[data-name="admin-action"] ul li {
+		li[data-target] {
 			padding: .625em 1.75rem;
 			cursor: pointer;
 			font-size: 1.125em;
@@ -247,10 +258,13 @@ $themes: (
 
 					&:hover, &.selected {
 						background-color: $hover_bg;
-						color: $hover_color;
+
+						a {
+							color: $hover_color;
+						}
 					}
 				}
-				a, [data-name="admin-action"] ul li {
+				a, li[data-target] {
 					color: $link_color;
 
 					&:hover {
