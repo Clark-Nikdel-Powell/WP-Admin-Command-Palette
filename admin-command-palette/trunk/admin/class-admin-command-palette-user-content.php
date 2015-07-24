@@ -137,10 +137,37 @@ final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Dat
 				$data[] = $template;
 
 			}
-
 		}
 
-		return $data;
+		// get users if user has permission
+		if ( current_user_can('edit_user') ) {
 
+			$user_sql = "SELECT * FROM $wpdb->users";
+
+			$user_results = $wpdb->get_results($user_sql, ARRAY_A);
+
+			// loop through our results
+			if ( $user_results && count($user_results) > 0 ) {
+
+				foreach ( $user_results as $user_result ) {
+
+					// copy the template
+					$template = $this->template;
+
+					// set all the properties
+					$template['title'] 			= $user_result['user_nicename'] . '(' . $user_result['user_email'] . ')';
+					$template['id'] 			= $user_result['ID'];
+					$template['object_type'] 	= 'user';
+					$template['url'] 			= 'edit-user.php?user_id='. $user_result['ID'];
+					$template['name']           = 'edit-user';
+
+					// set the data in the new array by post ID to avoid duplicates
+					$data[] = $template;
+
+				}
+			}
+
+		}
+		return $data;
 	}
 }
