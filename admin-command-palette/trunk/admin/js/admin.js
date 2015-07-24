@@ -18205,10 +18205,9 @@ var results_format = 'flat';
 // Update the settings if the data is there.
 if ( 'undefined' !== typeof acp_user_options ) {
 	if ( '' !== acp_user_options.threshold ) {
-		acp_fuse_options.threshold = acp_user_options.threshold;		
+		acp_fuse_options.threshold = acp_user_options.threshold;
 	}
 	if ( 'grouped' === acp_user_options.results_format ) {
-		console.log('YES');
 		results_format = 'grouped';
 	}
 }
@@ -18292,7 +18291,7 @@ function resultsFlat(acp_result) {
 
 	// The template for each item
 	var template = '{{#results}}{{#if isAction}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/if}}{{#if !isAction}}<li><a href="{{url}}">{{title}}</a><span><small>{{name}}</small></span></li>{{/if}}{{/results}}';
-	
+
 	// Add the results to the list.
 	var list = '.acp-results .acp-list';
 	var ractive = new Ractive({
@@ -18306,7 +18305,7 @@ function resultsFlat(acp_result) {
 
 	// Find the section and unhide it
 	var section = '.acp-results';
-	$(section).removeClass('hide');	
+	$(section).removeClass('hide');
 }
 
 function resultsGrouped(acp_result) {
