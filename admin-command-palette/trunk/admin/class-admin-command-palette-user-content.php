@@ -16,9 +16,12 @@
 final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Data {
 
 
+	public $transient_name = 'acp-user-content';
+
+
 	public function load() {
 
-		$this->data = $this->load_data('acp-user-content',	'load_user_content');
+		$this->data = $this->load_data('load_user_content');
 
 	}
 

@@ -16,6 +16,7 @@ module.exports = function(grunt) {
           'admin/js/pre/acp-modal.js',
           'admin/js/pre/acp-search.js',
           'admin/js/pre/acp-results-traversal.js',
+          'admin/js/pre/acp-keyboard-shortcuts.js',
           'admin/js/pre/admin.js',
           'admin/js/pre/outro.js',
         ]
@@ -57,7 +58,8 @@ module.exports = function(grunt) {
           'acp_user_options': false,
           'acp_search_data': false,
           'Fuse': false,
-          'Ractive': false
+          'Ractive': false,
+          'Mousetrap': false
         }
       },
       admin: {
