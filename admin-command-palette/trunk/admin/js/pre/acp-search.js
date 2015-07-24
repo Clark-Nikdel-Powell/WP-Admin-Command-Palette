@@ -94,11 +94,12 @@ function resultsFlat(acp_result) {
 		if ( item.name === 'admin-action' ) {
 			item['isAction'] = true;
 		}
+		item.properName = item.name.replace(/_/g, ' ');
 		data.push( item );
 	}
 
 	// The template for each item
-	var template = '{{#results}}{{#if isAction}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/if}}{{#if !isAction}}<li><a href="{{url}}">{{title}}</a><span><small>{{name}}</small></span></li>{{/if}}{{/results}}';
+	var template = '{{#results}}{{#if isAction}}<li data-target="{{target}}" data-action="{{action}}">{{title}} <kbd>{{shortcut}}</kbd></li>{{/if}}{{#if !isAction}}<li><a href="{{url}}">{{title}}</a><small>{{properName}}</small></li>{{/if}}{{/results}}';
 
 	// Add the results to the list.
 	var list = '.acp-results .acp-list';
