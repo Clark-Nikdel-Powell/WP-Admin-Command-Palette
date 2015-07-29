@@ -114,6 +114,9 @@ function resultsFlat(acp_result) {
 
 	// Add the results to the list.
 	var list = '.acp-results .acp-list';
+
+	Ractive.DEBUG = false;
+
 	var ractive = new Ractive({
 		el: list,
 		template: template,
