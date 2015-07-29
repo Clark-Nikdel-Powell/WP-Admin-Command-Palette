@@ -2,6 +2,7 @@
 var acp_fuse_options = {
 	'keys' : ['title'],
 	'threshold' : '.3',
+	'max_results_per_type' : '5',
 	'includeScore' : true,
 	'shouldSort' : true
 };
@@ -21,6 +22,9 @@ var results_format = 'flat';
 if ( 'undefined' !== typeof acp_user_options ) {
 	if ( '' !== acp_user_options.threshold ) {
 		acp_fuse_options.threshold = acp_user_options.threshold;
+	}
+	if ( '' !== acp_user_options.max_results_per_type ) {
+		acp_fuse_options.max_results_per_type = acp_user_options.max_results_per_type;
 	}
 	if ( 'grouped' === acp_user_options.results_format ) {
 		results_format = 'grouped';
@@ -93,7 +97,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 
 function resultsFlat(acp_result) {
 	var i;
-	var array = acp_result.splice(0, acp_user_options.max_results_per_section);
+	var array = acp_result.splice(0, acp_fuse_options.max_results_per_type);
 	var data = [];
 
 	for ( i = 0; i < array.length; i++ ) {
@@ -148,9 +152,9 @@ function resultsGrouped(acp_result) {
 		results[index].push(o);
 
 		// Skip further results if a max number of results has been set and reached.
-		if ( 'undefined' !== typeof acp_user_options && '' !== acp_user_options.max_results_per_section ) {
+		if ( 'undefined' !== typeof acp_user_options && '' !== acp_fuse_options.max_results_per_type ) {
 
-			if ( acp_user_options.max_results_per_section <= results[index].length ) {
+			if ( acp_fuse_options.max_results_per_type <= results[index].length ) {
 
 				break;
 			}

@@ -81,7 +81,7 @@ class Admin_Command_Palette_Admin {
 
 		$search_settings = array(
 			'threshold' => get_option('acp_search_threshold'),
-			'max_results_per_section' => get_option('acp_max_results_per_section'),
+			'max_results_per_type' => get_option('acp_max_results_per_type'),
 			'results_format' => $format
 		);
 
