@@ -18,7 +18,7 @@ $taxonomies = get_taxonomies( array(), 'objects' );
 
 
 $threshold = get_option('acp_search_threshold');
-$max_results_per_section = get_option('acp_max_results_per_section');
+$max_results_per_type = get_option('acp_max_results_per_type');
 $group_results_by_type = get_option('acp_display_results_by_type');
 $excluded_post_types = get_option('acp_excluded_post_types');
 $excluded_taxonomies = get_option('acp_excluded_taxonomies');
@@ -26,6 +26,11 @@ $excluded_taxonomies = get_option('acp_excluded_taxonomies');
 // Threshold Check
 if ( '' == $threshold ) {
 	$threshold = '0.3';
+}
+
+// Max Results Check
+if ( '' == $max_results_per_type ) {
+	$max_results_per_type = '5';
 }
 
 // Results by Type Check
@@ -63,10 +68,10 @@ if ( is_array( $group_results_by_type ) && '1' == $group_results_by_type['group-
 				</tr>
 				<tr>
 					<th scope="row">
-						<label for="threshold">Max Results Per Section</label>
+						<label for="threshold">Max Results Per Type</label>
 					</th>
 					<td>
-						<input type="number" name="acp_max_results_per_section" min="1" step="1" value="<?php echo $max_results_per_section; ?>">
+						<input type="number" name="acp_max_results_per_type" min="1" step="1" value="<?php echo $max_results_per_type; ?>">
 						<p class="description">Number of results to display per post type, taxonomy, etc.</p>
 					</td>
 				</tr>
