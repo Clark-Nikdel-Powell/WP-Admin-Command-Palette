@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/includes
+ * @package    ACP
+ * @subpackage ACP/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/includes
+ * @package    ACP
+ * @subpackage ACP/includes
  * @author     Your Name <email@example.com>
  */
-class Admin_Command_Palette_i18n {
+class ACP_i18n {
 
 	/**
 	 * The domain specified for this plugin.

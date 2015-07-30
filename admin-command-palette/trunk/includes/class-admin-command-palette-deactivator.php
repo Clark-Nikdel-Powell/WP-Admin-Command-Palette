@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/includes
+ * @package    ACP
+ * @subpackage ACP/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/includes
+ * @package    ACP
+ * @subpackage ACP/includes
  * @author     Your Name <email@example.com>
  */
-class Admin_Command_Palette_Deactivator {
+class ACP_Deactivator {
 
 	/**
 	 * Short Description. (use period)

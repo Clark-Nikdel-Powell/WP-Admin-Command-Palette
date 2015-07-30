@@ -9,11 +9,11 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/data
+ * @package    ACP
+ * @subpackage ACP/data
  * @author     Your Name <email@example.com>
  */
-final class Admin_Command_Palette_User_Content extends Admin_Command_Palette_Data {
+final class ACP_User_Content extends ACP_Data {
 
 
 	public $transient_name = 'acp-user-content';

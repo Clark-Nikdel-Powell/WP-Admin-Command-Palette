@@ -8,8 +8,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/public/partials
+ * @package    ACP
+ * @subpackage ACP/public/partials
  */
 ?>
 

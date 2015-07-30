@@ -6,11 +6,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/admin
+ * @package    ACP
+ * @subpackage ACP/admin
  * @author     Your Name <email@example.com>
  */
-class Admin_Command_Palette_Admin {
+class ACP_Admin {
 
 	/**
 	 * The ID of this plugin.

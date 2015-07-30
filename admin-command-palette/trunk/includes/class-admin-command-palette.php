@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/includes
+ * @package    ACP
+ * @subpackage ACP/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/includes
+ * @package    ACP
+ * @subpackage ACP/includes
  * @author     Your Name <email@example.com>
  */
-class Admin_Command_Palette {
+class ACP {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Admin_Command_Palette {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Admin_Command_Palette_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      ACP_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -101,10 +101,10 @@ class Admin_Command_Palette {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Admin_Command_Palette_Loader. Orchestrates the hooks of the plugin.
-	 * - Admin_Command_Palette_i18n. Defines internationalization functionality.
-	 * - Admin_Command_Palette_Admin. Defines all hooks for the admin area.
-	 * - Admin_Command_Palette_Public. Defines all hooks for the public side of the site.
+	 * - ACP_Loader. Orchestrates the hooks of the plugin.
+	 * - ACP_i18n. Defines internationalization functionality.
+	 * - ACP_Admin. Defines all hooks for the admin area.
+	 * - ACP_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -146,14 +146,14 @@ class Admin_Command_Palette {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-admin-command-palette-public.php';
 
-		$this->loader = new Admin_Command_Palette_Loader();
+		$this->loader = new ACP_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Admin_Command_Palette_i18n class in order to set the domain and to register the hook
+	 * Uses the ACP_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -161,7 +161,7 @@ class Admin_Command_Palette {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Admin_Command_Palette_i18n();
+		$plugin_i18n = new ACP_i18n();
 		$plugin_i18n->set_domain( $this->get_admin_command_palette() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
@@ -177,14 +177,14 @@ class Admin_Command_Palette {
 	 */
 	private function define_admin_hooks() {
 
-		$this->admin = new Admin_Command_Palette_Admin( $this->get_admin_command_palette(), $this->get_version() );
+		$this->admin = new ACP_Admin( $this->get_admin_command_palette(), $this->get_version() );
 
 		// instantiate classes
-		$this->admin->user_content 	= new Admin_Command_Palette_User_Content();
-		$this->admin->admin_pages 	= new Admin_Command_Palette_Admin_Pages();
-		$this->admin->admin_actions = new Admin_Command_Palette_Admin_Actions();
+		$this->admin->user_content 	= new ACP_User_Content();
+		$this->admin->admin_pages 	= new ACP_Admin_Pages();
+		$this->admin->admin_actions = new ACP_Admin_Actions();
 
-		$this->markup = new Admin_Command_Palette_Markup();
+		$this->markup = new ACP_Markup();
 
 		// add hooks to load data on admin init
 		$this->loader->add_action( 'admin_init', $this->admin->user_content, 	'load' );
@@ -211,7 +211,7 @@ class Admin_Command_Palette {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Admin_Command_Palette_Public( $this->get_admin_command_palette(), $this->get_version() );
+		$plugin_public = new ACP_Public( $this->get_admin_command_palette(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -242,7 +242,7 @@ class Admin_Command_Palette {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Admin_Command_Palette_Loader    Orchestrates the hooks of the plugin.
+	 * @return    ACP_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

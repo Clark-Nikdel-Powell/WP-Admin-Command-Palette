@@ -10,7 +10,7 @@
  *
  * @link              http://example.com
  * @since             1.0.0
- * @package           Admin_Command_Palette
+ * @package           ACP
  *
  * @wordpress-plugin
  * Plugin Name:       Admin Command Palette
@@ -38,7 +38,7 @@ define( 'ACP_CACHE', FALSE );
  */
 function activate_admin_command_palette() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-admin-command-palette-activator.php';
-	Admin_Command_Palette_Activator::activate();
+	ACP_Activator::activate();
 }
 
 /**
@@ -47,7 +47,7 @@ function activate_admin_command_palette() {
  */
 function deactivate_admin_command_palette() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-admin-command-palette-deactivator.php';
-	Admin_Command_Palette_Deactivator::deactivate();
+	ACP_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_admin_command_palette' );
@@ -72,7 +72,7 @@ $ACP;
 function run_admin_command_palette() {
 
 	global $ACP;
-	$ACP = new Admin_Command_Palette();
+	$ACP = new ACP();
 	$ACP->run();
 
 }

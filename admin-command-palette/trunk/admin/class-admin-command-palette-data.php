@@ -9,11 +9,11 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Admin_Command_Palette
- * @subpackage Admin_Command_Palette/data
+ * @package    ACP
+ * @subpackage ACP/data
  * @author     Your Name <email@example.com>
  */
-abstract class Admin_Command_Palette_Data {
+abstract class ACP_Data {
 
 
 	/**

@@ -22,7 +22,7 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Admin_Command_Palette
+ * @package    ACP
  */
 
 // If uninstall not called from WordPress, then exit.
