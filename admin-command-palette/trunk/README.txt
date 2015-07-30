@@ -1,4 +1,4 @@
-=== Direct Admin Navigation ===
+=== Admin Command Palette ===
 Contributors: gwelser, samueljmello, jhned
 Donate link: http://clarknikdelpowell.com/pay/
 Tags: admin, search, navigation, actions, ux, admin search, admin navigation, admin actions
@@ -12,7 +12,7 @@ Optimize WordPress admin navigation with a modal window to search for and naviga
 
 == Description ==
 
-Direct Admin Navigation adds a modal window in the WordPress Admin that live searches admin content, which saves you many clicks and page loads. You can:
+The Admin Command Palette (ACP) is a modal window in the WordPress Admin that live searches admin content, which saves you many clicks and page loads. You can:
 
 * Search for and navigate to user-generated content (Posts, Pages, Users, etc.).
 * Search for and navigate to WordPress Admin Pages (All Posts, Add New Post, etc.).
@@ -22,7 +22,7 @@ This plugin brings about a new level of efficiency to WordPress admin user inter
 
 == Installation ==
 
-1. Upload `direct-admin-navigation` to the `/wp-content/plugins/` directory.
+1. Upload `admin-command-palette` to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 1. Use the keyboard shortcut "shift+shift" to activate the search modal window.
 1. See Frequently Asked Questions for further setup instructions.
@@ -31,7 +31,7 @@ This plugin brings about a new level of efficiency to WordPress admin user inter
 
 = Settings =
 
-You can customize the plugin settings on the Direct Admin Navigation page in the WordPress Admin. (*Settings -> Direct Admin Navigation*)
+You can customize the plugin settings on the Admin Command Palette settings page in the WordPress Admin. (*Settings -> Admin Command Palette*)
 
 * **Threshold** (*Default: .3*): this determines how closely a search query must match in order to return an item as a result. 0.0 must be a perfect match, 1.0 will match anything.
 * **Max Results per Section** (*Default: 5*): a max number of results per content type.

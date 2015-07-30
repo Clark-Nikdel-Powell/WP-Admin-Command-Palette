@@ -14,8 +14,8 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Admin Command Palette
- * Plugin URI:        http://example.com/acp-uri/
- * Description:       Navigate through the WordPress Admin at warp speed.
+ * Plugin URI:        http://wordpress.org/plugins/admin-command-palette/
+ * Description:       Optimize WordPress admin navigation with a live search box and keyboard shortcuts.
  * Version:           1.0.0
  * Author:            Clark Nildek Powell
  * Author URI:        http://clarknikdelpowell.com/

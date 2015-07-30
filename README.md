@@ -1,10 +1,10 @@
-# Direct WordPress Admin Navigation
+# WordPress Admin Command Palette
 
 Optimize WordPress admin navigation with a modal window to search for and navigate directly to WordPress admin pages.
 
 ## Features
 
-Direct Admin Navigation adds a modal window in the WordPress Admin that live searches admin content, which saves you many clicks and page loads. You can:
+The Admin Command Palette (ACP) is a modal window in the WordPress Admin that live searches admin content, which saves you many clicks and page loads. You can:
 
 * Search for and navigate to user-generated content (Posts, Pages, Users, etc.).
 * Search for and navigate to WordPress Admin Pages (All Posts, Add New Post, etc.).
@@ -18,12 +18,8 @@ Install the plugin and hit the keyboard shortcut "shift+shift" to trigger the mo
 
 ## Installation
 
-Upload the plugin to your /wp-content/plugins directory. Activate in the WordPress Admin.
+Upload the plugin to your `/wp-content/plugins` directory. Activate in the WordPress Admin.
 
 ## Credits
 
-Direct Admin Navigation is a result of the work of the developers of Clark/Nikdel/Powell: Glenn Welser, Sam Mello, and Josh Nederveld. It uses the WordPress Plugin Boilerplate for its structure; hat tip to the devs of that project as well.
-
-## Documentation, FAQs, and More
-
-Please refer the plugin Wiki for more information.
+Admin Command Palette is a result of the work of the developers of Clark/Nikdel/Powell: Glenn Welser, Sam Mello, and Josh Nederveld. It uses the WordPress Plugin Boilerplate for its structure; hat tip to the devs of that project as well.
