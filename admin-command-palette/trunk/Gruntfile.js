@@ -78,7 +78,7 @@ module.exports = function(grunt) {
           sourcemap: 'auto'
         },
         files: {
-          'admin/css/admin-command-palette-admin.css': ['admin/css/pre/admin-command-palette-admin.scss']
+          'admin/css/acp-admin.css': ['admin/css/pre/acp-admin.scss']
         }
       },
       public: {
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
           sourcemap: 'auto'
         },
         files: {
-          'public/css/admin-command-palette-public.css': ['public/css/pre/admin-command-palette-public.scss']
+          'public/css/acp-public.css': ['public/css/pre/acp-public.scss']
         }
       }
     },

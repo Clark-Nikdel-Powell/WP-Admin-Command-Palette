@@ -14,14 +14,14 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Admin Command Palette
- * Plugin URI:        http://example.com/admin-command-palette-uri/
+ * Plugin URI:        http://example.com/acp-uri/
  * Description:       Navigate through the WordPress Admin at warp speed.
  * Version:           1.0.0
  * Author:            Clark Nildek Powell
  * Author URI:        http://clarknikdelpowell.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       admin-command-palette
+ * Text Domain:       acp
  * Domain Path:       /languages
  */
 
@@ -34,19 +34,19 @@ define( 'ACP_CACHE', FALSE );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-admin-command-palette-activator.php
+ * This action is documented in includes/class-acp-activator.php
  */
 function activate_admin_command_palette() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-admin-command-palette-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-acp-activator.php';
 	ACP_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-admin-command-palette-deactivator.php
+ * This action is documented in includes/class-acp-deactivator.php
  */
 function deactivate_admin_command_palette() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-admin-command-palette-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-acp-deactivator.php';
 	ACP_Deactivator::deactivate();
 }
 
@@ -57,7 +57,7 @@ register_deactivation_hook( __FILE__, 'deactivate_admin_command_palette' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-admin-command-palette.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-acp.php';
 
 /**
  * Begins execution of the plugin.

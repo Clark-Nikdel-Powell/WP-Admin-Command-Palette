@@ -35,7 +35,7 @@ var queryLength = 0;
 var ajaxTimer;
 
 // Trigger search on keyup
-$('.admin-command-palette input[type=search]').keyup( function(e) {
+$('.acp input[type=search]').keyup( function(e) {
 
 	var $input = $(this);
 
@@ -64,11 +64,11 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		}
 
 		// Reveal the header and loader
-		$('.admin-command-palette-results-count').removeClass('hide');
+		$('.acp-results-count').removeClass('hide');
 
 		// Only show the loader if a search is being made.
 		if ( e.keyCode !== 40 && e.keyCode !== 38 ) {
-			$('.admin-command-palette-results-count .loader').removeClass('invisible');
+			$('.acp-results-count .loader').removeClass('invisible');
 		}
 
 		// Search using Fuse
@@ -87,7 +87,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		}
 
 		setTimeout(function() {
-			$('.admin-command-palette-results-count .loader').addClass('invisible');
+			$('.acp-results-count .loader').addClass('invisible');
 			// Auto select the first result
 			$('.acp-list li').eq(0).addClass('selected');
 		}, 10);

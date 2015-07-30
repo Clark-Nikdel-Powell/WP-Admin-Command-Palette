@@ -62,12 +62,12 @@ final class ACP_Markup {
 		$user_result_lists = array_merge($post_types, $taxonomies);
 
 		?>
-		<div class="admin-command-palette admin-command-palette-overlay"></div>
-		<div class="admin-command-palette admin-command-palette-modal">
+		<div class="acp acp-overlay"></div>
+		<div class="acp acp-modal">
 			<div class="search-container">
 				<input type="search" placeholder="Start typing..." class="mousetrap" />
 			</div>
-			<header class="admin-command-palette-results-count hide">
+			<header class="acp-results-count hide">
 				<span class="acp-count-info">
 					<span class="amount" data-amount="0">0</span> Results <a class="clear" href="#" title="&#8984; + &#9003;">Clear</a>
 				</span>
@@ -76,7 +76,7 @@ final class ACP_Markup {
 					<span></span>
 				</span>
 			</header>
-			<div class="admin-command-palette-results">
+			<div class="acp-results">
 				<?php if ( $results_format == 'flat' ) { ?>
 				<div class="acp-results hide">
 					<ul class="acp-list">

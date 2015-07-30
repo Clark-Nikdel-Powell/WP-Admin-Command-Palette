@@ -3,9 +3,9 @@ window.AcpModal = AcpModal || {};
 
 AcpModal = {
 
-	modal: $('.admin-command-palette'),
+	modal: $('.acp'),
 
-	inputField: $('.admin-command-palette input[type=search]'),
+	inputField: $('.acp input[type=search]'),
 
 	isOpen: function() {
 		return AcpModal.modal.hasClass('open');
@@ -19,7 +19,7 @@ AcpModal = {
 		Mousetrap.bindGlobal('esc', function() {
 			AcpModal.close();
 		});
-		$('body').on('click', '.admin-command-palette-overlay.open', function() {
+		$('body').on('click', '.acp-overlay.open', function() {
 			AcpModal.close();
 		});
 	},
@@ -50,7 +50,7 @@ AcpModal = {
 		$('.acp-results').addClass('hide');
 		$('.acp-list').html('');
 		$('.acp-count-info .amount').attr('data-amount', 0).html('');
-		$('.admin-command-palette-results-count').addClass('hide');
+		$('.acp-results-count').addClass('hide');
 	}
 
 };

@@ -86,7 +86,7 @@ class ACP {
 	 */
 	public function __construct() {
 
-		$this->admin_command_palette = 'admin-command-palette';
+		$this->admin_command_palette = 'acp';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -118,33 +118,33 @@ class ACP {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-admin-command-palette-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-acp-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-admin-command-palette-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-acp-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-acp-admin.php';
 
 		/**
 		 * The classes responsible for getting data into searchable arrays from the database
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-data.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-user-content.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-admin-pages.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-admin-actions.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin-command-palette-markup.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-acp-data.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-acp-user-content.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-acp-admin-pages.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-acp-admin-actions.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-acp-markup.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-admin-command-palette-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-acp-public.php';
 
 		$this->loader = new ACP_Loader();
 

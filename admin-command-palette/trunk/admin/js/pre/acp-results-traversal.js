@@ -1,7 +1,7 @@
 $(document).keydown( function(e) {
 
 	// If ACP isn't open, stop processing
-	if ( ! $('.admin-command-palette-modal').hasClass('open') ) {
+	if ( ! $('.acp-modal').hasClass('open') ) {
 		return;
 	}
 
@@ -18,7 +18,7 @@ $(document).keydown( function(e) {
 	}
 
 	// Remove input focus
-	$('.admin-command-palette input[type=search]').blur();
+	$('.acp input[type=search]').blur();
 
 	var $current;
 	// Get items to traverse

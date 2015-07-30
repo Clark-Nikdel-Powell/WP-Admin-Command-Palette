@@ -73,7 +73,7 @@ class ACP_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'css/admin-command-palette-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'css/acp-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class ACP_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/admin-command-palette-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'js/acp-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

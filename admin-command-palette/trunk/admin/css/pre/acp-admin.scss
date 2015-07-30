@@ -3,7 +3,7 @@
  * included in this file.
  */
 
-.admin-command-palette {
+.acp {
 
 	.hide {
 		display: none;
@@ -230,7 +230,7 @@ $themes: (
 
 	.admin-color-#{$theme_name} {
 
-		.admin-command-palette {
+		.acp {
 
 			&-modal {
 				background-color: $modal_bg;
@@ -289,7 +289,7 @@ $themes: (
 	// Coffee Theme
 	&-coffee {
 
-		.admin-command-palette {
+		.acp {
 
 			&-results {
 

@@ -18176,9 +18176,9 @@ window.AcpModal = AcpModal || {};
 
 AcpModal = {
 
-	modal: $('.admin-command-palette'),
+	modal: $('.acp'),
 
-	inputField: $('.admin-command-palette input[type=search]'),
+	inputField: $('.acp input[type=search]'),
 
 	isOpen: function() {
 		return AcpModal.modal.hasClass('open');
@@ -18192,7 +18192,7 @@ AcpModal = {
 		Mousetrap.bindGlobal('esc', function() {
 			AcpModal.close();
 		});
-		$('body').on('click', '.admin-command-palette-overlay.open', function() {
+		$('body').on('click', '.acp-overlay.open', function() {
 			AcpModal.close();
 		});
 	},
@@ -18223,7 +18223,7 @@ AcpModal = {
 		$('.acp-results').addClass('hide');
 		$('.acp-list').html('');
 		$('.acp-count-info .amount').attr('data-amount', 0).html('');
-		$('.admin-command-palette-results-count').addClass('hide');
+		$('.acp-results-count').addClass('hide');
 	}
 
 };
@@ -18266,7 +18266,7 @@ var queryLength = 0;
 var ajaxTimer;
 
 // Trigger search on keyup
-$('.admin-command-palette input[type=search]').keyup( function(e) {
+$('.acp input[type=search]').keyup( function(e) {
 
 	var $input = $(this);
 
@@ -18295,11 +18295,11 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		}
 
 		// Reveal the header and loader
-		$('.admin-command-palette-results-count').removeClass('hide');
+		$('.acp-results-count').removeClass('hide');
 
 		// Only show the loader if a search is being made.
 		if ( e.keyCode !== 40 && e.keyCode !== 38 ) {
-			$('.admin-command-palette-results-count .loader').removeClass('invisible');
+			$('.acp-results-count .loader').removeClass('invisible');
 		}
 
 		// Search using Fuse
@@ -18318,7 +18318,7 @@ $('.admin-command-palette input[type=search]').keyup( function(e) {
 		}
 
 		setTimeout(function() {
-			$('.admin-command-palette-results-count .loader').addClass('invisible');
+			$('.acp-results-count .loader').addClass('invisible');
 			// Auto select the first result
 			$('.acp-list li').eq(0).addClass('selected');
 		}, 10);
@@ -18442,7 +18442,7 @@ function resultsGrouped(acp_result) {
 $(document).keydown( function(e) {
 
 	// If ACP isn't open, stop processing
-	if ( ! $('.admin-command-palette-modal').hasClass('open') ) {
+	if ( ! $('.acp-modal').hasClass('open') ) {
 		return;
 	}
 
@@ -18459,7 +18459,7 @@ $(document).keydown( function(e) {
 	}
 
 	// Remove input focus
-	$('.admin-command-palette input[type=search]').blur();
+	$('.acp input[type=search]').blur();
 
 	var $current;
 	// Get items to traverse
@@ -18547,13 +18547,13 @@ $('body').on( 'click', '.acp-list [data-target]', function() {
 
 });
 // Keyboard Shortcuts set up via Mousetrap.
-// Copied from class-admin-command-palette-admin-actions.php for sake of time.
+// Copied from class-acp-admin-actions.php for sake of time.
 // Will refactor in a DRY way later.
 
 // ESC triggers a blur of inputs, but closes the ACP Modal
 Mousetrap.bind('esc', function() {
 
-	if ( 1 === $('.admin-command-palette input:focus').length ) {
+	if ( 1 === $('.acp input:focus').length ) {
 		AcpModal.close();
 	}
 

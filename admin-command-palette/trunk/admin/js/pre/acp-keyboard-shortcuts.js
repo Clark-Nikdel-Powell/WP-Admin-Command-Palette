@@ -1,11 +1,11 @@
 // Keyboard Shortcuts set up via Mousetrap.
-// Copied from class-admin-command-palette-admin-actions.php for sake of time.
+// Copied from class-acp-admin-actions.php for sake of time.
 // Will refactor in a DRY way later.
 
 // ESC triggers a blur of inputs, but closes the ACP Modal
 Mousetrap.bind('esc', function() {
 
-	if ( 1 === $('.admin-command-palette input:focus').length ) {
+	if ( 1 === $('.acp input:focus').length ) {
 		AcpModal.close();
 	}
 

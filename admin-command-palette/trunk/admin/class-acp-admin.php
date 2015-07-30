@@ -62,7 +62,7 @@ class ACP_Admin {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'css/admin-command-palette-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->admin_command_palette, plugin_dir_url( __FILE__ ) . 'css/acp-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -117,10 +117,10 @@ class ACP_Admin {
 	 */
 	public function settings_page() {
 
-		add_options_page('Admin Command Palette', 'Admin Command Palette', 'manage_options', 'admin-command-palette', 'acp_options_page');
+		add_options_page('Admin Command Palette', 'Admin Command Palette', 'manage_options', 'acp', 'acp_options_page');
 
 		function acp_options_page() {
-			include_once('partials/plugin-admin-command-palette-display.php');
+			include_once('partials/plugin-acp-display.php');
 		}
 
 	}
