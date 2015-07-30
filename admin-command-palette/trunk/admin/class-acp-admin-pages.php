@@ -122,6 +122,11 @@ final class ACP_Admin_Pages extends ACP_Data {
 
 					}
 
+					// Don't include the dashboard twice
+					if ( 'index.php' == $submenu_url ) {
+						continue;
+					}
+
 					// A couple of special cases for title
 					if ( 'post-new.php' == $submenu_url ) {
 
