@@ -158,7 +158,7 @@ final class ACP_User_Content extends ACP_Data {
 					$template['title'] 			= $user_result['user_nicename'] . '(' . $user_result['user_email'] . ')';
 					$template['id'] 			= $user_result['ID'];
 					$template['object_type'] 	= 'user';
-					$template['url'] 			= 'edit-user.php?user_id='. $user_result['ID'];
+					$template['url'] 			= 'user-edit.php?user_id='. $user_result['ID'];
 					$template['name']           = 'edit-user';
 
 					// set the data in the new array by post ID to avoid duplicates
