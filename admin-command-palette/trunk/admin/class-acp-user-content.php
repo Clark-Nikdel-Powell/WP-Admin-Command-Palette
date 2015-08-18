@@ -41,21 +41,27 @@ final class ACP_User_Content extends ACP_Data {
 		$data = array();
 
 		// get post types to exclude
-		$excluded_post_types = get_option('acp_excluded_post_types');
+		$included_post_types = get_option('acp_included_post_types');
 
 		// get all published posts
 		$sql = "
 			SELECT *
 			FROM $wpdb->posts
-			WHERE post_status = 'publish'
 		";
 
-		// exclude any excluded post types from the query
-		if ( !empty( $excluded_post_types ) ) {
+		// include any included post types from the query
+		if ( !empty( $included_post_types ) ) {
 
-			foreach ( $excluded_post_types as $post_type_slug => $checked ) {
+			foreach ( $included_post_types as $post_type_slug => $checked ) {
 
-				$sql .= " AND post_type != '$post_type_slug'";
+				if ( FALSE === strpos($sql, 'WHERE') ) {
+					$prefix = 'WHERE';
+				}
+				else {
+					$prefix = 'OR';
+				}
+
+				$sql .= " $prefix post_type = '$post_type_slug'";
 
 			}
 
@@ -85,8 +91,8 @@ final class ACP_User_Content extends ACP_Data {
 
 		}
 
-		// get taxonomies to exclude
-		$excluded_taxonomies = get_option('acp_excluded_taxonomies');
+		// get taxonomies to include
+		$included_taxonomies = get_option('acp_included_taxonomies');
 
 		// get all taxonomies
 		$sql = "
@@ -98,19 +104,19 @@ final class ACP_User_Content extends ACP_Data {
 				JOIN $wpdb->term_relationships ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
 		";
 
-		// exclude any excluded taxonomies from the query
-		if ( !empty( $excluded_taxonomies ) ) {
+		// exclude any included taxonomies from the query
+		if ( !empty( $included_taxonomies ) ) {
 
-			foreach ( $excluded_taxonomies as $taxonomy_slug => $checked ) {
+			foreach ( $included_taxonomies as $taxonomy_slug => $checked ) {
 
 				if ( FALSE === strpos($sql, 'WHERE') ) {
 					$prefix = 'WHERE';
 				}
 				else {
-					$prefix = 'AND';
+					$prefix = 'OR';
 				}
 
-				$sql .= " $prefix taxonomy != '$taxonomy_slug'";
+				$sql .= " $prefix taxonomy = '$taxonomy_slug'";
 
 			}
 

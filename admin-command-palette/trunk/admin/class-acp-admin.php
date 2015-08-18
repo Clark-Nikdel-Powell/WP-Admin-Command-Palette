@@ -89,7 +89,6 @@ class ACP_Admin {
 
 		// Add search settings to footer for use in admin.min.js.
 		wp_localize_script( $this->admin_command_palette, 'acp_user_options', $search_settings );
-		//wp_localize_script( $this->admin_command_palette, 'acp_search_data', $this->get_all_data() );
 
 		wp_localize_script( $this->admin_command_palette, 'acpAjax', array( 'ajaxurl' => admin_url('admin-ajax.php') ) );
 
@@ -105,8 +104,8 @@ class ACP_Admin {
 		register_setting( 'acp_options', 'acp_search_threshold' );
 		register_setting( 'acp_options', 'acp_max_results_per_type' );
 		register_setting( 'acp_options', 'acp_display_results_by_type' );
-		register_setting( 'acp_options', 'acp_excluded_post_types' );
-		register_setting( 'acp_options', 'acp_excluded_taxonomies' );
+		register_setting( 'acp_options', 'acp_included_post_types' );
+		register_setting( 'acp_options', 'acp_included_taxonomies' );
 
 	}
 

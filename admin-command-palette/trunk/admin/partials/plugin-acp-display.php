@@ -20,8 +20,8 @@ $taxonomies = get_taxonomies( array(), 'objects' );
 $threshold = get_option('acp_search_threshold');
 $max_results_per_type = get_option('acp_max_results_per_type');
 $group_results_by_type = get_option('acp_display_results_by_type');
-$excluded_post_types = get_option('acp_excluded_post_types');
-$excluded_taxonomies = get_option('acp_excluded_taxonomies');
+$included_post_types = get_option('acp_included_post_types');
+$included_taxonomies = get_option('acp_included_taxonomies');
 
 // Threshold Check
 if ( '' == $threshold ) {
@@ -38,6 +38,10 @@ $group_results_by_type_checked = '';
 if ( is_array( $group_results_by_type ) && '1' == $group_results_by_type['group-by-type'] ) {
 	$group_results_by_type_checked = 'checked';
 }
+
+// Nav menu items are not editable like other post types
+unset( $post_types['nav_menu_item'] );
+unset( $post_types['revision'] );
 
 ?>
 
@@ -85,10 +89,10 @@ if ( is_array( $group_results_by_type ) && '1' == $group_results_by_type['group-
 					</td>
 				</tr>
 
-				<?php // Excluded Post Types ?>
+				<?php // Included Post Types ?>
 				<tr>
 					<th scope="row">
-						<label>Excluded Post Types</label>
+						<label>Included Post Types</label>
 					</th>
 					<td>
 
@@ -97,31 +101,49 @@ if ( is_array( $group_results_by_type ) && '1' == $group_results_by_type['group-
 
 							$checked = '';
 
-							if ( '' == $excluded_post_types || empty( $excluded_post_types ) ) {
+							if ( '' == $included_post_types || empty( $included_post_types ) ) {
 
-								if ( 'attachment' == $post_type_slug || 'revision' == $post_type_slug || 'nav_menu_item' == $post_type_slug ) {
+								if ( 'post' == $post_type_slug || 'page' == $post_type_slug ) {
 									$checked = 'checked';
 								}
 
 							}
 							else {
 
-								if ( isset($excluded_post_types[$post_type_slug]) && '1' === $excluded_post_types[$post_type_slug] ) {
+								if ( isset($included_post_types[$post_type_slug]) && '1' === $included_post_types[$post_type_slug] ) {
 									$checked = 'checked';
 								}
 
 							}
 
+							// Add count number to label
+							$post_type_counts = wp_count_posts( $post_type->name, 'readable' );
+							$post_type_count = $post_type_counts->publish;
+							$post_type_count_label = 'Published';
+
+							if ( 'attachment' == $post_type_slug ) {
+
+								$post_type_count = $post_type_counts->inherit;
+								$post_type_count_label = 'Uploaded';
+
+							}
+
 						?>
-							<p><label><input type="checkbox" name="acp_excluded_post_types[<?php echo $post_type_slug; ?>]" value="1" <?php echo $checked; ?> /> <?php echo $post_type->labels->name; ?></label></p>
+							<p><label>
+								<input type="checkbox" name="acp_included_post_types[<?php echo $post_type_slug; ?>]" value="1" <?php echo $checked; ?> />
+								<?php echo $post_type->labels->name; ?>
+								<?php if ( '' !== $post_type_count && '' !== $post_type_count_label ) { ?>
+								<em class="count">(<?php echo $post_type_count . ' ' . $post_type_count_label; ?>)</em>
+								<?php } ?>
+							</label></p>
 						<?php } ?>
 					</td>
 				</tr>
 
-				<?php // Excluded Taxonomies ?>
+				<?php // Included Taxonomies ?>
 				<tr>
 					<th scope="row">
-						<label>Excluded Taxonomies</label>
+						<label>Included Taxonomies</label>
 					</th>
 					<td>
 						<?php
@@ -129,23 +151,30 @@ if ( is_array( $group_results_by_type ) && '1' == $group_results_by_type['group-
 
 							$checked = '';
 
-							if ( '' == $excluded_taxonomies || empty( $excluded_taxonomies ) ) {
+							if ( '' == $included_taxonomies || empty( $included_taxonomies ) ) {
 
-								if ( 'nav_menu' == $taxonomy_slug || 'link_category' == $taxonomy_slug || 'post_format' == $taxonomy_slug ) {
+								if ( 'category' == $taxonomy_slug || 'post_tag' == $taxonomy_slug ) {
 									$checked = 'checked';
 								}
 
 							}
 							else {
 
-								if ( isset($excluded_taxonomies[$taxonomy_slug]) && '1' === $excluded_taxonomies[$taxonomy_slug] ) {
+								if ( isset($included_taxonomies[$taxonomy_slug]) && '1' === $included_taxonomies[$taxonomy_slug] ) {
 									$checked = 'checked';
 								}
 
 							}
 
+							// Add count number to label
+							$taxonomy_count = wp_count_terms( $taxonomy_slug );
+
 						?>
-							<p><label><input type="checkbox" name="acp_excluded_taxonomies[<?php echo $taxonomy_slug; ?>]" value="1" <?php echo $checked; ?> /> <?php echo $taxonomy->labels->name; ?></label></p>
+							<p><label>
+								<input type="checkbox" name="acp_included_taxonomies[<?php echo $taxonomy_slug; ?>]" value="1" <?php echo $checked; ?> />
+								<?php echo $taxonomy->labels->name; ?>
+								<em class="count">(<?php echo $taxonomy_count; ?>)</em>
+							</label></p>
 						<?php } ?>
 					</td>
 				</tr>
