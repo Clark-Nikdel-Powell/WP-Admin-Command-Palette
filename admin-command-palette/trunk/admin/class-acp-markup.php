@@ -28,7 +28,7 @@ final class ACP_Markup {
 
 			foreach ( $post_types as $post_type_slug => $post_type_obj ) {
 
-				if ( '1' == $excluded_post_types[$post_type_slug] ) {
+				if ( isset( $excluded_post_types[$post_type_slug] ) && '1' == $excluded_post_types[$post_type_slug] ) {
 					unset( $post_types[$post_type_slug] );
 				}
 
@@ -51,7 +51,7 @@ final class ACP_Markup {
 
 			foreach ( $taxonomies as $taxonomy_slug => $taxonomy_obj ) {
 
-				if ( '1' == $excluded_taxonomies[$taxonomy_slug] ) {
+				if ( isset( $excluded_taxonomies[$taxonomy_slug] ) && '1' == $excluded_taxonomies[$taxonomy_slug] ) {
 					unset( $taxonomies[$taxonomy_slug] );
 				}
 
