@@ -44,6 +44,11 @@ final class ACP_Admin_Actions extends ACP_Data {
 			"title" => "Set Featured Image",
 			"target" => "#set-post-thumbnail",
 			"shortcut" => "shift+f"
+		),
+		array(
+			"title" => "Add New",
+			"target" => "[href*=post-new.php]",
+			"shortcut" => "shift+n"
 		)
 	);
 

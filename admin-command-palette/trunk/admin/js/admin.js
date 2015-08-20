@@ -18562,7 +18562,7 @@ Mousetrap.bind('esc', function() {
 });
 
 // Add New Whatever
-if (1 === $('a.add-new-h2').length) {
+if ( 0 < $('a[href*="post-new.php"]').length ) {
 
 	Mousetrap.bind('shift+n', function() {
 
@@ -18570,7 +18570,7 @@ if (1 === $('a.add-new-h2').length) {
 			return;
 		}
 
-		window.location.replace($('a.add-new-h2').attr('href'));
+		window.location.replace($('a[href*="post-new.php"]').attr('href'));
 
 	});
 
