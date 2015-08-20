@@ -20,7 +20,7 @@ Install the plugin and hit the keyboard shortcut "shift+shift" to trigger the mo
 
 The ACP also comes with some built-in keyboard shortcuts to make actions in the WordPress admin easier. You do not need to open the ACP in order to use the shortcuts.
 
-| Shortcut |: Action                   |
+| Shortcut | Action                    |
 |----------|---------------------------|
 | *␛*     | Clear input focus         |
 | *⇧+s*    | Primary button click      |
