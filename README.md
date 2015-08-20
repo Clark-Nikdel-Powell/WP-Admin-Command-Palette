@@ -16,6 +16,22 @@ This plugin brings about a new level of efficiency to WordPress admin user inter
 
 Install the plugin and hit the keyboard shortcut "shift+shift" to trigger the modal window. The live search box will match results via fuzzy search logic. You can dismiss the modal by hitting escape, "shift+shift" again, or by clicking the modal overlay.
 
+## Admin Shortcuts
+
+The ACP also comes with some built-in keyboard shortcuts to make actions in the WordPress admin easier. You do not need to open the ACP in order to use the shortcuts.
+
+| *␛* | Clear input focus |
+| *⇧+s* | Primary button click |
+| *⇧+p* | Preview |
+| *⇧+t* | Trash |
+| *⇧+v* | Open Post/Page in New Tab |
+| *⇧+n* | Add New Post/Page |
+| *⇧+f* | Set Featured Image |
+| *→* | Pagination: next page |
+| *←* | Pagination: previous page |
+| *⇧+→* | Pagination: last page |
+| *⇧+←* | Pagination: first page |
+
 ## Installation
 
 Upload the plugin to your `/wp-content/plugins` directory. Activate in the WordPress Admin.
