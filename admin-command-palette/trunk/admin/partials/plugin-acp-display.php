@@ -101,19 +101,8 @@ unset( $post_types['revision'] );
 
 							$checked = '';
 
-							if ( '' == $included_post_types || empty( $included_post_types ) ) {
-
-								if ( 'post' == $post_type_slug || 'page' == $post_type_slug ) {
-									$checked = 'checked';
-								}
-
-							}
-							else {
-
-								if ( isset($included_post_types[$post_type_slug]) && '1' === $included_post_types[$post_type_slug] ) {
-									$checked = 'checked';
-								}
-
+							if ( isset($included_post_types[$post_type_slug]) && '1' === $included_post_types[$post_type_slug] ) {
+								$checked = 'checked';
 							}
 
 							// Add count number to label
