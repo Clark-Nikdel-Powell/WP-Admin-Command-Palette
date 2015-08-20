@@ -40,18 +40,19 @@ final class ACP_User_Content extends ACP_Data {
 		// set blank array for false returns
 		$data = array();
 
-		// get post types to exclude
+		// get post types to include
+		$included_post_types = array();
 		$included_post_types = get_option('acp_included_post_types');
 
-		// get all published posts
-		$sql = "
-			SELECT *
-			FROM $wpdb->posts
-		";
-
-		// include any included post types from the query
 		if ( !empty( $included_post_types ) ) {
 
+			// get all posts
+			$sql = "
+				SELECT *
+				FROM $wpdb->posts
+			";
+
+			// include any included post types from the query
 			foreach ( $included_post_types as $post_type_slug => $checked ) {
 
 				if ( FALSE === strpos($sql, 'WHERE') ) {
@@ -65,27 +66,28 @@ final class ACP_User_Content extends ACP_Data {
 
 			}
 
-		}
 
-		$results = $wpdb->get_results($sql, ARRAY_A);
+			$results = $wpdb->get_results($sql, ARRAY_A);
 
-		// loop through our results
-		if ( $results && count($results) > 0 ) {
+			// loop through our results
+			if ( $results && count($results) > 0 ) {
 
-			foreach ( $results as $result ) {
+				foreach ( $results as $result ) {
 
-				// copy the template
-				$template = $this->template;
+					// copy the template
+					$template = $this->template;
 
-				// set all the properties
-				$template['title'] 			= $result['post_title'];
-				$template['id'] 			= $result['ID'];
-				$template['object_type'] 	= 'post_type';
-				$template['url'] 			= get_edit_post_link($result['ID'], 'noencode');
-				$template['name']           = $result['post_type'];
+					// set all the properties
+					$template['title'] 			= $result['post_title'];
+					$template['id'] 			= $result['ID'];
+					$template['object_type'] 	= 'post_type';
+					$template['url'] 			= get_edit_post_link($result['ID'], 'noencode');
+					$template['name']           = $result['post_type'];
 
-				// set the data in the new array by post ID to avoid duplicates
-				$data[] = $template;
+					// set the data in the new array by post ID to avoid duplicates
+					$data[] = $template;
+
+				}
 
 			}
 
@@ -94,55 +96,67 @@ final class ACP_User_Content extends ACP_Data {
 		// get taxonomies to include
 		$included_taxonomies = get_option('acp_included_taxonomies');
 
-		// get all taxonomies
-		$sql = "
-			SELECT DISTINCT
-				$wpdb->terms.*,
-				$wpdb->term_taxonomy.taxonomy
-			FROM $wpdb->terms
-				JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id
-				JOIN $wpdb->term_relationships ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
-		";
-
-		// exclude any included taxonomies from the query
 		if ( !empty( $included_taxonomies ) ) {
 
-			foreach ( $included_taxonomies as $taxonomy_slug => $checked ) {
+			// get all taxonomies
+			$sql = "
+				SELECT DISTINCT
+					$wpdb->terms.*,
+					$wpdb->term_taxonomy.taxonomy
+				FROM $wpdb->terms
+					JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id
+					JOIN $wpdb->term_relationships ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
+			";
 
-				if ( FALSE === strpos($sql, 'WHERE') ) {
-					$prefix = 'WHERE';
-				}
-				else {
-					$prefix = 'OR';
-				}
+			// exclude any included taxonomies from the query
+			if ( !empty( $included_taxonomies ) ) {
 
-				$sql .= " $prefix taxonomy = '$taxonomy_slug'";
+				foreach ( $included_taxonomies as $taxonomy_slug => $checked ) {
+
+					if ( FALSE === strpos($sql, 'WHERE') ) {
+						$prefix = 'WHERE';
+					}
+					else {
+						$prefix = 'OR';
+					}
+
+					$sql .= " $prefix taxonomy = '$taxonomy_slug'";
+
+				}
 
 			}
 
-		}
+			$results = $wpdb->get_results($sql, ARRAY_A);
 
-		$results = $wpdb->get_results($sql, ARRAY_A);
+			// loop through our results
+			if ( $results && count($results) > 0 ) {
 
-		// loop through our results
-		if ( $results && count($results) > 0 ) {
+				foreach ( $results as $result ) {
 
-			foreach ( $results as $result ) {
+					// copy the template
+					$template = $this->template;
 
-				// copy the template
-				$template = $this->template;
+					$url = 'edit-tags.php?action=edit&taxonomy='. $result['taxonomy'] .'&tag_ID='. $result['term_id'];
 
-				// set all the properties
-				$template['title'] 			= $result['name'];
-				$template['id'] 			= $result['term_id'];
-				$template['object_type'] 	= 'taxonomy';
-				$template['url'] 			= 'edit-tags.php?action=edit&taxonomy='. $result['taxonomy'] .'&tag_ID='. $result['term_id'];
-				$template['name']           = $result['taxonomy'];
+					if ( 'nav_menu' == $result['taxonomy'] ) {
 
-				// set the data in the new array by post ID to avoid duplicates
-				$data[] = $template;
+						$url = 'nav-menus.php?action=edit&menu='. $result['term_id'];
 
+					}
+
+					// set all the properties
+					$template['title'] 			= $result['name'];
+					$template['id'] 			= $result['term_id'];
+					$template['object_type'] 	= 'taxonomy';
+					$template['url'] 			= $url;
+					$template['name']           = $result['taxonomy'];
+
+					// set the data in the new array by post ID to avoid duplicates
+					$data[] = $template;
+
+				}
 			}
+
 		}
 
 		// get users if user has permission
