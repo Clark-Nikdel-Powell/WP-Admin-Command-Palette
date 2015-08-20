@@ -47,7 +47,7 @@ final class ACP_Admin_Actions extends ACP_Data {
 		),
 		array(
 			"title" => "Add New",
-			"target" => "[href*=post-new.php]",
+			"target" => "a[href*='post-new.php']",
 			"shortcut" => "shift+n"
 		)
 	);

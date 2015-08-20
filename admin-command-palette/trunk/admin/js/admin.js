@@ -18486,9 +18486,8 @@ $(document).keydown( function(e) {
 
 		else {
 			target = $selected.attr('data-target');
-			action = $selected.attr('data-action');
 
-			if ( 'undefined' !== target && 'undefined' !== action ) {
+			if ( 'undefined' !== target ) {
 
 				$(target)[0].click();
 
