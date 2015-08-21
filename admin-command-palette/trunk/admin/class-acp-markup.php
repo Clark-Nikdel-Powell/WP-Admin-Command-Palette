@@ -23,8 +23,6 @@ final class ACP_Markup {
 
 		$results_format = get_option( 'acp_display_results_by_type' );
 
-		?><!-- <?php print_r($results_format); ?> --><?php
-
 		// Unset any excluded post types
 		if ( !empty($excluded_post_types) ) {
 
