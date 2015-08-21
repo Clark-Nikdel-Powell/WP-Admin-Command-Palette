@@ -178,9 +178,9 @@ unset( $post_types['revision'] );
 	</form>
 	<form method="post">
 		<?php
-		if ( isset($_POST['clear_cache']) ) {
+		if ( isset($_POST['clear_cache']) || isset($_GET['settings-updated']) ) {
 			global $ACP;
-			$ACP->admin->clear_cache();
+			$ACP->admin->clear_all_cache();
 		}
 		?>
 		<input class="button button-secondary" type="submit" name="clear_cache" value="<?php esc_attr_e('Clear Content Cache'); ?>" />

@@ -158,7 +158,7 @@ class ACP_Admin {
 
 
 	/**
-	 * Clears the transient cache for all cached items
+	 * Clears the transient cache for all cached items for the current user
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -170,6 +170,25 @@ class ACP_Admin {
 		$this->admin_actions->clear_transient();
 
 		return true;
+	}
+
+	
+	/**
+	 * Clears all users transient cache
+	 * @since 	1.0.0
+	 */
+	public function clear_all_cache() {
+
+		// globals
+		global $wpdb;
+
+		$sql = "
+			DELETE FROM $wpdb->options
+			WHERE $wpdb->options.option_name LIKE '_transient_acp_%'
+		";
+
+		$wpdb->query($sql);
+
 	}
 
 }
