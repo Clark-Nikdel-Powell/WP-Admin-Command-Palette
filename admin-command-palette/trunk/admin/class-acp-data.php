@@ -64,7 +64,6 @@ abstract class ACP_Data {
 	 * The method to create a transient name uniquely for each user
 	 *
 	 * @since 	1.0.0
-	 * @param 	string 	The transient name
 	 * @return 	string 	The modified transient name
 	 */
 	public function create_unique_transient_name() {
@@ -82,7 +81,6 @@ abstract class ACP_Data {
 	 * The method to remove a transient
 	 *
 	 * @since 	1.0.0
-	 * @param 	string 	The transient name
 	 * @return 	null
 	 */
 	public function clear_transient() {
