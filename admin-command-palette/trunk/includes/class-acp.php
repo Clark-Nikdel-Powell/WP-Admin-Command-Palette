@@ -196,7 +196,9 @@ class ACP {
 		$this->loader->add_action( 'activated_plugin', $this->admin, 'clear_all_cache' );
 		$this->loader->add_action( 'deactivated_plugin', $this->admin, 'clear_all_cache' );
 		$this->loader->add_action( 'wp_insert_post', $this->admin, 'clear_all_cache' );
+		$this->loader->add_action( 'wp_trash_post', $this->admin, 'clear_all_cache' );
 		$this->loader->add_action( 'created_term', $this->admin, 'clear_all_cache' );
+		$this->loader->add_action( 'delete_term', $this->admin, 'clear_all_cache' );
 
 	}
 
