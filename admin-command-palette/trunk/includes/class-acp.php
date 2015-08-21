@@ -193,6 +193,13 @@ class ACP {
 		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'activated_plugin', $this->admin, 'clear_all_cache' );
+		$this->loader->add_action( 'deactivated_plugin', $this->admin, 'clear_all_cache' );
+		$this->loader->add_action( 'wp_insert_post', $this->admin, 'clear_all_cache' );
+		$this->loader->add_action( 'wp_trash_post', $this->admin, 'clear_all_cache' );
+		$this->loader->add_action( 'created_term', $this->admin, 'clear_all_cache' );
+		$this->loader->add_action( 'delete_term', $this->admin, 'clear_all_cache' );
+
 	}
 
 	/**
