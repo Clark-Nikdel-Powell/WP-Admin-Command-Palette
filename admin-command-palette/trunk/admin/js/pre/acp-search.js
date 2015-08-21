@@ -20,12 +20,15 @@ var results_format = 'flat';
 
 // Update the settings if the data is there.
 if ( 'undefined' !== typeof acp_user_options ) {
+
 	if ( '' !== acp_user_options.threshold ) {
 		acp_fuse_options.threshold = acp_user_options.threshold;
 	}
+
 	if ( '' !== acp_user_options.max_results_per_type ) {
 		acp_fuse_options.max_results_per_type = acp_user_options.max_results_per_type;
 	}
+
 	if ( 'grouped' === acp_user_options.results_format ) {
 		results_format = 'grouped';
 	}
@@ -132,6 +135,7 @@ function resultsFlat(acp_result) {
 }
 
 function resultsGrouped(acp_result) {
+
 	var i; // Counter var
 	var results = []; // Results array for output
 	results['acp-data-keys'] = []; // Result keys for data template.

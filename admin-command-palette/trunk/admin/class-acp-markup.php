@@ -21,7 +21,9 @@ final class ACP_Markup {
 		$excluded_post_types = get_option('acp_excluded_post_types');
 		$excluded_taxonomies = get_option('acp_excluded_taxonomies');
 
-		$results_format = get_option( 'acp_result_format', 'flat' );
+		$results_format = get_option( 'acp_display_results_by_type' );
+
+		?><!-- <?php print_r($results_format); ?> --><?php
 
 		// Unset any excluded post types
 		if ( !empty($excluded_post_types) ) {
@@ -76,8 +78,9 @@ final class ACP_Markup {
 					<span></span>
 				</span>
 			</header>
-			<div class="acp-results">
-				<?php if ( $results_format == 'flat' ) { ?>
+			<div class="acp-results-container">
+				<?php if ( '' == $results_format ) { ?>
+
 				<div class="acp-results hide">
 					<ul class="acp-list">
 					</ul>
