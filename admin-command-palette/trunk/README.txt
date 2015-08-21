@@ -44,11 +44,28 @@ You can customize the plugin settings on the Admin Command Palette settings page
 
 The live search compares the search term against titles, e.g., a post title, an admin page title, or an admin action title, using the [Fuse.js library](https://github.com/krisk/Fuse) to find results.
 
+= Keyboard Shortcuts =
+
+The ACP comes with some built-in keyboard shortcuts to make actions in the WordPress admin easier. You do not need to open the ACP in order to use the shortcuts.
+
+* **␛** - Clear input focus
+* **⇧+s** - Primary button click
+* **⇧+p** - Preview
+* **⇧+t** - Trash
+* **⇧+v** - Open Post/Page in New Tab
+* **⇧+n** - Add New Post/Page
+* **⇧+f** - Set Featured Image
+* **→** - Pagination: next page
+* **←** - Pagination: previous page
+* **⇧+→** - Pagination: last page
+* **⇧+←** - Pagination: first page
+
 == Screenshots ==
 
 1. The Admin Command Palette in action.
+2. The Admin Command Palette settings page.
 
 == Changelog ==
 
-= 0.1 =
+= 1.0 =
 Initial version.
