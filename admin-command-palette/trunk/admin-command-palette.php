@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'ACP_CACHE', FALSE );
+define( 'ACP_CACHE', TRUE );
 
 /**
  * The code that runs during plugin activation.
