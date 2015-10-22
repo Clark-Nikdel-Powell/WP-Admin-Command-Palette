@@ -65,7 +65,15 @@ The ACP comes with some built-in keyboard shortcuts to make actions in the WordP
 1. The Admin Command Palette in action.
 2. The Admin Command Palette settings page.
 
+== Upgrade Notice ==
+
+= 1.0.1 =
+Addressing spelling errors.
+
 == Changelog ==
+
+= 1.0.1 =
+Spelling fixes.
 
 = 1.0 =
 Initial version.
