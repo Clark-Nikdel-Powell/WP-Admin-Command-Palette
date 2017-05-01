@@ -116,7 +116,7 @@ class ACP_Admin {
 	 */
 	public function settings_page() {
 
-		add_options_page('Admin Command Palette', 'Admin Command Palette', 'manage_options', 'acp', 'acp_options_page');
+		add_options_page('Admin Command Palette', 'Admin Command Palette', 'manage_options', 'CNP_ACP', 'acp_options_page');
 
 		function acp_options_page() {
 			include_once('partials/plugin-acp-display.php');

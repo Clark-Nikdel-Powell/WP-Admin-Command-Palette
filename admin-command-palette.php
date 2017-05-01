@@ -45,7 +45,7 @@ register_deactivation_hook( __FILE__, 'deactivate_admin_command_palette' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-acp.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-cnp_acp.php';
 
 /**
  * Begins execution of the plugin.
@@ -60,7 +60,7 @@ $ACP;
 function run_admin_command_palette() {
 
 	global $ACP;
-	$ACP = new ACP();
+	$ACP = new CNP_ACP();
 	$ACP->run();
 
 }

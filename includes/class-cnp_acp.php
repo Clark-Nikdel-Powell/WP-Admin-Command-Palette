@@ -25,9 +25,8 @@
  * @since      1.0.0
  * @package    ACP
  * @subpackage ACP/includes
- * @author     Your Name <email@example.com>
  */
-class ACP {
+class CNP_ACP {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -86,7 +85,7 @@ class ACP {
 	 */
 	public function __construct() {
 
-		$this->admin_command_palette = 'acp';
+		$this->admin_command_palette = 'CNP_ACP';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
