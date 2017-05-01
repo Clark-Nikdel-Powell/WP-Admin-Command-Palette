@@ -68,6 +68,7 @@ The ACP comes with some built-in keyboard shortcuts to make actions in the WordP
 == Upgrade Notice ==
 
 = 1.0.2 =
+Handled class name collision with Admin Columns Pro.
 Corrected documentation.
 
 = 1.0.1 =

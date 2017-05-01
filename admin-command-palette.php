@@ -4,7 +4,7 @@
  * Plugin Name:       Admin Command Palette
  * Plugin URI:        http://wordpress.org/plugins/admin-command-palette/
  * Description:       Optimize WordPress admin navigation with a live search box and keyboard shortcuts.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author: Glenn Welser, Sam Mello & Josh Nederveld
  * Author URI: http://clarknikdelpowell.com/agency/people/
  * License:           GPL-2.0+

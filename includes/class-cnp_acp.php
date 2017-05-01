@@ -86,7 +86,7 @@ class CNP_ACP {
 	public function __construct() {
 
 		$this->admin_command_palette = 'CNP_ACP';
-		$this->version = '1.0.0';
+		$this->version = '1.0.2';
 
 		$this->load_dependencies();
 		$this->set_locale();
